@@ -1,0 +1,3 @@
+.container :nth-child(1) {
+  color: var(--main-green) !important;
+}

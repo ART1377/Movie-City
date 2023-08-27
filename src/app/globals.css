@@ -1,0 +1,102 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Cinzel:wght@400;500;600;700;800;900&family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+
+@tailwind base;
+@layer base {
+  h1 {
+    font-size: 48px;
+    font-weight: 700;
+  }
+  h2 {
+    font-size: 40px;
+    font-weight: 700;
+  }
+  h3 {
+    font-size: 32px;
+    font-weight: 700;
+  }
+  h4 {
+    font-size: 28px;
+    font-weight: 700;
+  }
+  h5 {
+    font-size: 24px;
+    font-weight: 700;
+  }
+  h6 {
+    font-size: 20px;
+    font-weight: 700;
+  }
+}
+@tailwind components;
+@tailwind utilities;
+:root {
+  /* color */
+  --main-green: #47d796;
+  --dark-green: #01995f;
+  --light-green: #c3f7dc;
+  --header-color: #d9e3e4;
+  --text-dark: #1f1f1f;
+  --text-light: #c3d2cb;
+  --bg-body: #ecf0f1;
+
+  /* transition */
+  --transition: all 0.2s ease-in-out;
+
+  /* border */
+  --radius: 1rem;
+
+  /* shadow */
+  --box-shadow: rgba(44, 187, 99, 0.35) 0 -25px 18px -14px inset,
+    rgba(44, 187, 99, 0.25) 0 1px 2px, rgba(44, 187, 99, 0.25) 0 2px 4px,
+    rgba(44, 187, 99, 0.25) 0 4px 8px, rgba(44, 187, 99, 0.25) 0 8px 16px,
+    rgba(44, 187, 99, 0.25) 0 16px 32px;
+}
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+/* html{
+  border: 8px solid #fff;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+} */
+html,
+html *,
+body,
+main,
+main *,
+body * {
+  scroll-behavior: smooth;
+}
+body {
+  /*font-family: "Cinzel", serif !important;
+  */
+  font-family: "Alegreya", serif !important;
+  min-height: 100vh;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  color: var(--text-dark);
+  background-color: var(--bg-body);
+}
+
+a,
+* a {
+  color: var(--text-dark);
+  transition: var(--transition);
+  -webkit-transition: var(--transition);
+  -moz-transition: var(--transition);
+  -ms-transition: var(--transition);
+  -o-transition: var(--transition);
+}
+a:hover,
+* a:hover {
+  color: var(--main-green);
+  cursor: pointer;
+}

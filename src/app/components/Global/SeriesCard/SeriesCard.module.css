@@ -1,0 +1,64 @@
+.container {
+  width: 100%;
+  height: 310px;
+  max-width: 180px !important;
+  overflow: hidden;
+  padding: 12px;
+  border-radius: var(--radius);
+  -webkit-border-radius: var(--radius);
+  -moz-border-radius: var(--radius);
+  -ms-border-radius: var(--radius);
+  -o-border-radius: var(--radius);
+  transition: var(--transition);
+  -webkit-transition: var(--transition);
+  -moz-transition: var(--transition);
+  -ms-transition: var(--transition);
+  -o-transition: var(--transition);
+}
+
+.container:hover {
+  box-shadow: none;
+}
+.image {
+  width: 100%;
+  height: 75%!important;
+  overflow: hidden;
+  margin: auto;
+  border-radius: var(--radius);
+  -webkit-border-radius: var(--radius);
+  -moz-border-radius: var(--radius);
+  -ms-border-radius: var(--radius);
+  -o-border-radius: var(--radius);
+}
+.image img {
+  border-radius: var(--radius);
+}
+.info {
+  height: 25%;
+}
+.info small {
+  font-size: 11px;
+}
+.info small hr {
+  margin: auto 2px;
+  display: inline-block;
+  width: 1px;
+  height: 10px;
+  background-color: var(--text-light);
+}
+.rate {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  bottom: 75px;
+  right: 5px;
+  border-radius: 100%;
+  background-color: rgba(0, 0, 0, .8);
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+}

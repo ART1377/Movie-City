@@ -1,0 +1,32 @@
+.header{
+  background-color: var(--bg-body);
+}
+.icons {
+  color: var(--text-dark);
+  font-size: 18px;
+}
+
+.icons div {
+  padding: 4px;
+  cursor: pointer;
+  transition: var(--transition);
+  border: 1px solid var(--text-dark);
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  -webkit-transition: var(--transition);
+  -moz-transition: var(--transition);
+  -ms-transition: var(--transition);
+  -o-transition: var(--transition);
+}
+
+.icons div:hover {
+  color: var(--main-green);
+  border: 1px solid var(--main-green);
+}
+.header {
+  overflow-x: hidden;
+  max-height: 60px;
+}

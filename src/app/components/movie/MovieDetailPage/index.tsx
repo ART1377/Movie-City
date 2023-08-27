@@ -1,0 +1,323 @@
+"use client";
+import React from "react";
+import {
+  Cast,
+  Genre,
+  Image,
+  Productioncountry,
+  Movie,
+  MovieDetail,
+  Crew,
+  Productioncompany,
+} from "../../../../../next-type-d";
+import Img from "../../Global/Img";
+import style from "./MovieDetailPage.module.css";
+import {
+  BsShareFill,
+  BsDownload,
+  BsBookmark,
+  BsStarFill,
+  BsFillBookmarkFill,
+  BsCheck,
+} from "react-icons/bs";
+import Title from "../../Global/Title";
+import Link from "next/link";
+import Slider from "../../Global/Slider";
+import { SwiperSlide } from "swiper/react";
+import CastCard from "../../Global/CastCard";
+import PhotoGallery from "../../Global/PhotoGallery";
+import Comments from "../../Global/Comments";
+import {
+  addToFavoriteMovies,
+  removeFromFavoriteMovies,
+} from "../../../redux/slices/favorite";
+import { useAppSelector, useAppDispatch } from "../../../redux/hooks/hook";
+import ModalComponent from "../../Global/ModalComponent";
+import Share from "../../Global/Share";
+import MovieCard from "../../Global/MovieCard";
+
+type Props = {
+  movie: MovieDetail;
+  images: Image;
+};
+
+const MovieDetailPage = ({ movie, images }: Props) => {
+  const list = useAppSelector((state) => state.favorite);
+  const dispatch = useAppDispatch();
+
+  //check is in list or not
+  const isInList = list.favoriteMovies.find((item) => item == movie?.id);
+
+  return (
+    <>
+      <div className={` ${style.container}`}>
+        {/* Background ************* */}
+
+        {movie?.backdrop_path && (
+          <div className={` ${style.background}`}>
+            <Img
+              url={movie?.backdrop_path}
+              alternative={`${movie?.title} image`}
+            />
+          </div>
+        )}
+
+        {/* <div className="absolute h-16 w-28">
+            <Img
+              url={movie?.production_companies[0].logo_path!}
+              alternative=""
+              size="w154"
+            />
+          </div> */}
+
+        {/* Poster ************* */}
+        <div
+          className={`h-[360px] w-full xxs:h-[420px] xs:h-[500px] s:h-[580px] sm:h-[700px] mx-auto mb-4  ${style.imageContainer}`}
+        >
+          <div
+            className={`relative w-full h-[90%] sm:rounded-2xl overflow-hidden ${style.image}`}
+          >
+            <Img
+              url={movie?.poster_path}
+              alternative={`${movie?.title} image`}
+            />
+            <h6
+              className={`text-text-light absolute z-30 bottom-10 left-2 xs:left-4 xs:bottom-14 xs:text-2xl lg:text-3xl ${style.title}`}
+            >
+              {movie?.title}
+            </h6>
+            {/* Detail ************* */}
+            <div
+              className={`flex flex-col items-start pt-2 gap-2 absolute bottom-2 left-2 xs:left-4 xs:bottom-4 z-30 ${style.detail}`}
+            >
+              <div className="text-text-light md:text-text-dark flex items-center gap-1.5">
+                <small>{movie?.release_date?.split("-")[0]}</small>
+                <hr className={style.smallLine} />
+                <small>{movie?.runtime} m</small>
+                <hr className={style.smallLine} />
+                <small className="flex items-center font-semibold">
+                  <BsStarFill className="text-main-green" />
+                  {movie?.vote_average.toFixed(1)}
+                  <p className="opacity-80 font-normal"> /10</p>
+                </small>
+                <hr className={style.smallLine} />
+                <small className={style.status}>{movie?.status}</small>
+              </div>
+              <div className="!hidden md:!flex gap-1 items-center">
+                {movie?.production_countries.map(
+                  (country: Productioncountry, index: number) => {
+                    if (index < 3) {
+                      return (
+                        <small
+                          key={country.iso_3166_1}
+                          className="!text-sm flex"
+                        >
+                          {country.name}
+                          {index < 2 &&
+                            index != +movie.production_countries.length - 1 && (
+                              <hr
+                                className={`my-auto ms-1 ${style.smallLine}`}
+                              />
+                            )}
+                        </small>
+                      );
+                    }
+                  }
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Options ************* */}
+          <div
+            className={`flex items-center gap-4 mt-3 mb-6 text-text-dark px-2 ${style.options}`}
+          >
+            {isInList ? (
+              <>
+                <div
+                  onClick={() => dispatch(removeFromFavoriteMovies(movie?.id))}
+                  className={`flex flex-col gap-1 items-center ${style.option}`}
+                >
+                  <div className="p-2 relative">
+                    <BsFillBookmarkFill className="text-main-green text-lg s:text-xl" />
+                    <BsCheck className="absolute bottom-[27%] left-[27%] text-white text-base" />
+                  </div>
+                  <small className="text-sm text-main-green">Bookmark</small>
+                </div>
+              </>
+            ) : (
+              <>
+                <div
+                  onClick={() => dispatch(addToFavoriteMovies(movie?.id))}
+                  className={`flex flex-col gap-1 items-center ${style.option}`}
+                >
+                  <div className="p-2">
+                    <BsBookmark className="text-lg s:text-xl" />
+                  </div>
+                  <small className="text-sm">Bookmark</small>
+                </div>
+              </>
+            )}
+
+            <ModalComponent
+              title={"Shere via Link"}
+              toggle={
+                <div
+                  className={`flex flex-col gap-1 items-center ${style.option}`}
+                >
+                  <div className="p-2 ">
+                    <BsShareFill className="text-lg s:text-xl" />
+                  </div>
+                  <small className="text-sm">Share</small>
+                </div>
+              }
+            >
+              <Share />
+            </ModalComponent>
+            <Link
+              href={movie?.homepage}
+              className={`flex flex-col gap-1 items-center ${style.option}`}
+            >
+              <div className="p-2">
+                <BsDownload className="text-lg s:text-xl" />
+              </div>
+              <small className="text-sm">Download</small>
+            </Link>
+          </div>
+        </div>
+
+        {/* info ************* */}
+        <div className={`w-full py-2 px-1 ${style.info}`}>
+          {/* Storyline ************* */}
+          {movie.overview && (
+            <section className="mt-8">
+              <Title>Storyline</Title>
+              <p className="text-text-dark text-sm md:max-w-[90%]">
+                {movie?.overview}
+              </p>
+            </section>
+          )}
+
+          {/* keywords *********** */}
+          {movie.keywords?.results?.length! > 0 && (
+            <div className="mt-3 flex flex-wrap gap-2">
+              {movie?.keywords?.results?.map(
+                (keyword: Genre, index: number) => {
+                  if (index < 5) {
+                    return (
+                      <small
+                        key={keyword.id}
+                        className="bg-text-light text-text-dark shadow py-0.5 px-1.5 rounded-full"
+                      >
+                        {keyword.name}
+                      </small>
+                    );
+                  }
+                }
+              )}
+            </div>
+          )}
+
+          {/* Genres ******** */}
+          {movie.genres?.length! > 0 && (
+            <section className="mt-6">
+              <Title>Genres</Title>
+              {movie?.genres.map((genre: Genre, index: number) => {
+                return (
+                  <Link key={genre.id} href={`/genres/${genre.id}`}>
+                    <small className="inline-flex flex-wrap items-center gap-1 me-1.5">
+                      {genre.name}
+                      {index != movie?.genres?.length - 1 && (
+                        <hr className={style.smallLine} />
+                      )}
+                    </small>
+                  </Link>
+                );
+              })}
+            </section>
+          )}
+
+          {/* Gallery ************* */}
+          {images && (
+            <section className="mt-6">
+              <Title>Top Images</Title>
+              <PhotoGallery images={images} />
+            </section>
+          )}
+
+          {/* Casts ************* */}
+          {movie.credits?.cast?.length! > 0 && (
+            <section className="mt-6">
+              <Title>Cast</Title>
+              <Slider slideCount={1.2}>
+                {movie?.credits?.cast.map((item: Cast) => {
+                  return (
+                    <SwiperSlide key={item.id}>
+                      <CastCard cast={item} />
+                    </SwiperSlide>
+                  );
+                })}
+              </Slider>
+            </section>
+          )}
+
+          {/* Crew ************* */}
+          {movie.credits?.cast?.length! > 0 && (
+            <section className="mt-6">
+              <Title>Cast</Title>
+              <Slider slideCount={1.2}>
+                {movie?.credits?.crew.map((item: Crew) => {
+                  return (
+                    <SwiperSlide key={item.credit_id}>
+                      <CastCard crew={item} />
+                    </SwiperSlide>
+                  );
+                })}
+              </Slider>
+            </section>
+          )}
+
+          {/* Similar ************* */}
+          {movie.similar?.results?.length! > 0 && (
+            <section className="mt-14">
+              <Title>More Like This</Title>
+              <Slider>
+                {movie?.similar?.results.map((item: Movie) => {
+                  return (
+                    <SwiperSlide key={item.id}>
+                      <MovieCard movie={item} imageSize="w185" />
+                    </SwiperSlide>
+                  );
+                })}
+              </Slider>
+            </section>
+          )}
+
+          {/* Recommendations ************* */}
+          {movie.recommendations?.results?.length! > 0 && (
+            <section className="mt-10">
+              <Title>Recommendations</Title>
+              <Slider>
+                {movie?.recommendations?.results?.map((item: Movie) => {
+                  return (
+                    <SwiperSlide key={item.id}>
+                      <MovieCard movie={item} imageSize="w185" />
+                    </SwiperSlide>
+                  );
+                })}
+              </Slider>
+            </section>
+          )}
+
+          {/* Comments ************* */}
+          <section className="mt-10 mb-40">
+            <Title>Comments</Title>
+            <Comments authors={movie?.reviews?.results!} />
+          </section>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default MovieDetailPage;

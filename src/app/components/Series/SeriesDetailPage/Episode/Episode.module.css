@@ -1,0 +1,57 @@
+.hide {
+  background-color: white;
+  color: var(--text-text-dark);
+}
+.show {
+  background-color: var(--main-green);
+  color: white;
+  animation:show 1s ease-in-out ;
+  -webkit-animation:show 1s ease-in-out ;
+}
+
+@keyframes show {
+  0%{
+    height: fit-content;
+  }
+  100%{
+    height: auto;
+  }
+}
+
+.show .overview{
+    display: block;
+}
+.hide .overview{
+    display: none;
+}
+.show .arrow{
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transition: var(--transition);
+    -webkit-transition: var(--transition);
+    -moz-transition: var(--transition);
+    -ms-transition: var(--transition);
+    -o-transition: var(--transition);
+}
+.hide .arrow{
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transition: var(--transition);
+    -webkit-transition: var(--transition);
+    -moz-transition: var(--transition);
+    -ms-transition: var(--transition);
+    -o-transition: var(--transition);
+}
+
+@media only screen and (min-width:900px) {
+  .episode{
+    width: 48%;
+  }
+}
+

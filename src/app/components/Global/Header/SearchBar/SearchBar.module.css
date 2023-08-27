@@ -1,0 +1,53 @@
+.container {
+  min-width: 60%;
+}
+.container svg {
+  color: var(--text-light);
+}
+
+.container input::placeholder {
+  color: var(--text-light);
+}
+.container input {
+  color: var(--text-dark);
+  letter-spacing: 1px;
+}
+
+.searchBar {
+  position: absolute;
+  background-color: var(--main-green);
+  width: 100vw;
+  height: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  border: 8px solid #fff;
+  padding: 8px;
+}
+.searchBar div:nth-child(1) {
+  width: 100%;
+  position: relative;
+  height: auto;
+  min-height: 28px;
+  padding-bottom: 1rem;
+}
+.searchBar div:nth-child(2) {
+  position: relative;
+}
+.searchBar div:nth-child(2) button {
+  overflow: hidden;
+  background-color: var(--dark-green);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  right: 0;
+  padding: 8px;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 0 2rem 2rem 0;
+  -webkit-border-radius: 0 2rem 2rem 0;
+  -moz-border-radius: 0 2rem 2rem 0;
+  -ms-border-radius: 0 2rem 2rem 0;
+  -o-border-radius: 0 2rem 2rem 0;
+}

@@ -64,10 +64,10 @@ const PeopleDetailPage = ({ people, credits }: Props) => {
         )}*/}
         {/* Poster ************* */}
         <div
-          className={`h-[360px] w-full xxs:h-[420px] xs:h-[500px] s:h-[580px] sm:h-[600px] mx-auto mb-4 max-w-[500px]  ${style.imageContainer}`}
+          className={`h-[400px] w-full xxs:h-[500px] xs:h-[570px] s:h-[600px] sm:h-[700px] mx-auto mb-4 max-w-[500px]  ${style.imageContainer}`}
         >
           <div
-            className={`relative w-full h-[90%] sm:rounded-2xl overflow-hidden ${style.image}`}
+            className={`relative w-full h-[90%] ${style.image}`}
           >
             <Img
               url={people?.profile_path}
@@ -108,10 +108,10 @@ const PeopleDetailPage = ({ people, credits }: Props) => {
                   className={`flex flex-col gap-1 items-center ${style.option}`}
                 >
                   <div className="p-2 relative">
-                    <BsFillBookmarkFill className="text-main-green text-lg s:text-xl" />
-                    <BsCheck className="absolute bottom-[27%] left-[27%] text-white text-base" />
-                  </div>
-                  <small className="text-sm text-main-green">Bookmark</small>
+                  <BsFillBookmarkFill className="text-main-green text-base xs:text-lg" />
+                  <BsCheck className="absolute bottom-[28%] left-[28%] xs:bottom-[29%] xsleft-[29%] text-white text-sm" />
+                </div>
+                <small className="text-xs xs:text-sm text-main-green">Bookmark</small>
                 </div>
               </>
             ) : (
@@ -120,10 +120,10 @@ const PeopleDetailPage = ({ people, credits }: Props) => {
                   onClick={() => dispatch(addToFavoritePeople(people?.id))}
                   className={`flex flex-col gap-1 items-center ${style.option}`}
                 >
-                  <div className="p-2">
-                    <BsBookmark className="text-lg s:text-xl" />
-                  </div>
-                  <small className="text-sm">Bookmark</small>
+                 <div className="p-2">
+                  <BsBookmark className="text-base xs:text-lg" />
+                </div>
+                <small className="text-xs xs:text-sm">Bookmark</small>
                 </div>
               </>
             )}
@@ -135,9 +135,9 @@ const PeopleDetailPage = ({ people, credits }: Props) => {
                   className={`flex flex-col gap-1 items-center ${style.option}`}
                 >
                   <div className="p-2 ">
-                    <BsShareFill className="text-lg s:text-xl" />
+                    <BsShareFill className="text-base xs:text-lg" />
                   </div>
-                  <small className="text-sm">Share</small>
+                  <small className="text-xs xs:text-sm">Share</small>
                 </div>
               }
             >
@@ -148,9 +148,9 @@ const PeopleDetailPage = ({ people, credits }: Props) => {
               className={`flex flex-col gap-1 items-center ${style.option}`}
             >
               <div className="p-2">
-                <BsInfoCircle className="text-lg s:text-xl" />
+                <BsInfoCircle className="text-base xs:text-lg" />
               </div>
-              <small className="text-sm">More</small>
+              <small className="text-xs xs:text-sm">More</small>
             </Link>
           </div>
         </div>
@@ -232,8 +232,8 @@ const PeopleDetailPage = ({ people, credits }: Props) => {
             </section>
           )}
           {/* Crew's Series ************* */}
-          {credits.cast.length! > 0 && (
-            <section className="mt-14 mb-24">
+          {credits.crew.length! > 0 && (
+            <section className="mt-14">
               <Title>{`${people.name}'s Series as Crew`}</Title>
               <Slider>
                 {credits.crew.map((item) => {
@@ -248,6 +248,7 @@ const PeopleDetailPage = ({ people, credits }: Props) => {
               </Slider>
             </section>
           )}
+          <div className="mb-40"></div>
         </div>
       </div>
     </>

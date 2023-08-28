@@ -50,18 +50,18 @@ const MovieCard = ({ movie, imageSize }: Props) => {
             />
           </div>
         </Link>
-        <div className={`absolute top-3 left-1 cursor-pointer ${style.watch}`}>
+        <div className={`absolute top-3 left-2 cursor-pointer ${style.watch}`}>
           {isInList ? (
             <>
               <div onClick={() => dispatch(removeFromFavoriteMovies(movie.id))}>
-                <BsFillBookmarkFill className="text-main-green text-4xl shadow-md"></BsFillBookmarkFill>
+                <BsFillBookmarkFill className="text-main-green text-4xl"></BsFillBookmarkFill>
                 <BsCheck className="absolute bottom-[15%] left-[10%] text-white text-3xl" />
               </div>
             </>
           ) : (
             <>
               <div onClick={() => dispatch(addToFavoriteMovies(movie.id))}>
-                <BsFillBookmarkFill className="text-black/75 text-4xl shadow-md"></BsFillBookmarkFill>
+                <BsFillBookmarkFill className="text-black/75 text-4xl"></BsFillBookmarkFill>
                 <BsPlus className="absolute bottom-[10%] left-[10%] text-white text-3xl" />
               </div>
             </>

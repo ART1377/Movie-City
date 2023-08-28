@@ -8,8 +8,8 @@
   -moz-border-radius: var(--radius);
   -ms-border-radius: var(--radius);
   -o-border-radius: var(--radius);
-  max-height: 320px;
-}
+  max-height: 340px;
+  max-width: 320px;}
 .info hr {
   margin: auto 2px;
   display: inline-block;

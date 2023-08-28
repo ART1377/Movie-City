@@ -49,7 +49,6 @@ const SeriesDetailPage = ({ series, images }: Props) => {
   //check is in list or not
   const isInList = list.favoriteSeries?.find((item) => item == series?.id);
 
-
   return (
     <>
       <div className={`${style.container}`}>
@@ -60,20 +59,21 @@ const SeriesDetailPage = ({ series, images }: Props) => {
               url={series?.backdrop_path}
               alternative={`${series?.name} image`}
             />
+            <small className={`text-white absolute bottom-0 -right-4 z-30 !pl-4 !pr-6 !hidden md:!block ${style.status}`}>{series?.status}</small>
           </div>
         )}
 
         {/* Poster ************* */}
         <div
-          className={`h-[360px] w-full xxs:h-[420px] xs:h-[500px] s:h-[580px] sm:h-[700px] mx-auto mb-4  ${style.imageContainer}`}
+          className={`h-[400px] w-full xxs:h-[500px] xs:h-[570px] s:h-[600px] sm:h-[700px] mx-auto mb-4 max-w-[500px]  ${style.imageContainer}`}
         >
-          <div
-            className={`relative w-full h-[90%] sm:rounded-2xl overflow-hidden ${style.image}`}
-          >
+          <div className={`relative w-full h-[90%] ${style.image}`}>
             <Img
               url={series?.poster_path}
               alternative={`${series?.name} image`}
             />
+            <small className={`text-white absolute top-full right-0 z-30 !px-4 md:!hidden ${style.status}`}>{series?.status}</small>
+
             <h6
               className={`text-text-light absolute z-30 bottom-10 left-2 xs:left-4 xs:bottom-14 xs:text-2xl lg:text-3xl ${style.title}`}
             >
@@ -96,8 +96,8 @@ const SeriesDetailPage = ({ series, images }: Props) => {
                   {series?.vote_average.toFixed(1)}
                   <p className="opacity-80 font-normal"> /10</p>
                 </small>
-                <hr className={style.smallLine} />
-                <small className={style.status}>{series?.status}</small>
+                {/* <hr className={`!hidden md:!inline-block ${style.smallLine}`} />
+                <small className={`!hidden md:!inline-block ${style.status}`}>{series?.status}</small> */}
               </div>
               <div className="!hidden md:!flex gap-1 items-center">
                 {series?.production_countries.map(
@@ -135,10 +135,12 @@ const SeriesDetailPage = ({ series, images }: Props) => {
                 className={`flex flex-col gap-1 items-center ${style.option}`}
               >
                 <div className="p-2 relative">
-                  <BsFillBookmarkFill className="text-main-green text-lg s:text-xl" />
-                  <BsCheck className="absolute bottom-[27%] left-[27%] text-white text-base" />
+                  <BsFillBookmarkFill className="text-main-green text-base xs:text-lg" />
+                  <BsCheck className="absolute bottom-[28%] left-[28%] xs:bottom-[29%] xsleft-[29%] text-white text-sm" />
                 </div>
-                <small className="text-sm text-main-green">Bookmark</small>
+                <small className="text-xs xs:text-sm text-main-green">
+                  Bookmark
+                </small>
               </div>
             ) : (
               <div
@@ -146,9 +148,9 @@ const SeriesDetailPage = ({ series, images }: Props) => {
                 className={`flex flex-col gap-1 items-center ${style.option}`}
               >
                 <div className="p-2">
-                  <BsBookmark className="text-lg s:text-xl" />
+                  <BsBookmark className="text-base xs:text-lg" />
                 </div>
-                <small className="text-sm">Bookmark</small>
+                <small className="text-xs xs:text-sm">Bookmark</small>
               </div>
             )}
 
@@ -159,9 +161,9 @@ const SeriesDetailPage = ({ series, images }: Props) => {
                   className={`flex flex-col gap-1 items-center ${style.option}`}
                 >
                   <div className="p-2 ">
-                    <BsShareFill className="text-lg s:text-xl" />
+                    <BsShareFill className="text-base xs:text-lg" />
                   </div>
-                  <small className="text-sm">Share</small>
+                  <small className="text-xs xs:text-sm">Share</small>
                 </div>
               }
             >
@@ -172,9 +174,9 @@ const SeriesDetailPage = ({ series, images }: Props) => {
               className={`flex flex-col gap-1 items-center ${style.option}`}
             >
               <div className="p-2">
-                <BsDownload className="text-lg s:text-xl" />
+                <BsDownload className="text-base xs:text-lg" />
               </div>
-              <small className="text-sm">Download</small>
+              <small className="text-xs xs:text-sm">Download</small>
             </Link>
           </div>
         </div>
@@ -285,7 +287,7 @@ const SeriesDetailPage = ({ series, images }: Props) => {
           {/* Crew ************* */}
           {series.credits?.crew.length! > 0 && (
             <section className="mt-6">
-              <Title>Cast</Title>
+              <Title>Crew</Title>
               <Slider slideCount={1.2}>
                 {series?.credits?.crew.map((item: Crew) => {
                   return (

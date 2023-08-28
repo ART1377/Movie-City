@@ -25,32 +25,29 @@ const PersonCard = ({ person, imageSize }: Props) => {
 
   return (
     <>
-      <div
-        className={`relative shadow-lg bg-white p-2 sm:p-3 flex flex-col items-center ${style.container}`}
-      >
-        <Link href={"/home"}>
-          <div className={`relative ${style.image}`}>
-            <Img
-              url={person?.profile_path}
-              alternative={`${person?.name} image`}
-              size={imageSize}
-            />
-          </div>
-          <div
-            className={`pb-1 pt-2 text-center flex flex-col justify-between ${style.info}`}
-          >
-            <p className="font-semibold text-base">{person.name}</p>
+      <div className={`relative shadow-lg ${style.container}`}>
+        <Link href={`/people/${person.id}`} className={`relative shadow-lg ${style.image}`}>
+          <Img
+            url={person?.profile_path}
+            alternative={`${person?.name} image`}
+            size={imageSize}
+          />
+          <div className="absolute bottom-0 z-20 w-full text-white flex p-2">
+            <div className={`flex justify-between ${style.info}`}>
+              <p className="text-sm">{person.name}</p>
+            </div>
           </div>
         </Link>
-        <small className="mb-3">{person.known_for_department}</small>
-        <div className="w-5 h-5 cursor-pointer inline-block">
+        <div className="w-5 h-5 cursor-pointer inline-block absolute right-1.5 bottom-1.5 z-30">
           {isInList ? (
             <BsHeartFill
+              strokeWidth="1"
               onClick={() => dispatch(removeFromFavoritePeople(person.id))}
               className="text-main-green"
             />
           ) : (
             <BsHeart
+              strokeWidth="1"
               onClick={() => dispatch(addToFavoritePeople(person.id))}
               className="text-main-green"
             />

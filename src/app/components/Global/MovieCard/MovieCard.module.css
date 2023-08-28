@@ -24,15 +24,13 @@
   height: 75% !important;
   overflow: hidden;
   margin: auto;
-  border-radius: var(--radius);
-  -webkit-border-radius: var(--radius);
-  -moz-border-radius: var(--radius);
-  -ms-border-radius: var(--radius);
-  -o-border-radius: var(--radius);
+  border-radius: 4px var(--radius) var(--radius);
+  -webkit-border-radius: 4px var(--radius) var(--radius);
+  -moz-border-radius: 4px var(--radius) var(--radius);
+  -ms-border-radius: 4px var(--radius) var(--radius);
+  -o-border-radius: 4px var(--radius) var(--radius);
 }
-.image img {
-  border-radius: var(--radius);
-}
+
 .info {
   height: 25%;
 }

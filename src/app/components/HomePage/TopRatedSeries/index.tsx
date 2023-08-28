@@ -41,10 +41,10 @@ const TopRatedSeries = ({ data }: Props) => {
       <section className="mb-12">
         <SectionDevider title="TopRated Series" path="/" />
         <div
-          className={`flex flex-col mx-auto justify-center sm:flex-row sm:justify-around gap-4 py-4 xxs:px-2 sm:px-4 max-w-[450px] sm:max-w-full ${style.container}`}
+          className={`flex flex-col mx-auto justify-center sm:flex-row sm:justify-around gap-4 py-4 xxs:px-2 sm:px-4 max-w-[400px] sm:max-w-[1000px] ${style.container}`}
         >
-          <div className={`w-full sm:w-5/12 my-auto relative ${style.image}`}>
-            <Link href={"/"}>
+          <div className={`w-full sm:w-5/12 m-auto relative ${style.image}`}>
+            <Link href={`/series/${topFive[current].id}`}>
               <Img
                 url={topFive[current]?.poster_path}
                 alternative={`${topFive[current]?.name} image`}
@@ -63,22 +63,20 @@ const TopRatedSeries = ({ data }: Props) => {
                   }`}
                 >
                   <div>
-                    <Link
-                      href={"/"}
-                      className={`text-text-dark font-semibold ${style.name}`}
-                    >
+                    <p className={`text-text-dark font-semibold ${style.name}`}>
                       {item.name?.split(":")[0]}
-                    </Link>
+                    </p>
                     <div className="flex">
                       {item?.genre_ids.map((genreId: number, index: number) => {
                         if (index < 2) {
                           return (
-                            <Link href={"/"} key={genreId}>
-                              <small className="text-sm text-text-dark opacity-80">
-                                {getGenreNameByGenreId(genreId)}
-                                {index < 1 && <hr />}
-                              </small>
-                            </Link>
+                            <small
+                              key={genreId}
+                              className="text-sm text-text-dark opacity-80"
+                            >
+                              {getGenreNameByGenreId(genreId)}
+                              {index < 1 && <hr />}
+                            </small>
                           );
                         }
                       })}

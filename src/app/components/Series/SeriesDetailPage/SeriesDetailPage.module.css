@@ -37,18 +37,15 @@
   top: 0;
   bottom: 0;
   z-index: 10;
-  border-radius: var(--radius) !important;
+  border-top-right-radius: var(--radius);
+  border-top-left-radius: var(--radius);
   background: rgb(0, 0, 0);
   background: linear-gradient(
     0deg,
     rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 0.7) 30%,
+    rgba(0, 0, 0, 0.56) 25%,
     rgba(0, 0, 0, 0) 100%
   );
-  -webkit-border-radius: var(--radius) !important;
-  -moz-border-radius: var(--radius) !important;
-  -ms-border-radius: var(--radius) !important;
-  -o-border-radius: var(--radius) !important;
 }
 
 .info {

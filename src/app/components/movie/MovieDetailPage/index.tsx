@@ -59,6 +59,7 @@ const MovieDetailPage = ({ movie, images }: Props) => {
               url={movie?.backdrop_path}
               alternative={`${movie?.title} image`}
             />
+             <small className={`text-white absolute bottom-0 -right-4 z-30 !pl-4 !pr-6 !hidden md:!block ${style.status}`}>{movie?.status}</small>
           </div>
         )}
 
@@ -72,15 +73,14 @@ const MovieDetailPage = ({ movie, images }: Props) => {
 
         {/* Poster ************* */}
         <div
-          className={`h-[360px] w-full xxs:h-[420px] xs:h-[500px] s:h-[580px] sm:h-[700px] mx-auto mb-4  ${style.imageContainer}`}
+          className={`h-[400px] w-full xxs:h-[500px] xs:h-[570px] s:h-[600px] sm:h-[700px] mx-auto mb-4 max-w-[500px]  ${style.imageContainer}`}
         >
-          <div
-            className={`relative w-full h-[90%] sm:rounded-2xl overflow-hidden ${style.image}`}
-          >
+          <div className={`relative w-full h-[90%] ${style.image}`}>
             <Img
               url={movie?.poster_path}
               alternative={`${movie?.title} image`}
             />
+             <small className={`text-white absolute top-full right-0 z-30 !px-4 md:!hidden ${style.status}`}>{movie?.status}</small>
             <h6
               className={`text-text-light absolute z-30 bottom-10 left-2 xs:left-4 xs:bottom-14 xs:text-2xl lg:text-3xl ${style.title}`}
             >
@@ -100,8 +100,8 @@ const MovieDetailPage = ({ movie, images }: Props) => {
                   {movie?.vote_average.toFixed(1)}
                   <p className="opacity-80 font-normal"> /10</p>
                 </small>
-                <hr className={style.smallLine} />
-                <small className={style.status}>{movie?.status}</small>
+                {/* <hr className={style.smallLine} />
+                <small className={style.status}>{movie?.status}</small> */}
               </div>
               <div className="!hidden md:!flex gap-1 items-center">
                 {movie?.production_countries.map(
@@ -139,10 +139,12 @@ const MovieDetailPage = ({ movie, images }: Props) => {
                   className={`flex flex-col gap-1 items-center ${style.option}`}
                 >
                   <div className="p-2 relative">
-                    <BsFillBookmarkFill className="text-main-green text-lg s:text-xl" />
-                    <BsCheck className="absolute bottom-[27%] left-[27%] text-white text-base" />
+                    <BsFillBookmarkFill className="text-main-green text-base xs:text-lg" />
+                    <BsCheck className="absolute bottom-[28%] left-[28%] xs:bottom-[29%] xsleft-[29%] text-white text-sm" />
                   </div>
-                  <small className="text-sm text-main-green">Bookmark</small>
+                  <small className="text-xs xs:text-sm text-main-green">
+                    Bookmark
+                  </small>
                 </div>
               </>
             ) : (
@@ -152,9 +154,9 @@ const MovieDetailPage = ({ movie, images }: Props) => {
                   className={`flex flex-col gap-1 items-center ${style.option}`}
                 >
                   <div className="p-2">
-                    <BsBookmark className="text-lg s:text-xl" />
+                    <BsBookmark className="text-base xs:text-lg" />
                   </div>
-                  <small className="text-sm">Bookmark</small>
+                  <small className="text-xs xs:text-sm">Bookmark</small>
                 </div>
               </>
             )}
@@ -166,9 +168,9 @@ const MovieDetailPage = ({ movie, images }: Props) => {
                   className={`flex flex-col gap-1 items-center ${style.option}`}
                 >
                   <div className="p-2 ">
-                    <BsShareFill className="text-lg s:text-xl" />
+                    <BsShareFill className="text-base xs:text-lg" />
                   </div>
-                  <small className="text-sm">Share</small>
+                  <small className="text-xs xs:text-sm">Share</small>
                 </div>
               }
             >
@@ -179,9 +181,9 @@ const MovieDetailPage = ({ movie, images }: Props) => {
               className={`flex flex-col gap-1 items-center ${style.option}`}
             >
               <div className="p-2">
-                <BsDownload className="text-lg s:text-xl" />
+                <BsDownload className="text-base xs:text-lg" />
               </div>
-              <small className="text-sm">Download</small>
+              <small className="text-xs xs:text-sm">Download</small>
             </Link>
           </div>
         </div>
@@ -262,9 +264,9 @@ const MovieDetailPage = ({ movie, images }: Props) => {
           )}
 
           {/* Crew ************* */}
-          {movie.credits?.cast?.length! > 0 && (
+          {movie.credits?.crew?.length! > 0 && (
             <section className="mt-6">
-              <Title>Cast</Title>
+              <Title>Crew</Title>
               <Slider slideCount={1.2}>
                 {movie?.credits?.crew.map((item: Crew) => {
                   return (

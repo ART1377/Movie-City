@@ -26,10 +26,12 @@ const Episode = ({ data }: Props) => {
     return <p>loading ...</p>;
   }
 
-
   return (
     <>
       <div className="flex flex-wrap justify-around gap-4  xs:px-4">
+        {data&&data.episodes.length<=0&&(
+          <p>returning in future</p>
+        )}
         {data.episodes.map((episode: Episode,index:number) => {
           if(index<count){
 

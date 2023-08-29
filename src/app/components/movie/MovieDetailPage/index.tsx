@@ -59,7 +59,7 @@ const MovieDetailPage = ({ movie, images }: Props) => {
               url={movie?.backdrop_path}
               alternative={`${movie?.title} image`}
             />
-             <small className={`text-white absolute bottom-0 -right-4 z-30 !pl-4 !pr-6 !hidden md:!block ${style.status}`}>{movie?.status}</small>
+                <p className={`text-white absolute bottom-0 right-0 z-30 !px-6 !hidden md:!block xm:!px-8 lg:!px-10 xl:!px-14 2xl:!px-16 !py-0.5  ${style.status}`}>{movie?.status}</p>
           </div>
         )}
 
@@ -80,7 +80,7 @@ const MovieDetailPage = ({ movie, images }: Props) => {
               url={movie?.poster_path}
               alternative={`${movie?.title} image`}
             />
-             <small className={`text-white absolute top-full right-0 z-30 !px-4 md:!hidden ${style.status}`}>{movie?.status}</small>
+               <p className={`text-white absolute top-full right-0 z-30 !px-4 md:!hidden ${style.status}`}>{movie?.status}</p>
             <h6
               className={`text-text-light absolute z-30 bottom-10 left-2 xs:left-4 xs:bottom-14 xs:text-2xl lg:text-3xl ${style.title}`}
             >

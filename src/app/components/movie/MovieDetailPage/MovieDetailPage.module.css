@@ -82,21 +82,23 @@ hr.smallLine {
   .background {
     display: block;
     position: absolute;
+    overflow: visible;
     top: 56px;
     right: 8px;
     left: 188px;
     opacity: 0.7;
     height: 360px;
-    max-width: 1244px;
+    max-width: 1200px;
     margin: auto;
-    overflow: hidden;
     border-radius: var(--radius);
     -webkit-border-radius: var(--radius);
     -moz-border-radius: var(--radius);
     -ms-border-radius: var(--radius);
     -o-border-radius: var(--radius);
   }
-
+  .background img {
+    clip-path: polygon(0 0, 100% 0, 100% 91%, 86% 91%, 83% 100%, 0 100%)
+  }
   .imageContainer {
     margin-top: 240px;
     height: 260px;

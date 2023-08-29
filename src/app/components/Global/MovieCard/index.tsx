@@ -50,7 +50,7 @@ const MovieCard = ({ movie, imageSize }: Props) => {
             />
           </div>
         </Link>
-        <div className={`absolute top-3 left-2 cursor-pointer ${style.watch}`}>
+        <div className={`absolute top-3 left-[7px] cursor-pointer ${style.watch}`}>
           {isInList ? (
             <>
               <div onClick={() => dispatch(removeFromFavoriteMovies(movie.id))}>

@@ -17,7 +17,7 @@ const Companies = (props: Props) => {
             return (
               <Link
                 key={company.id}
-                href={"/"}
+                href={company.homepage}
                 className="mr-12 relative flex items-center justify-center text-center"
               >
                 <Img

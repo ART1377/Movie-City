@@ -7,7 +7,6 @@ import {
   BiTv,
   BiCameraMovie,
   BiHeart,
-  BiCalendar,
   BiLogOut,
   BiX,
   BiUser,

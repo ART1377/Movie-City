@@ -72,7 +72,6 @@ export interface SeriesDetail {
   reviews?: Reviews;
   similar?: SimilarSeries;
   recommendations?: RecommendationsSeries;
-
 }
 export interface Movie {
   adult: boolean;
@@ -138,10 +137,14 @@ export interface People {
 }
 
 export interface Company {
+  description: string;
+  headquarters: string;
+  homepage: string;
   id: number;
   logo_path: string;
   name: string;
   origin_country: string;
+  parent_company?: any;
 }
 
 export interface Spokenlanguage {
@@ -254,7 +257,6 @@ export interface Cast {
   character: string;
   credit_id: string;
   order: number;
-  
 }
 export interface Keywords {
   results: Genre[];
@@ -306,7 +308,6 @@ export interface Backdrop {
   vote_count: number;
   width: number;
 }
-
 
 //Season Detail
 
@@ -365,7 +366,6 @@ export interface Authordetails {
   rating: number;
 }
 
-
 // Movies Detail
 export interface RecommendationsMovies {
   page: number;
@@ -379,7 +379,6 @@ export interface SimilarMovies {
   total_pages: number;
   total_results: number;
 }
-
 
 // People Detail
 export interface PeopleDetail {
@@ -460,4 +459,40 @@ export interface PeopleCombinedCast {
   first_air_date?: string;
   name?: string;
   episode_count?: number;
+}
+
+// Search Result
+
+export interface SearchResults {
+  page: number;
+  results: SearchResult[];
+  total_pages: number;
+  total_results: number;
+}
+
+export interface SearchResult {
+  adult: boolean;
+  backdrop_path?: string;
+  id: number;
+  title?: string;
+  original_language: string;
+  original_title?: string;
+  overview: string;
+  poster_path?: string;
+  media_type: string;
+  genre_ids: number[];
+  popularity: number;
+  release_date?: string;
+  video?: boolean;
+  vote_average: number;
+  vote_count: number;
+  name?: string;
+  original_name?: string;
+  first_air_date?: string;
+  origin_country?: string[];
+
+  gender?: number;
+  known_for_department?: string;
+  profile_path?: string;
+  known_for?: Knownfor[];
 }

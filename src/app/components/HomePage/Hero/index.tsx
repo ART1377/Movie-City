@@ -86,10 +86,13 @@ const SliderHero = (props: Props) => {
                       (genreId: number, index: number) => {
                         if (index < 2) {
                           return (
-                            <Link href={"/"} key={genreId}>
+                            <Link
+                              href={`/genres/${getGenreNameByGenreId(genreId)}`}
+                              key={genreId}
+                            >
                               <small className="!text-xs lg:text-sm text-text-light">
                                 {getGenreNameByGenreId(genreId)}
-                                {index < 1 && <hr />}
+                                {index < 1 && <hr className='!mx-1' />}
                               </small>
                             </Link>
                           );

@@ -121,6 +121,9 @@
 .results a{
  border-bottom: 1px solid var(--main-green);
 }
- .results a:last-child{
- border-bottom:none;
+.results a:last-child{
+  border-bottom:none;
+} 
+.results a:nth-child(2){
+  border-bottom: 1px solid var(--main-green);
 } 

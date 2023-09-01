@@ -12,7 +12,17 @@ const SearchItem = (result: Props) => {
 
 
  
-
+//rate style
+const rate =
++result?.result?.vote_average?.toFixed(1) > 0 ? +result?.result?.vote_average?.toFixed(1) : 6.5;
+const rateStyle =
+rate >= 8.5
+  ? "border-4 shadow-lg bg-bleck border-dark-green text-dark-green"
+  : rate >= 7
+  ? "border-4 shadow-lg bg-bleck border-main-green   text-main-green"
+  : rate >= 5
+  ? "border-4 shadow-lg bg-bleck border-amber-400 text-amber-400"
+  : "border-4 shadow-lg bg-bleck border-rose-600 text-rose-600";
 
   return (
     <>
@@ -25,9 +35,9 @@ const SearchItem = (result: Props) => {
             : "movie"
         }/${result?.result?.id}`}
         key={result?.result?.id}
-        className={`flex bg-white py-2 px-3 rounded-2xl !w-full gap-3 pb-2 text-text-dark cursor-pointer hover:text-text-dark`}
+        className={`flex bg-white shadow-md py-2 px-3 rounded-2xl !w-full gap-3 pb-2 text-text-dark cursor-pointer hover:text-text-dark hover:shadow-none transition-shadow duration-500`}
       >
-        <div className="relative !w-24 !h-28  rounded-xl overflow-hidden">
+        <div className="relative !w-24 !h-28 rounded-xl overflow-hidden">
           <Img
             url={
               result?.result?.poster_path
@@ -48,8 +58,8 @@ const SearchItem = (result: Props) => {
               ? result?.result?.name
               : result?.result?.title}
           </p>
-          <div className="w-full flex items-center justify-between">
-            <small className="text-sm">
+          <div className="w-full flex items-center justify-between gap-8">
+            <small className="text-sm !boredr-0">
               {result?.result?.first_air_date
                 ? result?.result?.first_air_date
                 : result?.result?.release_date
@@ -57,17 +67,24 @@ const SearchItem = (result: Props) => {
                 : result?.result?.known_for_department}
             </small>
             {result?.result?.vote_average ? (
-              <small className="flex items-center font-semibold text-sm">
-                <BsStarFill className="text-main-green" />
-                {result?.result?.vote_average.toFixed(1)}
-              </small>
+              // <small className="flex items-center font-semibold text-sm">
+              //   <BsStarFill className="text-main-green" />
+              //   {result?.result?.vote_average.toFixed(1)}
+              // </small>
+              <div className={`${rateStyle} flex justify-center items-center bg-black rounded-full w-9 h-9 text-sm`}>{rate}</div>
             ) : (
-              <Link
-                href={`/movie/${result?.result?.known_for?.[0]?.id}`}
-                className="text-sm cursor-pointer"
+              <small
+                className="text-sm cursor-pointer line-clamp-1"
               >
                 {result?.result?.known_for?.[0]?.title}
-              </Link>
+              </small>
+              // <Link
+              //   href={`/movie/${result?.result?.known_for?.[0]?.id}`}
+                
+              //   className="text-sm cursor-pointer line-clamp-1"
+              // >
+              //   {result?.result?.known_for?.[0]?.title}
+              // </Link>
             )}
           </div>
         </div>

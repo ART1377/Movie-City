@@ -36,10 +36,19 @@ const SearchItems = ({ data, query }: Props) => {
       {+data.results.length > 3 && (
         <Link
           href={`/searchresults/?query=${query}&page=1`}
-          className="text-text-dark cursor-pointer pt-2 flex items-center gap-2 text-center mx-auto"
+          className="text-text-dark cursor-pointer pt-2 flex items-center gap-2 text-center mx-auto group"
         >
           {` show all resluts for  '${query}'`}
-          <BsArrowUpRightCircle/>
+          <BsArrowUpRightCircle className='group-hover:translate-x-0.5 group-hover:scale-110'/>
+        </Link>
+      )}
+      {+data.results.length > 0 && +data.results.length < 3 && (
+        <Link
+          href={`/searchresults/?query=${query}&page=1`}
+          className="text-text-dark cursor-pointer pt-2 flex items-center gap-2 text-center mx-auto group"
+        >
+          {` show all ${data.results.length} resluts for  '${query}'`}
+          <BsArrowUpRightCircle className='group-hover:translate-x-0.5 group-hover:scale-110'/>
         </Link>
       )}
     </>

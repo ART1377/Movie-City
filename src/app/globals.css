@@ -85,7 +85,9 @@ body {
   color: var(--text-dark);
   background-color: var(--bg-body);
 }
-
+body * {
+  font-family: "Alegreya", serif !important;
+}
 a,
 * a {
   color: var(--text-dark);

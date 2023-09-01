@@ -1,8 +1,8 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { Season, SeasonDetail } from "../../../../../../next-type-d";
 import Img from "@/app/components/Global/Img";
-import style from "./CustomSlider.module.css";
+import style from "./SeasonDetail.module.css";
 import Episode from "../Episode";
 import getSeasonDetailById from "@/app/lib/getSeasonDetailById";
 import { BsFillStarFill, BsChevronLeft, BsChevronRight } from "react-icons/bs";
@@ -12,10 +12,12 @@ type Props = {
   id: number;
 };
 
-const CustomSlider = ({ data, id }: Props) => {
+const SeasonDetail = ({ data, id }: Props) => {
+  
   const [current, setCurrent] = useState<number>(1);
   const [seasonData, setSeasonData] = useState<SeasonDetail>();
 
+  // Get Series Episodes based on Season number
   useEffect(() => {
     async function getSeasonDetail() {
       const seasonDetail = await getSeasonDetailById(id, current);
@@ -54,7 +56,7 @@ const CustomSlider = ({ data, id }: Props) => {
           id="underline_select"
           className="block text-center py-1.5 px-2 w-fit text-sm text-main-green bg-transparent border-0 border-b-2 border-main-green dark:text-gray-400 dark:border-main-green focus:outline-none focus:ring-0 peer"
           onChange={(e) => setCurrent(+e?.target?.value as any)}
-          defaultValue={current}
+          value={current}
         >
           {newArray.map((season: Season) => {
             return (
@@ -68,14 +70,14 @@ const CustomSlider = ({ data, id }: Props) => {
       <div
         className={`w-full h-auto min-h-[260px] sm:min-h-[320px] relative flex justify-center ${style.slider}`}
       >
-        {newArray.map((season: Season, index: number) => {
+        {newArray.map((season: Season,index:number) => {
           if (!season.season_number) {
             return;
           }
           return (
             <div
               key={season.id}
-              onClick={() => setCurrent(season.season_number)}
+              onClick={() => setCurrent(index+1)}
               className={`absolute w-fit rounded-2xl cursor-pointer
               ${season.season_number == current && "shadow-2xl"} 
               ${
@@ -142,9 +144,11 @@ const CustomSlider = ({ data, id }: Props) => {
         </li>
       </ul>
 
-      <Episode data={seasonData!} />
+      <Suspense fallback={<p>Loading Episodes...</p>}>
+        <Episode data={seasonData!} />
+      </Suspense>
     </>
   );
 };
 
-export default CustomSlider;
+export default SeasonDetail;

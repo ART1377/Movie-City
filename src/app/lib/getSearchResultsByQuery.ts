@@ -9,9 +9,9 @@ const options = {
   },
 };
 
-const getSearchResultsByQuery = async (page = '1', query: string) => {
+const getSearchResultsByQuery = async (page = '1', query: string,category='multi') => {
   const res = await fetch(
-    `https://api.themoviedb.org/3/search/multi?query=${query}&include_adult=false&language=en-US&page=${page}`,
+    `https://api.themoviedb.org/3/search/${category}?query=${query}&include_adult=false&language=en-US&page=${page}`,
     options
   );
 

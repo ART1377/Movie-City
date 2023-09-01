@@ -27,7 +27,7 @@ import { SwiperSlide } from "swiper/react";
 import SeriesCard from "../../Global/SeriesCard";
 import CastCard from "../../Global/CastCard";
 import PhotoGallery from "../../Global/PhotoGallery";
-import CustomSlider from "./CustomSlider";
+import SeasonDetail from "./SeasonDetail";
 import Comments from "../../Global/Comments";
 import {
   addToFavoriteSeries,
@@ -305,7 +305,7 @@ const SeriesDetailPage = ({ series, images }: Props) => {
             <section className="mt-10">
               <Title withLine>Season</Title>
               <div className="h-4 w-full"></div>
-              <CustomSlider data={series?.seasons} id={series?.id} />
+              <SeasonDetail data={series?.seasons} id={series?.id} />
             </section>
           )}
 

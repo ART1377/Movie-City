@@ -1,0 +1,12 @@
+
+.page-item.active .page-link {
+    font-weight: 700;
+    color: #ffffff;
+    background-color: var(--main-green)!important;
+    border: 0;
+  }
+  
+  .page-item .page-link,.page-item a.page-link	{
+    font-family: "Alegreya", serif !important;
+    color: var(--main-green);
+  }

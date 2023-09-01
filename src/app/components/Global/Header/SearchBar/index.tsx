@@ -4,8 +4,8 @@ import style from "./SearchBar.module.css";
 import { BsSearch, BsX } from "react-icons/bs";
 import { SearchResults } from "../../../../../../next-type-d";
 import getSearchResultsByQuery from "@/app/lib/getSearchResultsByQuery";
-import SearchResult from "../../SearchResult";
-
+import SearchResult from "../../SearchItems";
+import { usePathname, useSearchParams } from "next/navigation";
 
 type Props = {};
 
@@ -13,11 +13,13 @@ const SearchBar = (props: Props) => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [searchResults, setSearchResults] = useState<SearchResults>();
 
+  const [show, setShow] = useState<boolean>(false);
+
   useEffect(() => {
     const getResult = setTimeout(async () => {
       if (searchQuery) {
-        const results = await getSearchResultsByQuery(1, searchQuery);
-        setSearchResults(results)
+        const results = await getSearchResultsByQuery('1', searchQuery);
+        setSearchResults(results);
       }
     }, 500);
 
@@ -27,34 +29,31 @@ const SearchBar = (props: Props) => {
   }, [searchQuery]);
 
 
+// Close Search Bar When 'href' Changes
+
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    setShow(false);
+    setSearchQuery("");
+  }, [pathname,searchParams]);
+
+
 
   const searchClickHandler = () => {
-    const input = document.querySelector("input");
-    const close = document.getElementById("close");
-
-    close?.classList.remove("hidden");
-    close?.classList.add("flex");
-    input?.classList.toggle("!max-w-full");
-    input?.classList.toggle("!opacity-100");
+    setShow(true);
   };
 
   const closeClickHandler = () => {
-    const input = document.querySelector("input");
-    const close = document.getElementById("close");
-
-    input?.classList.remove("!max-w-full");
-    input?.classList.remove("!opacity-100");
-
-    close?.classList.add("hidden");
-    close?.classList.remove("flex");
-
+    setShow(false);
     setSearchQuery("");
   };
 
   return (
     <>
       <div className={` ${style.container}`}>
-        <button onClick={searchClickHandler} className={`${style.button}`}>
+        <button onClick={searchClickHandler} className={`${style.button} `}>
           <BsSearch className="text-2xl" />
         </button>
 
@@ -62,22 +61,26 @@ const SearchBar = (props: Props) => {
           type="text"
           placeholder="Search ..."
           maxLength={40}
-          className={`input shadow  ${style.input}`}
+          className={`input shadow ${
+            show
+              ? "!max-w-full !opacity-100 sm:!max-w-full sm:!opacity-100"
+              : "sm:!max-w-full sm:!opacity-100"
+          } ${style.input}`}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
         <div
           onClick={closeClickHandler}
           id="close"
-          className="w-8 h-8 cursor-pointer bg-main-green fixed z-50 top-2.5 right-[1%] justify-center items-center text-center rounded-ee-full rounded-se-full hidden sm:!hidden"
+          className={`w-8 h-8 cursor-pointer bg-main-green fixed z-[70] top-2.5 right-[1%] justify-center items-center text-center rounded-ee-full rounded-se-full sm:absolute sm:top-0 sm:right-0 ${
+            show ? "flex sm:hidden" : "hidden"
+          } ${searchQuery && "sm:!flex"}`}
         >
           <BsX strokeWidth="2" className="text-white text-xl" />
         </div>
-        {!!searchQuery && (
-          <div id="results" className={`flex flex-col gap-4 ${style.results}`}>
+          <div id="results" className={`flex flex-col gap-4 shadow-2xl border-2 ${searchQuery&&'!transform !translate-y-0 !-translate-x-1/2 sm:!translate-x-0'} ${style.results}`}>
             <SearchResult data={searchResults!} query={searchQuery} />
           </div>
-        )}
       </div>
     </>
   );

@@ -1,6 +1,7 @@
 .input {
   padding: 4px 16px;
   width: 98%;
+  z-index: 50;
   border-radius: var(--radius);
   -webkit-border-radius: var(--radius);
   -moz-border-radius: var(--radius);
@@ -36,18 +37,28 @@
   margin: 0 auto;
   background-color: #fff;
   overflow-y: auto;
+  transform: translateY(-1000px);
+  -webkit-transform: translateY(-1000px);
+  -moz-transform: translateY(-1000px);
+  -ms-transform: translateY(-1000px);
+  -o-transform: translateY(-1000px);
+  transition: all .3s ease-out;
+  -webkit-transition: all .3s ease-out;
+  -moz-transition: all .3s ease-out;
+  -ms-transition: all .3s ease-out;
+  -o-transition: all .3s ease-out;
 }
 @media only screen and (max-width: 639px) {
   .results {
     position: fixed;
     left: 50%;
     top: 10px;
-    transform: translateX(-50%);
-    -webkit-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    -o-transform: translateX(-50%);
-  }
+    transform: translateX(-50%) translateY(-1000px);
+    -webkit-transform: translateX(-50%) translateY(-1000px);
+    -moz-transform: translateX(-50%) translateY(-1000px);
+    -ms-transform: translateX(-50%) translateY(-1000px);
+    -o-transform: translateX(-50%) translateY(-1000px);
+}
   .input {
     position: fixed;
     z-index: 50;
@@ -69,7 +80,8 @@
 @media only screen and (min-width: 640px) {
   .container {
     /* max-width: 600px; */
-    width: 98%;
+    /* width: 98%; */
+    position: relative;
   }
   .results {
     position: absolute;
@@ -77,10 +89,7 @@
     right: 0;
     /* transform: translateX(-50%); */
   }
-  .input {
-    /* margin-left: 12px; */
-    z-index: 50;
-  }
+  
   .button {
     opacity: 0.5;
     position: absolute;
@@ -108,58 +117,10 @@
   }
 }
 
-/* 
-.desktop {
-  min-width: 60%;
-}
-.desktop svg {
-  color: var(--text-light);
-}
 
-.desktop input::placeholder {
-  color: var(--text-light);
+.results a{
+ border-bottom: 1px solid var(--main-green);
 }
-.desktop input {
-  color: var(--text-dark);
-  letter-spacing: 1px;
-}
-
-.mobileSearchBar {
-  position: absolute;
-  background-color: var(--main-green);
-  width: 100vw;
-  height: auto;
-  left: 0;
-  right: 0;
-  top: 0;
-  border: 8px solid #fff;
-  padding: 8px;
-  z-index: 50;
-}
-.mobileSearchBar div:nth-child(1) {
-  width: 100%;
-  position: relative;
-  height: auto;
-  min-height: 28px;
-  padding-bottom: 1rem;
-}
-.mobileSearchBar div:nth-child(2) {
-  position: relative;
-}
-.mobileSearchBar div:nth-child(2) button {
-  overflow: hidden;
-  background-color: var(--dark-green);
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  margin: auto 0;
-  right: 0;
-  padding: 8px;
-  color: #fff;
-  font-size: 18px;
-  border-radius: 0 2rem 2rem 0;
-  -webkit-border-radius: 0 2rem 2rem 0;
-  -moz-border-radius: 0 2rem 2rem 0;
-  -ms-border-radius: 0 2rem 2rem 0;
-  -o-border-radius: 0 2rem 2rem 0;
-}  */
+ .results a:last-child{
+ border-bottom:none;
+} 

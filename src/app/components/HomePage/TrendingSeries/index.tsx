@@ -24,7 +24,7 @@ const TrendingSeries = ({ data }: Props) => {
   return (
     <>
       <section className="mb-12">
-        <SectionDevider title="Trending Series" path="/series/trendingseries" />
+        <SectionDevider title="Trending Series" path="/series/trendingseries/?page=1" />
         <Slider>
           {data?.map((item: Series) => {
             return (

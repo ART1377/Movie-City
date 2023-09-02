@@ -10,7 +10,7 @@ import {
   addToFavoriteSeries,
   removeFromFavoriteSeries,
 } from "../../../redux/slices/favorite";
-import getGenreNameByGenreId from "@/app/lib/getGenreNameByGenreId";
+import getGenreNameByGenreId from "@/app/lib/DataFetching/getGenreNameByGenreId";
 
 type Props = {
   series: Series;
@@ -26,9 +26,7 @@ const SeriesCard = ({ series, imageSize }: Props) => {
 
   //rate style
   const rate =
-    +series?.vote_average.toFixed(1) > 0
-      ? +series?.vote_average.toFixed(1)
-      : 6.5;
+    +series?.vote_average.toFixed(1) > 0 ? +series?.vote_average.toFixed(1) : 3;
   const rateStyle =
     rate >= 8.5
       ? "border-4 shadow-lg bg-bleck border-dark-green text-dark-green"
@@ -52,7 +50,9 @@ const SeriesCard = ({ series, imageSize }: Props) => {
             />
           </div>
         </Link>
-        <div className={`absolute top-3 left-[7px] cursor-pointer ${style.watch}`}>
+        <div
+          className={`absolute top-3 left-[7px] cursor-pointer ${style.watch}`}
+        >
           {isInList ? (
             <>
               <div
@@ -73,7 +73,7 @@ const SeriesCard = ({ series, imageSize }: Props) => {
         </div>
         <div className={`relative pb-1 pt-2 ${style.info}`}>
           <Link href={`/series/${series.id}`}>
-            <p className="font-semibold text-sm">{series.name}</p>
+            <p className="font-semibold text-sm line-clamp-2">{series.name}</p>
           </Link>
           <div className="line-clamp-1">
             {series?.genre_ids?.map((genreId: number, index: number) => {

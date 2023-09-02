@@ -1,4 +1,4 @@
-import { MoviesList } from "../../../next-type-d";
+import { MoviesList } from "../../../../next-type-d";
 
 const options = {
   method: "GET",

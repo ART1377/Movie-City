@@ -4,10 +4,9 @@ import type { Metadata } from "next";
 import getTrendingMovies from "@/app/lib/getTrendingMovies";
 import getTopRatedMovies from "@/app/lib/getTopRatedMovies";
 import getUpcomingMovies from "@/app/lib/getUpcomingMovies";
-import getMovieDetailById from "@/app/lib/getMovieDetailById";
-import getMovieImagesById from "@/app/lib/getMovieImagesById";
+import getMovieDetailById from "@/app/lib/DataFetching/getMovieDetailById";
+import getMovieImagesById from "@/app/lib/DataFetching/getMovieImagesById";
 import MovieDetailPage from "@/app/components/movie/MovieDetailPage";
-
 
 // Generate Static Params
 export async function generateStaticParams() {
@@ -40,7 +39,6 @@ type Props = {
   };
 };
 
-
 // Generate Metadata
 export async function generateMetadata({
   params: { movieId },
@@ -54,7 +52,6 @@ export async function generateMetadata({
 }
 
 const page = async ({ params: { movieId } }: Props) => {
-
   const detail = (await getMovieDetailById(movieId)) as MovieDetail;
   const images = (await getMovieImagesById(movieId)) as Image;
   return (

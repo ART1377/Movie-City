@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import style from "./SearchBar.module.css";
 import { BsSearch, BsX } from "react-icons/bs";
 import { SearchResults } from "../../../../../../next-type-d";
-import getSearchResultsByQuery from "@/app/lib/getSearchResultsByQuery";
+import getSearchResultsByQuery from "@/app/lib/DataFetching/getSearchResultsByQuery";
 import SearchResult from "../../SearchItems";
 import { usePathname, useSearchParams } from "next/navigation";
 

@@ -4,7 +4,7 @@ import TrendingSeries from "./TrendingSeries";
 import Hero from "./Hero";
 import Companies from "./Companies";
 import TrendingMovies from "./TrendingMovies";
-import getTrendingSeries from "@/app/lib/getTrendingSeries";
+import getTrendingSeries from "@/app/lib/DataFetching/getTrendingSeries";
 import type {
   Movie,
   People,
@@ -13,16 +13,16 @@ import type {
   PeopleList,
   SeriesList,
 } from "../../../../next-type-d";
-import getTrendingMovies from "@/app/lib/getTrendingMovies";
-import getTrendingPeople from "@/app/lib/getTrendingPeople";
+import getTrendingMovies from "@/app/lib/DataFetching/getTrendingMovies";
+import getTrendingPeople from "@/app/lib/DataFetching/getTrendingPeople";
 import UpcomingMovies from "./UpcomingMovies";
-import getUpcomingMovies from "@/app/lib/getUpcomingMovies";
+import getUpcomingMovies from "@/app/lib/DataFetching/getUpcomingMovies";
 import PopularSeries from "./PopularSeries";
-import getPopularSeries from "@/app/lib/getPopularSeries";
-import getTopRatedSeries from "@/app/lib/getTopRatedSeries";
+import getPopularSeries from "@/app/lib/DataFetching/getPopularSeries";
+import getTopRatedSeries from "@/app/lib/DataFetching/getTopRatedSeries";
 import TopRatedSeries from "./TopRatedSeries";
 import TopRatedMovies from "./TopRatedMovies";
-import getTopRatedMovies from "@/app/lib/getTopRatedMovies";
+import getTopRatedMovies from "@/app/lib/DataFetching/getTopRatedMovies";
 
 type Props = {};
 

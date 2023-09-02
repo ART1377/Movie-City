@@ -7,7 +7,7 @@ import {
 } from "../../../../next-type-d";
 import type { Metadata } from "next";
 import getTrendingPeople from "@/app/lib/getTrendingPeople";
-import getPeopleDetailById from "@/app/lib/getPeopleDetailById";
+import getPeopleDetailById from "@/app/lib/DataFetching/getPeopleDetailById";
 import getPeopleCombinedCreditsById from "@/app/lib/getPeopleCombinedCreditsById";
 import PeopleDetailPage from "@/app/components/people/PeopleDetailPage";
 
@@ -44,11 +44,13 @@ export async function generateMetadata({
 
 const page = async ({ params: { peopleId } }: Props) => {
   const detail = (await getPeopleDetailById(peopleId)) as PeopleDetail;
-  const credits = (await getPeopleCombinedCreditsById(peopleId)) as PeopleCombinedCredits;
-  
+  const credits = (await getPeopleCombinedCreditsById(
+    peopleId
+  )) as PeopleCombinedCredits;
+
   return (
     <>
-      <PeopleDetailPage people={detail} credits={credits}  />
+      <PeopleDetailPage people={detail} credits={credits} />
     </>
   );
 };

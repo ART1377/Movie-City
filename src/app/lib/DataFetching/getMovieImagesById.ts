@@ -1,4 +1,4 @@
-import { PeopleCombinedCredits } from "../../../next-type-d";
+import { Image } from "../../../../next-type-d";
 
 const options = {
   method: "GET",
@@ -9,17 +9,17 @@ const options = {
   },
 };
 
-const getPeopleCombinedCreditsById = async (id: number) => {
+const getMovieImagesById = async (id: number) => {
   const res = await fetch(
-    `https://api.themoviedb.org/3/person/${id}/combined_credits?language=en-US`,
+    `https://api.themoviedb.org/3/movie/${id}/images`,
     options
   );
 
   if (!res.ok) {
-    throw new Error("Failed to fetch People Credits");
+    throw new Error("Failed to fetch Images");
   }
-  const data: PeopleCombinedCredits = await res.json();
+  const data: Image = await res.json();
   return data;
 };
 
-export default getPeopleCombinedCreditsById;
+export default getMovieImagesById;

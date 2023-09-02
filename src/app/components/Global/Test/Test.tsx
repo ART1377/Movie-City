@@ -18,7 +18,7 @@ const Test = (props: Props) => {
             id="underline_select"
             className="block text-center py-2 px-3 rounded w-fit text-sm text-text-dark bg-transparent border border-main-green  dark:text-gray-400 dark:border-main-green focus:outline-none focus:ring-0 peer"
             // onChange={(e) => setCurrent(+e?.target?.value as any)}
-            // defaultValue={current}
+            // value={current}
           >
             <option value={"movie"}>movie</option>
             <option value={"person"}>person</option>

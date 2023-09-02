@@ -14,7 +14,7 @@ const UpcomingMovies = ({ data }: Props) => {
   return (
     <>
       <section className="mb-12">
-        <SectionDevider title="Upcoming Movies" path="/" />
+        <SectionDevider title="Upcoming Movies" path="/movie/upcomingmovies/?page=1" />
         <Slider>
           {data.map((item: Movie, index: number) => {
             if (index < 10) {

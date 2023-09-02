@@ -1,25 +1,13 @@
 .current {
   box-shadow: var(--box-shadow);
   z-index: 20;
-  animation: current 1s ease-in;
-  -webkit-animation: current 0.5s ease-in;
+  transition: all 1s;
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -ms-transition: all 1s;
+  -o-transition: all 1s;
 }
-@keyframes current {
-  0% {
-    transform: translateX(-40px) scale(0.9);
-    -webkit-transform: translateX(-40px) scale(0.9);
-    -moz-transform: translateX(-40px) scale(0.9);
-    -ms-transform: translateX(-40px) scale(0.9);
-    -o-transform: translateX(-40px) scale(0.9);
-  }
-  100% {
-    transform: translateX(0) scale(1);
-    -webkit-transform: translateX(0) scale(1);
-    -moz-transform: translateX(0) scale(1);
-    -ms-transform: translateX(0) scale(1);
-    -o-transform: translateX(0) scale(1);
-  }
-}
+
 .prev {
   z-index: 10;
   opacity: 0.8;
@@ -28,25 +16,11 @@
   -moz-transform: translateX(-40px) scale(0.9);
   -ms-transform: translateX(-40px) scale(0.9);
   -o-transform: translateX(-40px) scale(0.9);
-  animation: prev 0.5s ease-in;
-  -webkit-animation: prev 0.5s ease-in;
-}
-
-@keyframes prev {
-  0% {
-    transform: translateX(0) scale(0.9);
-    -webkit-transform: translateX(0) scale(0.9);
-    -moz-transform: translateX(0) scale(0.9);
-    -ms-transform: translateX(0) scale(0.9);
-    -o-transform: translateX(0) scale(0.9);
-  }
-  100% {
-    transform: translateX(-40px) scale(0.9);
-    -webkit-transform: translateX(-40px) scale(0.9);
-    -moz-transform: translateX(-40px) scale(0.9);
-    -ms-transform: translateX(-40px) scale(0.9);
-    -o-transform: translateX(-40px) scale(0.9);
-  }
+  transition: all 1s;
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -ms-transition: all 1s;
+  -o-transition: all 1s;
 }
 
 .next {
@@ -57,25 +31,13 @@
   -moz-transform: translateX(40px) scale(0.9);
   -ms-transform: translateX(40px) scale(0.9);
   -o-transform: translateX(40px) scale(0.9);
-  animation: next 0.5s ease-in;
-  -webkit-animation: next 0.5s ease-in;
+  transition: all 1s;
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -ms-transition: all 1s;
+  -o-transition: all 1s;
 }
-@keyframes next {
-  0% {
-    transform: translateX(0) scale(0.9);
-    -webkit-transform: translateX(0) scale(0.9);
-    -moz-transform: translateX(0) scale(0.9);
-    -ms-transform: translateX(0) scale(0.9);
-    -o-transform: translateX(0) scale(0.9);
-  }
-  100% {
-    transform: translateX(40px) scale(0.9);
-    -webkit-transform: translateX(40px) scale(0.9);
-    -moz-transform: translateX(40px) scale(0.9);
-    -ms-transform: translateX(40px) scale(0.9);
-    -o-transform: translateX(40px) scale(0.9);
-  }
-}
+
 
 .prev2 {
   z-index: 5;
@@ -85,26 +47,14 @@
   -moz-transform: translateX(-80px) scale(0.8);
   -ms-transform: translateX(-80px) scale(0.8);
   -o-transform: translateX(-80px) scale(0.8);
-  animation: prev2 0.5s ease-in;
-  -webkit-animation: prev2 0.5s ease-in;
+  transition: all 1s;
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -ms-transition: all 1s;
+  -o-transition: all 1s;
 }
 
-@keyframes prev2 {
-  0% {
-    transform: translateX(0) scale(0.8);
-    -webkit-transform: translateX(0) scale(0.8);
-    -moz-transform: translateX(0) scale(0.8);
-    -ms-transform: translateX(0) scale(0.8);
-    -o-transform: translateX(0) scale(0.8);
-  }
-  100% {
-    transform: translateX(-80px) scale(0.8);
-    -webkit-transform: translateX(-80px) scale(0.8);
-    -moz-transform: translateX(-80px) scale(0.8);
-    -ms-transform: translateX(-80px) scale(0.8);
-    -o-transform: translateX(-80px) scale(0.8);
-  }
-}
+
 .next2 {
   z-index: 5;
   opacity: 0.7;
@@ -113,25 +63,13 @@
   -moz-transform: translateX(80px) scale(0.8);
   -ms-transform: translateX(80px) scale(0.8);
   -o-transform: translateX(80px) scale(0.8);
-  animation: next2 0.5s ease-in;
-  -webkit-animation: next2 0.5s ease-in;
+  transition: all 1s;
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -ms-transition: all 1s;
+  -o-transition: all 1s;
 }
-@keyframes next2 {
-  0% {
-    transform: translateX(0) scale(0.8);
-    -webkit-transform: translateX(0) scale(0.8);
-    -moz-transform: translateX(0) scale(0.8);
-    -ms-transform: translateX(0) scale(0.8);
-    -o-transform: translateX(0) scale(0.8);
-  }
-  100% {
-    transform: translateX(80px) scale(0.8);
-    -webkit-transform: translateX(80px) scale(0.8);
-    -moz-transform: translateX(80px) scale(0.8);
-    -ms-transform: translateX(80px) scale(0.8);
-    -o-transform: translateX(80px) scale(0.8);
-  }
-}
+
 
 @media only screen and (min-width: 768px) {
   .prev {

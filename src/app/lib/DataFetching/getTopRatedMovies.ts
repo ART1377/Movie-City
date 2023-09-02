@@ -1,4 +1,4 @@
-import { MoviesList } from "../../../next-type-d";
+import { MoviesList } from "../../../../next-type-d";
 
 const options = {
   method: "GET",
@@ -9,16 +9,16 @@ const options = {
   },
 };
 
-const getTrendingMovies = async (page = 1) => {
+const getTopRatedMovies = async (page = 1) => {
   const res = await fetch(
-    `https://api.themoviedb.org/3/trending/movie/day?language=en-US&page=${page}`,
+    `https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=${page}`,
     options
   );
   if (!res.ok) {
-    throw new Error("Failed to fetch TrendingMovies");
+    throw new Error("Failed to fetch TopRatedMovies");
   }
   const data: MoviesList = await res.json();
   return data;
 };
 
-export default getTrendingMovies;
+export default getTopRatedMovies;

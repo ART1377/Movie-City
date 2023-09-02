@@ -13,7 +13,7 @@ import { FaRegFolderOpen, FaFontAwesomeFlag } from "react-icons/fa";
 import Link from "next/link";
 import Button from "@/app/components/Global/Button";
 import Img from "@/app/components/Global/Img";
-import getGenreNameByGenreId from "@/app/lib/getGenreNameByGenreId";
+import getGenreNameByGenreId from "@/app/lib/DataFetching/getGenreNameByGenreId";
 
 type Props = {};
 
@@ -92,7 +92,7 @@ const SliderHero = (props: Props) => {
                             >
                               <small className="!text-xs lg:text-sm text-text-light">
                                 {getGenreNameByGenreId(genreId)}
-                                {index < 1 && <hr className='!mx-1' />}
+                                {index < 1 && <hr className="!mx-1" />}
                               </small>
                             </Link>
                           );

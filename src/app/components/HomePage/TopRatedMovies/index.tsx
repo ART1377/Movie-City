@@ -5,7 +5,7 @@ import { Movie } from "../../../../../next-type-d";
 import SectionDevider from "../../Global/SectionDevider";
 import Link from "next/link";
 import Img from "../../Global/Img";
-import getGenreNameByGenreId from "@/app/lib/getGenreNameByGenreId";
+import getGenreNameByGenreId from "@/app/lib/DataFetching/getGenreNameByGenreId";
 
 type Props = {
   data: Movie[];
@@ -39,7 +39,10 @@ const TopRatedMovies = ({ data }: Props) => {
   return (
     <>
       <section className="mb-12">
-        <SectionDevider title="TopRated Movies" path="/" />
+        <SectionDevider
+          title="TopRated Movies"
+          path="/movie/topratedmovies/?page=1"
+        />
         <div
           className={`flex flex-col mx-auto justify-center sm:flex-row-reverse sm:justify-around gap-4 py-4 xxs:px-2 sm:px-4 max-w-[400px] sm:max-w-[1000px] ${style.container}`}
         >

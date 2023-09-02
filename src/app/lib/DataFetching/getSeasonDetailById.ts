@@ -1,4 +1,4 @@
-import { Image } from "../../../next-type-d";
+import { SeasonDetail } from "../../../../next-type-d";
 
 const options = {
   method: "GET",
@@ -9,17 +9,18 @@ const options = {
   },
 };
 
-const getSeriesImagesById = async (id: number) => {
+const getSeasonDetailById = async (id: number , seasonNumber:number) => {
   const res = await fetch(
-    `https://api.themoviedb.org/3/tv/${id}/images`,
+    `https://api.themoviedb.org/3/tv/${id}/season/${seasonNumber}?language=en-US`,
     options
   );
 
+
   if (!res.ok) {
-    throw new Error("Failed to fetch Images");
+    throw new Error("Failed to fetch Season Detail");
   }
-  const data: Image = await res.json();
+  const data: SeasonDetail = await res.json();
   return data;
 };
 
-export default getSeriesImagesById;
+export default getSeasonDetailById;

@@ -1,4 +1,4 @@
-import { Image } from "../../../next-type-d";
+import { MoviesList } from "../../../../next-type-d";
 
 const options = {
   method: "GET",
@@ -9,17 +9,16 @@ const options = {
   },
 };
 
-const getMovieImagesById = async (id: number) => {
+const getTrendingMovies = async (page = 1) => {
   const res = await fetch(
-    `https://api.themoviedb.org/3/movie/${id}/images`,
+    `https://api.themoviedb.org/3/trending/movie/day?language=en-US&page=${page}`,
     options
   );
-
   if (!res.ok) {
-    throw new Error("Failed to fetch Images");
+    throw new Error("Failed to fetch TrendingMovies");
   }
-  const data: Image = await res.json();
+  const data: MoviesList = await res.json();
   return data;
 };
 
-export default getMovieImagesById;
+export default getTrendingMovies;

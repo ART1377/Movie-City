@@ -1,4 +1,4 @@
-import { PeopleDetail } from "../../../next-type-d";
+import { SearchResults } from "../../../../next-type-d";
 
 const options = {
   method: "GET",
@@ -9,17 +9,17 @@ const options = {
   },
 };
 
-const getPeopleDetailById = async (id: number) => {
+const getSearchResultsByQuery = async (page = '1', query: string,category='multi') => {
   const res = await fetch(
-    `https://api.themoviedb.org/3/person/${id}?append_to_response=images&language=en-US`,
+    `https://api.themoviedb.org/3/search/${category}?query=${query}&include_adult=false&language=en-US&page=${page}`,
     options
   );
 
   if (!res.ok) {
-    throw new Error("Failed to fetch People Detail");
+    throw new Error("Failed to fetch Results");
   }
-  const data: PeopleDetail = await res.json();
+  const data: SearchResults = await res.json();
   return data;
 };
 
-export default getPeopleDetailById;
+export default getSearchResultsByQuery;

@@ -1,4 +1,4 @@
-import { SeriesList } from "../../../next-type-d";
+import { SeriesList } from "../../../../next-type-d";
 
 const options = {
   method: "GET",

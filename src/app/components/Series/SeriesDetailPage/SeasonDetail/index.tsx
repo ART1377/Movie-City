@@ -78,7 +78,7 @@ const SeasonDetail = ({ data, id }: Props) => {
             <div
               key={season.id}
               onClick={() => setCurrent(index+1)}
-              className={`absolute w-fit rounded-2xl cursor-pointer
+              className={`absolute w-fit rounded-2xl cursor-pointer  
               ${season.season_number == current && "shadow-2xl"} 
               ${
                 season.season_number == current

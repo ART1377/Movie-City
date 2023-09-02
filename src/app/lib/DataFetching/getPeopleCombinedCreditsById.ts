@@ -1,4 +1,4 @@
-import { SearchResults } from "../../../next-type-d";
+import { PeopleCombinedCredits } from "../../../../next-type-d";;
 
 const options = {
   method: "GET",
@@ -9,17 +9,17 @@ const options = {
   },
 };
 
-const getSearchResultsByQuery = async (page = '1', query: string,category='multi') => {
+const getPeopleCombinedCreditsById = async (id: number) => {
   const res = await fetch(
-    `https://api.themoviedb.org/3/search/${category}?query=${query}&include_adult=false&language=en-US&page=${page}`,
+    `https://api.themoviedb.org/3/person/${id}/combined_credits?language=en-US`,
     options
   );
 
   if (!res.ok) {
-    throw new Error("Failed to fetch Results");
+    throw new Error("Failed to fetch People Credits");
   }
-  const data: SearchResults = await res.json();
+  const data: PeopleCombinedCredits = await res.json();
   return data;
 };
 
-export default getSearchResultsByQuery;
+export default getPeopleCombinedCreditsById;

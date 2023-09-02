@@ -16,7 +16,7 @@ const TrendingMovies = ({ data }: Props) => {
   return (
     <>
       <section className="mb-12">
-        <SectionDevider title="Trending Movies" path="/" />
+        <SectionDevider title="Trending Movies" path="/movie/trendingmovies/?page=1" />
         <Slider>
           {data.map((item: Movie) => {
             return (

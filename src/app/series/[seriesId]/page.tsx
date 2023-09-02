@@ -3,12 +3,11 @@ import React from "react";
 import { Image, SeriesDetail, SeriesList } from "../../../../next-type-d";
 import SeriesDetailPage from "@/app/components/Series/SeriesDetailPage";
 import type { Metadata } from "next";
-import getSeriesImagesById from "@/app/lib/getSeriesImagesById";
-import getTrendingSeries from "@/app/lib/getTrendingSeries";
+import getSeriesImagesById from "@/app/lib/DataFetching/getSeriesImagesById";
+import getTrendingSeries from "@/app/lib/DataFetching/getTrendingSeries";
 import getTopRatedSeries from "@/app/lib/getTopRatedSeries";
 import { series } from "@/app/data";
 import getPopularSeries from "@/app/lib/getPopularSeries";
-
 
 // Generate Static Params
 export async function generateStaticParams() {
@@ -42,7 +41,6 @@ type Props = {
   };
 };
 
-
 // Generate Metadata
 export async function generateMetadata({
   params: { seriesId },
@@ -56,7 +54,6 @@ export async function generateMetadata({
 }
 
 const page = async ({ params: { seriesId } }: Props) => {
-
   const detail = (await getSeriesDetailById(seriesId)) as SeriesDetail;
   const images = (await getSeriesImagesById(seriesId)) as Image;
   return (

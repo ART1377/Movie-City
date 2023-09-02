@@ -1,4 +1,4 @@
-import { MoviesList } from "../../../next-type-d";
+import { Image } from "../../../../next-type-d";
 
 const options = {
   method: "GET",
@@ -9,16 +9,17 @@ const options = {
   },
 };
 
-const getTopRatedMovies = async (page = 1) => {
+const getSeriesImagesById = async (id: number) => {
   const res = await fetch(
-    `https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=${page}`,
+    `https://api.themoviedb.org/3/tv/${id}/images`,
     options
   );
+
   if (!res.ok) {
-    throw new Error("Failed to fetch TopRatedMovies");
+    throw new Error("Failed to fetch Images");
   }
-  const data: MoviesList = await res.json();
+  const data: Image = await res.json();
   return data;
 };
 
-export default getTopRatedMovies;
+export default getSeriesImagesById;

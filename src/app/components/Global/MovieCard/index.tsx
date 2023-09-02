@@ -10,7 +10,7 @@ import {
   addToFavoriteMovies,
   removeFromFavoriteMovies,
 } from "../../../redux/slices/favorite";
-import getGenreNameByGenreId from "@/app/lib/getGenreNameByGenreId";
+import getGenreNameByGenreId from "@/app/lib/DataFetching/getGenreNameByGenreId";
 
 type Props = {
   movie: Movie;
@@ -26,7 +26,7 @@ const MovieCard = ({ movie, imageSize }: Props) => {
 
   //rate style
   const rate =
-    +movie?.vote_average.toFixed(1) > 0 ? +movie?.vote_average.toFixed(1) : 6.5;
+    +movie?.vote_average.toFixed(1) > 0 ? +movie?.vote_average.toFixed(1) : 3;
   const rateStyle =
     rate >= 8.5
       ? "border-4 shadow-lg bg-bleck border-dark-green text-dark-green"
@@ -50,7 +50,9 @@ const MovieCard = ({ movie, imageSize }: Props) => {
             />
           </div>
         </Link>
-        <div className={`absolute top-3 left-[7px] cursor-pointer ${style.watch}`}>
+        <div
+          className={`absolute top-3 left-[7px] cursor-pointer ${style.watch}`}
+        >
           {isInList ? (
             <>
               <div onClick={() => dispatch(removeFromFavoriteMovies(movie.id))}>
@@ -69,7 +71,7 @@ const MovieCard = ({ movie, imageSize }: Props) => {
         </div>
         <div className={`relative pb-1 pt-2 ${style.info}`}>
           <Link href={`/movie/${movie.id}`}>
-            <p className="font-semibold text-sm">{movie.title}</p>
+            <p className="font-semibold text-sm line-clamp-2">{movie.title}</p>
           </Link>
           <div className="line-clamp-1">
             {movie?.genre_ids?.map((genreId: number, index: number) => {

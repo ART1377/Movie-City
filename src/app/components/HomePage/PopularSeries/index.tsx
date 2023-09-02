@@ -14,7 +14,7 @@ const PopularSeries = ({ data }: Props) => {
   return (
     <>
       <section className="mb-12">
-        <SectionDevider title="Popular Series" path="/" />
+        <SectionDevider title="Popular Series" path="/series/popularseries/?page=1" />
         <Slider>
           {data.map((item: Series, index: number) => {
             if (index < 10) {

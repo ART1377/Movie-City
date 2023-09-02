@@ -1,4 +1,6 @@
-
+.pagination{
+  margin-top: 64px!important;
+}
 .page-item.active .page-link {
     font-weight: 700;
     color: #ffffff;

@@ -1,4 +1,4 @@
-import { SeriesList } from "../../../next-type-d";
+import { SeriesList } from "../../../../next-type-d";
 
 const options = {
   method: "GET",
@@ -9,16 +9,16 @@ const options = {
   },
 };
 
-const getPopularSeries = async (page = 1) => {
+const getTrendingSeries = async (page = 1) => {
   const res = await fetch(
-    `https://api.themoviedb.org/3/tv/popular?language=en-US&page=${page}`,
+    `https://api.themoviedb.org/3/trending/tv/day?language=en-US&page=${page}`,
     options
   );
   if (!res.ok) {
-    throw new Error("Failed to fetch PopularSeries");
+    throw new Error("Failed to fetch TrendingSeries");
   }
   const data: SeriesList = await res.json();
   return data;
 };
 
-export default getPopularSeries;
+export default getTrendingSeries;

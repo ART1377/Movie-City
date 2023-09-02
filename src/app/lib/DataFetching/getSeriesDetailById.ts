@@ -1,4 +1,4 @@
-import { PeopleList } from "../../../next-type-d";
+import { SeriesDetail } from "../../../../next-type-d";
 
 const options = {
   method: "GET",
@@ -9,16 +9,17 @@ const options = {
   },
 };
 
-const getTrendingPeople = async (page=1) => {
+const getSeriesDetailById = async (id: number) => {
   const res = await fetch(
-    `https://api.themoviedb.org/3/trending/person/day?language=en-US&page=${page}`,
+    `https://api.themoviedb.org/3/tv/${id}?append_to_response=keywords%2Ccredits%2Csimilar%2Crecommendations%2Creviews&language=en-US`,
     options
   );
+
   if (!res.ok) {
-    throw new Error("Failed to fetch TrendingPeople");
+    throw new Error("Failed to fetch Series Detail");
   }
-  const data: PeopleList = await res.json();
+  const data: SeriesDetail = await res.json();
   return data;
 };
 
-export default getTrendingPeople;
+export default getSeriesDetailById;

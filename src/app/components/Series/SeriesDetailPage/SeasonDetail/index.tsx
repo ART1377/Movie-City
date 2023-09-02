@@ -4,7 +4,7 @@ import { Season, SeasonDetail } from "../../../../../../next-type-d";
 import Img from "@/app/components/Global/Img";
 import style from "./SeasonDetail.module.css";
 import Episode from "../Episode";
-import getSeasonDetailById from "@/app/lib/getSeasonDetailById";
+import getSeasonDetailById from "@/app/lib/DataFetching/getSeasonDetailById";
 import { BsFillStarFill, BsChevronLeft, BsChevronRight } from "react-icons/bs";
 
 type Props = {

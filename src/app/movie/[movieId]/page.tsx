@@ -1,9 +1,9 @@
 import React from "react";
 import { Image, MoviesList, MovieDetail } from "../../../../next-type-d";
 import type { Metadata } from "next";
-import getTrendingMovies from "@/app/lib/getTrendingMovies";
-import getTopRatedMovies from "@/app/lib/getTopRatedMovies";
-import getUpcomingMovies from "@/app/lib/getUpcomingMovies";
+import getTrendingMovies from "@/app/lib/DataFetching/getTrendingMovies";
+import getTopRatedMovies from "@/app/lib/DataFetching/getTopRatedMovies";
+import getUpcomingMovies from "@/app/lib/DataFetching/getUpcomingMovies";
 import getMovieDetailById from "@/app/lib/DataFetching/getMovieDetailById";
 import getMovieImagesById from "@/app/lib/DataFetching/getMovieImagesById";
 import MovieDetailPage from "@/app/components/movie/MovieDetailPage";

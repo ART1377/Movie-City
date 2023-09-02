@@ -6,9 +6,9 @@ import {
   PeopleList,
 } from "../../../../next-type-d";
 import type { Metadata } from "next";
-import getTrendingPeople from "@/app/lib/getTrendingPeople";
+import getTrendingPeople from "@/app/lib/DataFetching/getTrendingPeople";
 import getPeopleDetailById from "@/app/lib/DataFetching/getPeopleDetailById";
-import getPeopleCombinedCreditsById from "@/app/lib/getPeopleCombinedCreditsById";
+import getPeopleCombinedCreditsById from "@/app/lib/DataFetching/getPeopleCombinedCreditsById";
 import PeopleDetailPage from "@/app/components/people/PeopleDetailPage";
 
 // Generate Static Params

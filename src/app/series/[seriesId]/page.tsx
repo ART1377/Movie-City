@@ -1,13 +1,13 @@
-import getSeriesDetailById from "@/app/lib/getSeriesDetailById";
+import getSeriesDetailById from "@/app/lib/DataFetching/getSeriesDetailById";
 import React from "react";
 import { Image, SeriesDetail, SeriesList } from "../../../../next-type-d";
 import SeriesDetailPage from "@/app/components/Series/SeriesDetailPage";
 import type { Metadata } from "next";
 import getSeriesImagesById from "@/app/lib/DataFetching/getSeriesImagesById";
 import getTrendingSeries from "@/app/lib/DataFetching/getTrendingSeries";
-import getTopRatedSeries from "@/app/lib/getTopRatedSeries";
+import getTopRatedSeries from "@/app/lib/DataFetching/getTopRatedSeries";
 import { series } from "@/app/data";
-import getPopularSeries from "@/app/lib/getPopularSeries";
+import getPopularSeries from "@/app/lib/DataFetching/getPopularSeries";
 
 // Generate Static Params
 export async function generateStaticParams() {

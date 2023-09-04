@@ -3,12 +3,7 @@ import React, { useState } from "react";
 import Logo from "../Logo/Logo";
 import SearchBar from "./SearchBar";
 import style from "./Header.module.css";
-import {
-  BiSun,
-  BiMoon,
-  BiUser,
-  BiMenuAltLeft,
-} from "react-icons/bi";
+import { BsSun, BsMoon, BsPerson, BsMenuButtonWide } from "react-icons/bs";
 import Navbar from "./Navbar";
 
 type Props = {};
@@ -24,16 +19,30 @@ const Header = (props: Props) => {
             className="md:!hidden !flex items-center cursor-pointer"
             onClick={() => setShowNavbar((prev) => !prev)}
           >
-            <BiMenuAltLeft className="md:hidden me-3 text-2xl" />
+            <div
+              className={`md:hidden me-3 w-8 h-7 text-center gap-[3px] flex flex-col justify-center ${
+                showNavbar ? style.menuBarContainer:style.menuBarContainerLine
+              }`}
+            >
+              <div
+                className={`w-6 h-[2.5px] bg-text-dark opacity-80 rounded-md mx-auto ${style.menuBar}`}
+              ></div>
+              <div
+                className={`w-6 h-[2.5px] bg-text-dark opacity-80 rounded-md mx-auto ${style.menuBar}`}
+              ></div>
+              <div
+                className={`w-6 h-[2.5px] bg-text-dark opacity-80 rounded-md mx-auto ${style.menuBar}`}
+              ></div>
+            </div>
           </div>
           <Logo />
           <SearchBar />
           <div className={`flex items-center gap-2 ${style.icons}`}>
             <div>
-              <BiSun />
+              <BsSun />
             </div>
             <div>
-              <BiUser />
+              <BsPerson />
             </div>
           </div>
         </div>

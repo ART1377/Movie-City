@@ -4,12 +4,11 @@ import style from "./Footer.module.css";
 import Logo from "../Logo/Logo";
 import Link from "next/link";
 import {
-  BiLogoTelegram,
-  BiLogoGithub,
-  BiLogoGmail,
-  BiPhone,
-  BiEnvelope,
-} from "react-icons/bi";
+  BsTelegram,
+  BsGithub,
+  BsEnvelope,
+  BsTelephone,BsGoogle
+} from "react-icons/bs";
 
 type Props = {};
 
@@ -29,7 +28,7 @@ const index = (props: Props) => {
                 className={`h-full inline-flex gap-2 sm:gap-3 my-2 ${style.navLinks}`}
               >
                 <li className="text-sm xs:text-base">
-                  <Link href={"/movie"}>Movies</Link>
+                  <Link href={"/movie/page=1"}>Movies</Link>
                 </li>
                 <li className="text-sm xs:text-base">
                   <Link href={"/series"}>Series</Link>
@@ -49,24 +48,24 @@ const index = (props: Props) => {
               className="text-xs xxs:text-sm flex items-center gap-0.5"
               href="mailto:alirezatt705@gmail.com"
             >
-              <BiEnvelope /> alirezatt705@gmail.com
+              <BsEnvelope /> alirezatt705@gmail.com
             </Link>
             <Link
               className="text-xs xxs:text-sm flex items-center gap-0.5"
               href="tel:+989193050762"
             >
-              <BiPhone /> 09193050762
+              <BsTelephone /> 09193050762
             </Link>
             <div className={`h-full ${style.social}`}>
               <ul className="h-full inline-flex gap-2">
                 <li>
                   <Link href={"https://t.me/ART_1377"} target="_blank" className="flex items-center gap-1">
-                    <BiLogoTelegram />
+                    <BsTelegram />
                   </Link>
                 </li>
                 <li>
                   <Link href={"mailto:alirezatt705@gmail.com"} className="flex items-center gap-1">
-                    <BiLogoGmail />
+                    <BsGoogle />
                   </Link>
                 </li>
                 <li>
@@ -75,7 +74,7 @@ const index = (props: Props) => {
                     href={"https://github.com/ART1377"} target="_blank"
                     className="flex items-center gap-1"
                   >
-                    <BiLogoGithub />
+                    <BsGithub />
                   </Link>
                 </li>
               </ul>

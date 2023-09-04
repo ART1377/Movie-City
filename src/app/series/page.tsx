@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Series",
-  description: "Series Page of the Movie City App",
+  description: "Series Page of the Movie City Website",
 };
 
 

@@ -3,15 +3,10 @@ import React, { useEffect, useState } from "react";
 import style from "./Hero.module.css";
 import { series } from "@/app/data";
 import {
-  Series,
-  Productioncountry,
-  Genre,
-  SeriesDetail,
+  Series
 } from "../../../../../next-type-d";
-import { BiSolidStar, BiFilterAlt } from "react-icons/bi";
-import { FaRegFolderOpen, FaFontAwesomeFlag } from "react-icons/fa";
+import { BsStarFill } from "react-icons/bs";
 import Link from "next/link";
-import Button from "@/app/components/Global/Button";
 import Img from "@/app/components/Global/Img";
 import getGenreNameByGenreId from "@/app/lib/DataFetching/getGenreNameByGenreId";
 
@@ -42,7 +37,7 @@ const SliderHero = (props: Props) => {
 
   return (
     <>
-      <div className="h-[520px] xxs:h-[680px] xs:h-[700px] sm:h-[800px] md:h-[600px] mb-10 xs:mb-[90px] sm:mb-10 md:mb-16">
+      <div className="h-[520px] xxs:h-[680px] xs:h-[700px] sm:h-[800px] md:h-[550px] 2xl:h-[750px] mb-10 xs:mb-[90px] sm:mb-10 md:mb-16">
         <div className={`relative h-full sm:h-[65%] md:h-full ${style.slider}`}>
           <div className={`relative w-full h-[65%] sm:h-full ${style.image}`}>
             <Link
@@ -71,7 +66,7 @@ const SliderHero = (props: Props) => {
               <div className={` ${style.detail}`}>
                 <ul className={`flex gap-1 items-center`}>
                   <li className="font-bold flex items-center text-text-light">
-                    <BiSolidStar className="text-lg text-main-green" />{" "}
+                    <BsStarFill className="text-sm text-main-green me-0.5" />{" "}
                     {series[current]?.vote_average.toFixed(1)}
                   </li>
                   <hr />

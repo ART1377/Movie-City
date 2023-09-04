@@ -3,17 +3,16 @@ import React, { useState } from "react";
 import style from "./Navbar.module.css";
 import Link from "next/link";
 import {
-  BiHomeAlt2,
-  BiTv,
-  BiCameraMovie,
-  BiHeart,
-  BiLogOut,
-  BiX,
-  BiUser,
-  BiLogoTelegram,
-  BiLogoGithub,
-  BiLogoGmail,
-} from "react-icons/bi";
+  BsHouse,
+  BsTv,
+  BsCameraReels,
+  BsHeart,
+  BsBoxArrowRight,
+  BsX,
+  BsPerson,
+  BsTelegram,
+  BsGithub,BsGoogle
+} from "react-icons/bs";
 import { BsPeople } from "react-icons/bs";
 
 type Props = {
@@ -32,7 +31,7 @@ const Navbar = ({ show, setState }: Props) => {
 
         <div>
           <button className="absolute right-1 top-2 mb-4 md:hidden">
-            <BiX
+            <BsX
               onClick={() => setState(false)}
               className="text-3xl text-text-dark"
             />
@@ -41,7 +40,7 @@ const Navbar = ({ show, setState }: Props) => {
 
         <div className={style.user}>
           <div className="w-10 h-10 flex justify-center items-center text-text-dark">
-            <BiUser />
+            <BsPerson />
           </div>
           <p className="text-sm">userName</p>
         </div>
@@ -50,31 +49,31 @@ const Navbar = ({ show, setState }: Props) => {
         <ul className={`h-full inline-flex flex-col my-2 ${style.navLinks}`}>
           <li>
             <Link href={"/"} className="flex items-center gap-1">
-              <BiHomeAlt2 />
+              <BsHouse className='mt-[3px]' />
               <p className="font-normal">Home</p>
             </Link>
           </li>
           <li>
-            <Link href={"/movie"} className="flex items-center gap-1">
-              <BiCameraMovie />
+            <Link href={"/movie/page=1"} className="flex items-center gap-1">
+              <BsCameraReels className='mt-[3px]' />
               <p className="font-normal">Movies</p>
             </Link>
           </li>
           <li>
             <Link href={"/series"} className="flex items-center gap-1">
-              <BiTv />
+              <BsTv className='mt-[3px]' />
               <p className="font-normal">Series</p>
             </Link>
           </li>
           <li>
             <Link href={"/people"} className="flex items-center gap-1">
-              <BsPeople />
+              <BsPeople className='mt-[3px]' />
               <p className="font-normal">Celebs</p>
             </Link>
           </li>
           <li>
             <Link href={"/favorites"} className="flex items-center gap-1">
-              <BiHeart />
+              <BsHeart className='mt-[3px]' />
               <p className="font-normal">Watchlist</p>
             </Link>
           </li>
@@ -93,7 +92,7 @@ const Navbar = ({ show, setState }: Props) => {
                   target="_blank"
                   className="flex items-center gap-1"
                 >
-                  <BiLogoTelegram />
+                  <BsTelegram />
                 </Link>
               </li>
               <li>
@@ -101,7 +100,7 @@ const Navbar = ({ show, setState }: Props) => {
                   href={"mailto:alirezatt705@gmail.com"}
                   className="flex items-center gap-1"
                 >
-                  <BiLogoGmail />
+                  <BsGoogle />
                 </Link>
               </li>
               <li>
@@ -111,7 +110,7 @@ const Navbar = ({ show, setState }: Props) => {
                   target="_blank"
                   className="flex items-center gap-1"
                 >
-                  <BiLogoGithub />
+                  <BsGithub />
                 </Link>
               </li>
             </ul>
@@ -121,7 +120,7 @@ const Navbar = ({ show, setState }: Props) => {
 
         <li className="list-none mt-4">
           <Link href={"/"} className="flex items-center gap-1">
-            <BiLogOut />
+            <BsBoxArrowRight />
             <p className="font-normal">Logout</p>
           </Link>
         </li>

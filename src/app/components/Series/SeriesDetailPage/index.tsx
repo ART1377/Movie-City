@@ -59,7 +59,15 @@ const SeriesDetailPage = ({ series, images }: Props) => {
               url={series?.backdrop_path}
               alternative={`${series?.name} image`}
             />
-            <p className={`text-white absolute bottom-0 right-0 z-30 !px-6 !hidden md:!block xm:!px-8 lg:!px-10 xl:!px-14 2xl:!px-16 !py-0.5  ${style.status}`}>{series?.status}</p>
+            <div
+              className={`absolute bottom-0 right-0 z-30 !hidden md:!block !pl-4 xm:!pl-5 lg:!pl-6 xl:!pl-8 pt-2 ${style.statusContainer}`}
+            >
+              <p
+                className={`text-white !px-6 xm:!px-8 lg:!px-10 xl:!px-14 2xl:!px-16 !py-0.5  ${style.status}`}
+              >
+                {series?.status}
+              </p>
+            </div>
           </div>
         )}
 
@@ -72,7 +80,11 @@ const SeriesDetailPage = ({ series, images }: Props) => {
               url={series?.poster_path}
               alternative={`${series?.name} image`}
             />
-            <p className={`text-white absolute top-full right-0 z-30 !px-4 md:!hidden ${style.status}`}>{series?.status}</p>
+            <p
+              className={`text-white absolute top-full right-0 z-30 !px-4 md:!hidden ${style.status}`}
+            >
+              {series?.status}
+            </p>
 
             <h6
               className={`text-text-light absolute z-30 bottom-10 left-2 xs:left-4 xs:bottom-14 xs:text-2xl lg:text-3xl ${style.title}`}

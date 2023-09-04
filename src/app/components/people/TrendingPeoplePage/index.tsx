@@ -2,45 +2,41 @@
 import React, { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Pagination from "../../Global/Pagination";
-import { Series } from "../../../../../next-type-d";
-import getTrendingSeries from "@/app/lib/DataFetching/getTrendingSeries";
-import SeriesCard from "../../Global/SeriesCard";
+import { People } from "../../../../../next-type-d";
+import getTrendingPeople from "@/app/lib/DataFetching/getTrendingPeople";
 import Title from "../../Global/Title";
 import {
   makeUnique,
-  sortAscendingBasedDate,
-  sortDescendingBasedDate,
-  sortAscendingBasedRate,
-  sortDescendingBasedRate,
   sortAlphabatically,
 } from "@/app/lib/Functions/Functions";
 import CustomSlider from "../../Global/CustomSlider";
+import PersonCard from "../../Global/PersonCard";
 
 type Props = {};
 
-const TrendingSeriesPage = (props: Props) => {
+const TrendingPeoplePage = (props: Props) => {
   const [sort, setSort] = useState<string>("none");
   const [total, setTotal] = useState<number>(102);
 
-  const [allSeries, setAllSeries] = useState<any[]>([]);
+  const [allPeople, setAllPeople] = useState<any[]>([]);
 
   const router = useRouter();
   const searchParams = useSearchParams();
   const page = searchParams.get("page");
 
   const [currentPage, setCurrentPage] = useState(+page!);
-  const totalPages =Math.ceil(total/10) - 5;
+  const totalPages = Math.ceil(total / 10) - 5;
 
   // Get All Data in order to implement sort
   useEffect(() => {
     async function getAllResults() {
-      const initial = await getTrendingSeries(+page!);
+      const initial = await getTrendingPeople(+page!);
       setTotal(initial.total_pages);
       const array = Array.from({ length: totalPages! }, (v, i) => i + 1);
 
       array.map(async (item) => {
-        const allData = await getTrendingSeries(item);
-        setAllSeries((prev: any) => [...prev, ...allData.results]);
+        const allData = await getTrendingPeople(item);
+        setAllPeople((prev: any) => [...prev, ...allData.results]);
       });
     }
     getAllResults();
@@ -54,26 +50,18 @@ const TrendingSeriesPage = (props: Props) => {
     router.push(newPathName);
   }, [totalPages, page, router, currentPage]);
 
-  const filteredAllSeries = makeUnique(allSeries);
+  const filteredAllPeople = makeUnique(allPeople);
 
   // totalPages = Math.floor(allTrendingSeries.length/20);
 
-  // console.log(Math.floor(filteredAllSeries.length/20))
+  // console.log(Math.floor(filteredAllPeople.length/20))
 
-  const lastFive: Series[] = filteredAllSeries.slice(0, 5);
+  const lastFive: People[] = filteredAllPeople.slice(0, 5);
 
   const data =
     sort == "alphabet"
-      ? sortAlphabatically(filteredAllSeries)
-      : sort == "rate dec."
-      ? sortDescendingBasedRate(filteredAllSeries)
-      : sort == "rate asc."
-      ? sortAscendingBasedRate(filteredAllSeries)
-      : sort == "date dec."
-      ? sortDescendingBasedDate(filteredAllSeries)
-      : sort == "date asc."
-      ? sortAscendingBasedDate(filteredAllSeries)
-      :filteredAllSeries;
+      ? sortAlphabatically(filteredAllPeople)
+      : filteredAllPeople;
 
   if (!data) {
     return <p>loading ...</p>;
@@ -81,13 +69,13 @@ const TrendingSeriesPage = (props: Props) => {
 
   return (
     <>
-    {/* <div className="flex h-auto min-h-[500px]"> */}
+      {/* <div className="flex h-auto min-h-[500px]"> */}
 
-      <CustomSlider data={lastFive} />
-    {/* </div> */}
+      {/* <CustomSlider data={lastFive} /> */}
+      {/* </div> */}
 
       <div className="w-full flex justify-between items-center gap-8 border-b border-main-green mt-8 mb-4 pb-1 ps-2 sm:ps-4">
-        <Title>Trending Series</Title>
+        <Title>Trending People</Title>
         <div className="-mb-2">
           <label
             htmlFor="underline_select"
@@ -107,28 +95,16 @@ const TrendingSeriesPage = (props: Props) => {
             <option onClick={() => setSort("alphabet")} value={"alphabet"}>
               alphabet
             </option>
-            <option onClick={() => setSort("rate asc.")} value={"rate asc."}>
-              rate asc.
-            </option>
-            <option onClick={() => setSort("rate dec.")} value={"rate dec."}>
-              rate dec.
-            </option>
-            <option onClick={() => setSort("date asc.")} value={"date asc."}>
-              date asc.
-            </option>
-            <option onClick={() => setSort("date dec.")} value={"date dec."}>
-              date dec.
-            </option>
           </select>
         </div>
       </div>
 
       <div className="flex flex-wrap justify-center gap-4 mt-4 mx-auto">
-        {data?.map((result: Series, index: number) => {
+        {data?.map((result: People, index: number) => {
           if (index >= (+page! - 1) * 20 && index < +page! * 20) {
             return (
               <div key={result.id} className="max-w-[150px] sm:min-w-[180px]">
-                <SeriesCard imageSize="w185" series={result} />
+                <PersonCard imageSize="w185" person={result} />
               </div>
             );
           }
@@ -143,4 +119,4 @@ const TrendingSeriesPage = (props: Props) => {
   );
 };
 
-export default TrendingSeriesPage;
+export default TrendingPeoplePage;

@@ -98,7 +98,7 @@ const SeasonDetail = ({ data, id }: Props) => {
                 <Img
                   url={season?.poster_path!}
                   alternative={`${season.name} Poster`}
-                  size="w342"
+                  size="w185"
                   style="w-full h-full"
                 />
               </div>

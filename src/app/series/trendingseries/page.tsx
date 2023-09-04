@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Trending Series",
-  description: "Trending Series page which contains 400 of trending series",
+  description: "Trending Series page which contains hundreds of trending series",
 };
 
 

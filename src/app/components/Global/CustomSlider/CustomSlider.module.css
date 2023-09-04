@@ -1,3 +1,31 @@
+/* .slider {
+  background: rgb(13, 13, 13);
+  background: radial-gradient(
+    circle,
+    rgba(13, 13, 13, 0.742734593837535) 0%,
+    rgba(13, 13, 13, 0) 40%,
+    rgba(65, 65, 65, 0) 100%
+  );
+} */
+/* .info{
+    position: absolute;
+    color: #fff;
+    z-index: 12;
+    left: 0%;
+    top: 2%;
+    animation:fade .5s ease-out ;
+    -webkit-animation:fade .5s ease-out ;
+}
+@keyframes fade {
+  0%{
+    opacity: 0;
+    left: 0%;
+  }
+  100%{
+    opacity: 1;
+    left: 2%;
+  }
+} */
 .current {
   box-shadow: var(--box-shadow);
   z-index: 20;
@@ -38,7 +66,6 @@
   -o-transition: all 1s;
 }
 
-
 .prev2 {
   z-index: 5;
   opacity: 0.7;
@@ -53,7 +80,6 @@
   -ms-transition: all 1s;
   -o-transition: all 1s;
 }
-
 
 .next2 {
   z-index: 5;
@@ -70,7 +96,6 @@
   -o-transition: all 1s;
 }
 
-
 @media only screen and (min-width: 768px) {
   .prev {
     transform: translateX(-80px) scale(0.9);
@@ -85,21 +110,21 @@
     -moz-transform: translateX(80px) scale(0.9);
     -ms-transform: translateX(80px) scale(0.9);
     -o-transform: translateX(80px) scale(0.9);
-}
+  }
   .prev2 {
     transform: translateX(-140px) scale(0.8);
     -webkit-transform: translateX(-140px) scale(0.8);
     -moz-transform: translateX(-140px) scale(0.8);
     -ms-transform: translateX(-140px) scale(0.8);
     -o-transform: translateX(-140px) scale(0.8);
-}
+  }
   .next2 {
     transform: translateX(140px) scale(0.8);
     -webkit-transform: translateX(140px) scale(0.8);
     -moz-transform: translateX(140px) scale(0.8);
     -ms-transform: translateX(140px) scale(0.8);
     -o-transform: translateX(140px) scale(0.8);
-}
+  }
 }
 @media only screen and (min-width: 1024px) {
   .prev {
@@ -115,20 +140,19 @@
     -moz-transform: translateX(90px) scale(0.9);
     -ms-transform: translateX(90px) scale(0.9);
     -o-transform: translateX(80px) scale(0.9);
-}
+  }
   .prev2 {
     transform: translateX(-160px) scale(0.8);
     -webkit-transform: translateX(-160px) scale(0.8);
     -moz-transform: translateX(-160px) scale(0.8);
     -ms-transform: translateX(-160px) scale(0.8);
     -o-transform: translateX(-160px) scale(0.8);
-}
+  }
   .next2 {
     transform: translateX(160px) scale(0.8);
     -webkit-transform: translateX(160px) scale(0.8);
     -moz-transform: translateX(160px) scale(0.8);
     -ms-transform: translateX(160px) scale(0.8);
     -o-transform: translateX(160px) scale(0.8);
+  }
 }
-}
-

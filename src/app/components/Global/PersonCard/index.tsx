@@ -4,7 +4,6 @@ import style from "./PersonCard.module.css";
 import { Knownfor, People } from "../../../../../next-type-d";
 import Link from "next/link";
 import Img from "../Img";
-import Button from "../Button";
 import { BsHeartFill, BsHeart } from "react-icons/bs";
 import {
   addToFavoritePeople,

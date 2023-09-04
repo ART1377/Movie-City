@@ -1,10 +1,10 @@
-import TrendingMoviesPage from "@/app/components/movie/TrendingMoviesPage";
+import UpcomingMoviesPage from "@/app/components/movie/UpcomingMoviesPage";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Trending Movies",
+  title: "Upcoming Movies",
   description:
-    "Trending Movies page which contains hundreds of trending movies",
+    "Upcoming Movies page which contains hundreds of upcoming movies",
 };
 
 type Props = {};
@@ -12,7 +12,7 @@ type Props = {};
 const page = async (props: Props) => {
   return (
     <>
-      <TrendingMoviesPage />
+      <UpcomingMoviesPage />
     </>
   );
 };

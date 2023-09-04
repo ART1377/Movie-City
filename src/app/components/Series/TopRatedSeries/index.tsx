@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Pagination from "../../Global/Pagination";
 import { Series } from "../../../../../next-type-d";
-import getTrendingSeries from "@/app/lib/DataFetching/getTrendingSeries";
+import getTopRatedSeries from "@/app/lib/DataFetching/getTopRatedSeries";
 import SeriesCard from "../../Global/SeriesCard";
 import Title from "../../Global/Title";
 import {
@@ -18,7 +18,7 @@ import CustomSlider from "../../Global/CustomSlider";
 
 type Props = {};
 
-const TrendingSeriesPage = (props: Props) => {
+const TopRatedSeries = (props: Props) => {
   const [sort, setSort] = useState<string>("none");
   const [total, setTotal] = useState<number>(102);
 
@@ -34,12 +34,12 @@ const TrendingSeriesPage = (props: Props) => {
   // Get All Data in order to implement sort
   useEffect(() => {
     async function getAllResults() {
-      const initial = await getTrendingSeries(+page!);
+      const initial = await getTopRatedSeries(+page!);
       setTotal(initial.total_pages);
       const array = Array.from({ length: totalPages! }, (v, i) => i + 1);
 
       array.map(async (item) => {
-        const allData = await getTrendingSeries(item);
+        const allData = await getTopRatedSeries(item);
         setAllSeries((prev: any) => [...prev, ...allData.results]);
       });
     }
@@ -56,7 +56,7 @@ const TrendingSeriesPage = (props: Props) => {
 
   const filteredAllSeries = makeUnique(allSeries);
 
-  // totalPages = Math.floor(allTrendingSeries.length/20);
+  // totalPages = Math.floor(allSeries.length/20);
 
   // console.log(Math.floor(filteredAllSeries.length/20))
 
@@ -87,7 +87,7 @@ const TrendingSeriesPage = (props: Props) => {
     {/* </div> */}
 
       <div className="w-full flex justify-between items-center gap-8 border-b border-main-green mt-8 mb-4 pb-1 ps-2 sm:ps-4">
-        <Title>Trending Series</Title>
+        <Title>TopRated Series</Title>
         <div className="-mb-2">
           <label
             htmlFor="underline_select"
@@ -143,4 +143,4 @@ const TrendingSeriesPage = (props: Props) => {
   );
 };
 
-export default TrendingSeriesPage;
+export default TopRatedSeries;

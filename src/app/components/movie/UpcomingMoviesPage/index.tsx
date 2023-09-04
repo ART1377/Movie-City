@@ -2,9 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Pagination from "../../Global/Pagination";
-import { Series } from "../../../../../next-type-d";
-import getTrendingSeries from "@/app/lib/DataFetching/getTrendingSeries";
-import SeriesCard from "../../Global/SeriesCard";
+import { Movie } from "../../../../../next-type-d";
+import getUpcomingMovies from "@/app/lib/DataFetching/getUpcomingMovies";
 import Title from "../../Global/Title";
 import {
   makeUnique,
@@ -15,32 +14,33 @@ import {
   sortAlphabatically,
 } from "@/app/lib/Functions/Functions";
 import CustomSlider from "../../Global/CustomSlider";
+import MovieCard from "../../Global/MovieCard";
 
 type Props = {};
 
-const TrendingSeriesPage = (props: Props) => {
+const UpcomingMoviesPage = (props: Props) => {
   const [sort, setSort] = useState<string>("none");
   const [total, setTotal] = useState<number>(102);
 
-  const [allSeries, setAllSeries] = useState<any[]>([]);
+  const [allMovies, setAllMovies] = useState<any[]>([]);
 
   const router = useRouter();
   const searchParams = useSearchParams();
   const page = searchParams.get("page");
 
   const [currentPage, setCurrentPage] = useState(+page!);
-  const totalPages =Math.ceil(total/10) - 5;
+  const totalPages = Math.ceil(total / 10) - 5;
 
   // Get All Data in order to implement sort
   useEffect(() => {
     async function getAllResults() {
-      const initial = await getTrendingSeries(+page!);
+      const initial = await getUpcomingMovies(+page!);
       setTotal(initial.total_pages);
       const array = Array.from({ length: totalPages! }, (v, i) => i + 1);
 
       array.map(async (item) => {
-        const allData = await getTrendingSeries(item);
-        setAllSeries((prev: any) => [...prev, ...allData.results]);
+        const allData = await getUpcomingMovies(item);
+        setAllMovies((prev: any) => [...prev, ...allData.results]);
       });
     }
     getAllResults();
@@ -54,26 +54,26 @@ const TrendingSeriesPage = (props: Props) => {
     router.push(newPathName);
   }, [totalPages, page, router, currentPage]);
 
-  const filteredAllSeries = makeUnique(allSeries);
+  const filteredAllMovies = makeUnique(allMovies);
 
   // totalPages = Math.floor(allTrendingSeries.length/20);
 
-  // console.log(Math.floor(filteredAllSeries.length/20))
+  // console.log(Math.floor(filteredAllMovies.length/20))
 
-  const lastFive: Series[] = filteredAllSeries.slice(0, 5);
+  const lastFive: Movie[] = filteredAllMovies.slice(0, 5);
 
   const data =
     sort == "alphabet"
-      ? sortAlphabatically(filteredAllSeries)
+      ? sortAlphabatically(filteredAllMovies)
       : sort == "rate dec."
-      ? sortDescendingBasedRate(filteredAllSeries)
+      ? sortDescendingBasedRate(filteredAllMovies)
       : sort == "rate asc."
-      ? sortAscendingBasedRate(filteredAllSeries)
+      ? sortAscendingBasedRate(filteredAllMovies)
       : sort == "date dec."
-      ? sortDescendingBasedDate(filteredAllSeries)
+      ? sortDescendingBasedDate(filteredAllMovies)
       : sort == "date asc."
-      ? sortAscendingBasedDate(filteredAllSeries)
-      :filteredAllSeries;
+      ? sortAscendingBasedDate(filteredAllMovies)
+      : filteredAllMovies;
 
   if (!data) {
     return <p>loading ...</p>;
@@ -81,13 +81,13 @@ const TrendingSeriesPage = (props: Props) => {
 
   return (
     <>
-    {/* <div className="flex h-auto min-h-[500px]"> */}
+      {/* <div className="flex h-auto min-h-[500px]"> */}
 
       <CustomSlider data={lastFive} />
-    {/* </div> */}
+      {/* </div> */}
 
       <div className="w-full flex justify-between items-center gap-8 border-b border-main-green mt-8 mb-4 pb-1 ps-2 sm:ps-4">
-        <Title>Trending Series</Title>
+        <Title>Upcoming Movies</Title>
         <div className="-mb-2">
           <label
             htmlFor="underline_select"
@@ -124,11 +124,11 @@ const TrendingSeriesPage = (props: Props) => {
       </div>
 
       <div className="flex flex-wrap justify-center gap-4 mt-4 mx-auto">
-        {data?.map((result: Series, index: number) => {
+        {data?.map((result: Movie, index: number) => {
           if (index >= (+page! - 1) * 20 && index < +page! * 20) {
             return (
               <div key={result.id} className="max-w-[150px] sm:min-w-[180px]">
-                <SeriesCard imageSize="w185" series={result} />
+                <MovieCard imageSize="w185" movie={result} />
               </div>
             );
           }
@@ -143,4 +143,4 @@ const TrendingSeriesPage = (props: Props) => {
   );
 };
 
-export default TrendingSeriesPage;
+export default UpcomingMoviesPage;

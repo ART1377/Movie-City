@@ -28,12 +28,15 @@
   border-top-right-radius: var(--radius);
   border-top-left-radius: var(--radius);
     background: rgb(0, 0, 0);
-  background: linear-gradient(
-    0deg,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 0.56) 25%,
-    rgba(0, 0, 0, 0) 100%
-  );
+    background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0.5) 20%,
+      rgba(0, 0, 0, 0.2) 30%,
+      rgba(0, 0, 0, 0.05) 40%,
+      rgba(0, 0, 0, 0) 50%,
+      rgba(0, 0, 0, 0) 100%
+    );
  
 }
 
@@ -44,6 +47,13 @@ hr.smallLine {
   height: 12px;
   width: 2px;
   background-color: var(--main-green);
+}
+
+
+.statusContainer{
+  clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%);
+  background-color: var(--bg-body);
+
 }
 
 .status {
@@ -96,9 +106,9 @@ hr.smallLine {
     -ms-border-radius: var(--radius);
     -o-border-radius: var(--radius);
   }
-  .background img {
+  /* .background img {
     clip-path: polygon(0 0, 100% 0, 100% 91%, 86% 91%, 83% 100%, 0 100%)
-  }
+  } */
   .imageContainer {
     margin-top: 240px;
     height: 260px;

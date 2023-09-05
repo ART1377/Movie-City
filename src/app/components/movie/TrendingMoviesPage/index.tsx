@@ -65,13 +65,13 @@ const TrendingMoviesPage = (props: Props) => {
   const data =
     sort == "alphabet"
       ? sortAlphabatically(filteredAllMovies)
-      : sort == "rate dec."
+      : sort == "rate .desc"
       ? sortDescendingBasedRate(filteredAllMovies)
-      : sort == "rate asc."
+      : sort == "rate .asc"
       ? sortAscendingBasedRate(filteredAllMovies)
-      : sort == "date dec."
+      : sort == "date .desc"
       ? sortDescendingBasedDate(filteredAllMovies)
-      : sort == "date asc."
+      : sort == "date .asc"
       ? sortAscendingBasedDate(filteredAllMovies)
       : filteredAllMovies;
 
@@ -86,9 +86,9 @@ const TrendingMoviesPage = (props: Props) => {
       <CustomSlider data={lastFive} />
       {/* </div> */}
 
-      <div className="w-full flex justify-between items-center gap-8 border-b border-main-green mt-8 mb-4 pb-1 ps-2 sm:ps-4">
+      <div className="w-full flex justify-between items-center gap-8 border-b border-main-green mt-8 mb-4 pb-1 sm:ps-4">
         <Title>Trending Movies</Title>
-        <div className="-mb-2">
+        <div className="-mb-2 me-2">
           <label
             htmlFor="underline_select"
             className="text-xs bg-bg-body absolute -mt-2 ml-1 px-1 text-main-green"
@@ -97,7 +97,7 @@ const TrendingMoviesPage = (props: Props) => {
           </label>
           <select
             id="underline_select"
-            className="block cursor-pointer text-center py-2 px-3 rounded w-fit text-sm text-dark-green bg-transparent border border-main-green  dark:text-gray-400 dark:border-main-green focus:outline-none focus:ring-0 peer"
+            className="block cursor-pointer text-center p-2 rounded w-fit text-sm text-dark-green bg-transparent border border-main-green  dark:text-gray-400 dark:border-main-green focus:outline-none focus:ring-0 peer"
             onChange={(e) => setSort(e?.target?.value as any)}
             value={sort}
           >
@@ -107,17 +107,17 @@ const TrendingMoviesPage = (props: Props) => {
             <option onClick={() => setSort("alphabet")} value={"alphabet"}>
               alphabet
             </option>
-            <option onClick={() => setSort("rate asc.")} value={"rate asc."}>
-              rate asc.
+            <option onClick={() => setSort("rate .asc")} value={"rate .asc"}>
+              rate .asc
             </option>
-            <option onClick={() => setSort("rate dec.")} value={"rate dec."}>
-              rate dec.
+            <option onClick={() => setSort("rate .desc")} value={"rate .desc"}>
+              rate .desc
             </option>
-            <option onClick={() => setSort("date asc.")} value={"date asc."}>
-              date asc.
+            <option onClick={() => setSort("date .asc")} value={"date .asc"}>
+              date .asc
             </option>
-            <option onClick={() => setSort("date dec.")} value={"date dec."}>
-              date dec.
+            <option onClick={() => setSort("date .desc")} value={"date .desc"}>
+              date .desc
             </option>
           </select>
         </div>

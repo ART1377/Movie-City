@@ -7,7 +7,8 @@ import {
   BsTelegram,
   BsGithub,
   BsEnvelope,
-  BsTelephone,BsGoogle
+  BsTelephone,
+  BsGoogle,
 } from "react-icons/bs";
 
 type Props = {};
@@ -28,7 +29,7 @@ const index = (props: Props) => {
                 className={`h-full inline-flex gap-2 sm:gap-3 my-2 ${style.navLinks}`}
               >
                 <li className="text-sm xs:text-base">
-                  <Link href={"/movie/page=1"}>Movies</Link>
+                  <Link href={"/movie?page=1"}>Movies</Link>
                 </li>
                 <li className="text-sm xs:text-base">
                   <Link href={"/series"}>Series</Link>
@@ -59,19 +60,27 @@ const index = (props: Props) => {
             <div className={`h-full ${style.social}`}>
               <ul className="h-full inline-flex gap-2">
                 <li>
-                  <Link href={"https://t.me/ART_1377"} target="_blank" className="flex items-center gap-1">
+                  <Link
+                    href={"https://t.me/ART_1377"}
+                    target="_blank"
+                    className="flex items-center gap-1"
+                  >
                     <BsTelegram />
                   </Link>
                 </li>
                 <li>
-                  <Link href={"mailto:alirezatt705@gmail.com"} className="flex items-center gap-1">
+                  <Link
+                    href={"mailto:alirezatt705@gmail.com"}
+                    className="flex items-center gap-1"
+                  >
                     <BsGoogle />
                   </Link>
                 </li>
                 <li>
                   <Link
                     passHref
-                    href={"https://github.com/ART1377"} target="_blank"
+                    href={"https://github.com/ART1377"}
+                    target="_blank"
                     className="flex items-center gap-1"
                   >
                     <BsGithub />

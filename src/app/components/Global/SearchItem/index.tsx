@@ -3,26 +3,13 @@ import { SearchResult } from "../../../../../next-type-d";
 import Link from "next/link";
 import { BsStarFill } from "react-icons/bs";
 import Img from "../Img";
+import CircularProgress from "../CircularProgress";
 
 type Props = {
   result: SearchResult;
 };
 
 const SearchItem = (result: Props) => {
-
-
- 
-//rate style
-const rate =
-+result?.result?.vote_average?.toFixed(1) > 0 ? +result?.result?.vote_average?.toFixed(1) : 6.5;
-const rateStyle =
-rate >= 8.5
-  ? "border-4 shadow-lg bg-bleck border-dark-green text-dark-green"
-  : rate >= 7
-  ? "border-4 shadow-lg bg-bleck border-main-green   text-main-green"
-  : rate >= 5
-  ? "border-4 shadow-lg bg-bleck border-amber-400 text-amber-400"
-  : "border-4 shadow-lg bg-bleck border-rose-600 text-rose-600";
 
   return (
     <>
@@ -71,7 +58,9 @@ rate >= 8.5
               //   <BsStarFill className="text-main-green" />
               //   {result?.result?.vote_average.toFixed(1)}
               // </small>
-              <div className={`${rateStyle} flex justify-center items-center bg-black rounded-full w-9 h-9 text-sm`}>{rate}</div>
+              <div className={``}>
+                <CircularProgress percentage={+result?.result?.vote_average?.toFixed(1)} />
+              </div>
             ) : (
               <small
                 className="text-sm cursor-pointer line-clamp-1"

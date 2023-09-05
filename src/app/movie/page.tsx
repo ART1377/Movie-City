@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Movie from "../components/movie";
+import MoviePage from "../components/movie";
 
 
 export const metadata: Metadata = {
@@ -12,7 +12,7 @@ type Props = {}
 
 const page = (props: Props) => {
   return (
-    <Movie/>
+    <MoviePage/>
   )
 }
 

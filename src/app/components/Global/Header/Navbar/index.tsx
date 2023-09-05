@@ -54,7 +54,7 @@ const Navbar = ({ show, setState }: Props) => {
             </Link>
           </li>
           <li>
-            <Link href={"/movie/page=1"} className="flex items-center gap-1">
+            <Link href={"/movie?page=1"} className="flex items-center gap-1">
               <BsCameraReels className='mt-[3px]' />
               <p className="font-normal">Movies</p>
             </Link>

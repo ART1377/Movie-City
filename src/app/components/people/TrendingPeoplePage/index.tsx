@@ -5,10 +5,7 @@ import Pagination from "../../Global/Pagination";
 import { People } from "../../../../../next-type-d";
 import getTrendingPeople from "@/app/lib/DataFetching/getTrendingPeople";
 import Title from "../../Global/Title";
-import {
-  makeUnique,
-  sortAlphabatically,
-} from "@/app/lib/Functions/Functions";
+import { makeUnique, sortAlphabatically } from "@/app/lib/Functions/Functions";
 import CustomSlider from "../../Global/CustomSlider";
 import PersonCard from "../../Global/PersonCard";
 
@@ -74,9 +71,9 @@ const TrendingPeoplePage = (props: Props) => {
       {/* <CustomSlider data={lastFive} /> */}
       {/* </div> */}
 
-      <div className="w-full flex justify-between items-center gap-8 border-b border-main-green mt-8 mb-4 pb-1 ps-2 sm:ps-4">
+      <div className="w-full flex justify-between items-center gap-8 border-b border-main-green mt-8 mb-4 pb-1 sm:ps-4">
         <Title>Trending People</Title>
-        <div className="-mb-2">
+        <div className="-mb-2 me-2">
           <label
             htmlFor="underline_select"
             className="text-xs bg-bg-body absolute -mt-2 ml-1 px-1 text-main-green"
@@ -85,7 +82,7 @@ const TrendingPeoplePage = (props: Props) => {
           </label>
           <select
             id="underline_select"
-            className="block cursor-pointer text-center py-2 px-3 rounded w-fit text-sm text-dark-green bg-transparent border border-main-green  dark:text-gray-400 dark:border-main-green focus:outline-none focus:ring-0 peer"
+            className="block cursor-pointer text-center p-2 rounded w-fit text-sm text-dark-green bg-transparent border border-main-green  dark:text-gray-400 dark:border-main-green focus:outline-none focus:ring-0 peer"
             onChange={(e) => setSort(e?.target?.value as any)}
             value={sort}
           >

@@ -19,6 +19,14 @@
 .container:hover {
   box-shadow: none;
 }
+.container:hover .image {
+  opacity: .9;
+  transition: var(--transition);
+  -webkit-transition: var(--transition);
+  -moz-transition: var(--transition);
+  -ms-transition: var(--transition);
+  -o-transition: var(--transition);
+}
 .image {
   width: 100%;
   height: 75% !important;
@@ -54,10 +62,4 @@
   height: 40px;
   bottom: 75px;
   right: 5px;
-  border-radius: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  -webkit-border-radius: 100%;
-  -moz-border-radius: 100%;
-  -ms-border-radius: 100%;
-  -o-border-radius: 100%;
 }

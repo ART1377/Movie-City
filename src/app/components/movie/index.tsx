@@ -8,24 +8,40 @@ import Title from "../Global/Title";
 import { makeUnique } from "@/app/lib/Functions/Functions";
 import CustomSlider from "../Global/CustomSlider";
 import MovieCard from "../Global/MovieCard";
+import MultiRangeSlider from "multi-range-slider-react";
+import CircularProgress from "../Global/CircularProgress";
 
 type Props = {};
 
-const Movie = (props: Props) => {
-  const [sort, setSort] = useState<string>("none");
-
+const MoviePage = (props: Props) => {
+  const [sort, setSort] = useState<string>("");
   const [allMovies, setAllMovies] = useState<MoviesList>();
 
   const router = useRouter();
   const searchParams = useSearchParams();
   const page = searchParams.get("page");
 
+  const [minVote, setMinVote] = useState(0);
+  const [maxVote, setMaxVote] = useState(10);
+  const handleInputVote = (e:any) => {
+    setMinVote(e.minValue.toFixed(1));
+    setMaxVote(e.maxValue.toFixed(1));
+  };
+  const [minDate, setMinDate] = useState(1875);
+  const [maxDate, setMaxDate] = useState(2025);
+  const handleInputDate = (e:any) => {
+    setMinDate(e.minValue);
+    setMaxDate(e.maxValue);
+  };
+
+
   const [currentPage, setCurrentPage] = useState(+page!);
-  const totalPages = allMovies?.results.length;
+  const totalPages = 500;
 
   // Get All Data in order to implement sort
   useEffect(() => {
     async function getAllResults() {
+      // const data: MoviesList = await getMovies();
       const data: MoviesList = await getMovies(+page!);
       setAllMovies(data);
     }
@@ -40,17 +56,7 @@ const Movie = (props: Props) => {
     router.push(newPathName);
   }, [totalPages, page, router, currentPage]);
 
-  console.log(allMovies)
-
-  // const filteredAllMovies = makeUnique(allMovies);
-
-  // totalPages = Math.floor(allTrendingSeries.length/20);
-
-  // console.log(Math.floor(filteredAllMovies.length/20))
-
-  // const lastFive: Movie[] = filteredAllMovies.slice(0, 5);
-
-  // const data =filteredAllMovies;
+ 
 
   if (!allMovies) {
     return <p>loading ...</p>;
@@ -59,10 +65,66 @@ const Movie = (props: Props) => {
   return (
     <>
       {/* <CustomSlider data={lastFive} /> */}
+      <div className="w-full flex flex-col justify-between items-center gap-8 border-b border-main-green mt-8 mb-4 pb-1 sm:ps-4">
+        {/* <Title>All Movies</Title> */}
+        <CircularProgress percentage={6} />
 
-      <div className="w-full flex justify-between items-center gap-8 border-b border-main-green mt-8 mb-4 pb-1 ps-2 sm:ps-4">
-        <Title>Trending Movies</Title>
-        <div className="-mb-2">
+        <div className="mb-2 w-[150px]">
+          <MultiRangeSlider
+            min={1875}
+            max={2025}
+            step={5}
+            minValue={minDate}
+            maxValue={maxDate}
+            ruler={false}
+            labels={[`${minDate}`,`${maxDate}`]}
+            style={{ border: "none ", boxShadow: "none"}}
+            barLeftColor="var(--light-green)"
+            barInnerColor="var(--main-green)"
+            barRightColor="var(--light-green)"
+            thumbLeftColor="var(--main-green)"
+            thumbRightColor="var(--main-green)"
+            onInput={(e) => {
+              handleInputDate(e);
+            }}
+          />
+        </div>
+        <div className="mb-2 w-[150px]">
+          <MultiRangeSlider
+            min={0}
+            max={10}
+            step={0.1}
+            minValue={minVote}
+            maxValue={maxVote}
+            ruler={false}
+            labels={[`${minVote}`,`${maxVote==10?10:maxVote}`]}
+            style={{ border: "none ", boxShadow: "none"}}
+            barLeftColor="var(--light-green)"
+            barInnerColor="var(--main-green)"
+            barRightColor="var(--light-green)"
+            thumbLeftColor="var(--main-green)"
+            thumbRightColor="var(--main-green)"
+            onInput={(e) => {
+              handleInputVote(e);
+            }}
+          />
+        </div>
+
+        <div className="mb-2">
+          <label
+            htmlFor="castName"
+            className="text-xs bg-bg-body absolute -mt-2 ml-1 px-1 text-main-green"
+          >
+            With Cast
+          </label>
+          <input
+            type="text"
+            id="castName"
+            className="text-sm bg-transparent border border-main-green p-2 focus:shadow-none focus:outline-none caret-dark-green text-dark-green"
+          />
+        </div>
+
+        <div className="mb-2">
           <label
             htmlFor="underline_select"
             className="text-xs bg-bg-body absolute -mt-2 ml-1 px-1 text-main-green"
@@ -71,41 +133,59 @@ const Movie = (props: Props) => {
           </label>
           <select
             id="underline_select"
-            className="block cursor-pointer text-center py-2 px-3 rounded w-fit text-sm text-dark-green bg-transparent border border-main-green  dark:text-gray-400 dark:border-main-green focus:outline-none focus:ring-0 peer"
+            className="block cursor-pointer text-center p-2 rounded w-fit text-sm text-dark-green bg-transparent border border-main-green dark:text-gray-400 dark:border-main-green focus:outline-none focus:ring-0 peer"
             onChange={(e) => setSort(e?.target?.value as any)}
             value={sort}
           >
-            <option onClick={() => setSort("none")} value={"none"}>
+            <option onClick={() => setSort("")} value={""}>
               none
             </option>
-            <option onClick={() => setSort("alphabet")} value={"alphabet"}>
-              alphabet
+            <option
+              onClick={() => setSort("popularity.asc")}
+              value={"popularity.asc"}
+            >
+              popularity .asc
             </option>
-            <option onClick={() => setSort("rate asc.")} value={"rate asc."}>
-              rate asc.
+            <option
+              onClick={() => setSort("popularity.desc")}
+              value={"popularity.desc"}
+            >
+              popularity .desc
             </option>
-            <option onClick={() => setSort("rate dec.")} value={"rate dec."}>
-              rate dec.
+            <option
+              onClick={() => setSort("vote_average.asc")}
+              value={"vote_average.asc"}
+            >
+              rate .asc
             </option>
-            <option onClick={() => setSort("date asc.")} value={"date asc."}>
-              date asc.
+            <option
+              onClick={() => setSort("vote_average.desc")}
+              value={"vote_average.desc"}
+            >
+              rate .desc
             </option>
-            <option onClick={() => setSort("date dec.")} value={"date dec."}>
-              date dec.
+            <option
+              onClick={() => setSort("primary_release_date.asc")}
+              value={"primary_release_date.asc"}
+            >
+              date .asc
+            </option>
+            <option
+              onClick={() => setSort("primary_release_date.desc")}
+              value={"primary_release_date.desc"}
+            >
+              date .desc
             </option>
           </select>
         </div>
       </div>
-
       <div className="flex flex-wrap justify-center gap-4 mt-4 mx-auto">
         {allMovies?.results?.map((result: Movie, index: number) => {
-          if (index >= (+page! - 1) * 20 && index < +page! * 20) {
-            return (
-              <div key={result.id} className="max-w-[150px] sm:min-w-[180px]">
-                <MovieCard imageSize="w185" movie={result} />
-              </div>
-            );
-          }
+          return (
+            <div key={result.id} className="max-w-[150px] sm:min-w-[180px]">
+              <MovieCard imageSize="w185" movie={result} />
+            </div>
+          );
         })}
       </div>
       <Pagination
@@ -117,4 +197,4 @@ const Movie = (props: Props) => {
   );
 };
 
-export default Movie;
+export default MoviePage;

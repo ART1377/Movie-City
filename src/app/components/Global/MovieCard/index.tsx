@@ -11,6 +11,7 @@ import {
   removeFromFavoriteMovies,
 } from "../../../redux/slices/favorite";
 import getGenreNameByGenreId from "@/app/lib/DataFetching/getGenreNameByGenreId";
+import CircularProgress from "../CircularProgress";
 
 type Props = {
   movie: Movie;
@@ -24,22 +25,10 @@ const MovieCard = ({ movie, imageSize }: Props) => {
   //check is in list or not
   const isInList = list.favoriteMovies.find((item) => item == movie.id);
 
-  //rate style
-  const rate =
-    +movie?.vote_average.toFixed(1) > 0 ? +movie?.vote_average.toFixed(1) : 3;
-  const rateStyle =
-    rate >= 8.5
-      ? "border-4 shadow-lg bg-bleck border-dark-green text-dark-green"
-      : rate >= 7
-      ? "border-4 shadow-lg bg-bleck border-main-green   text-main-green"
-      : rate >= 5
-      ? "border-4 shadow-lg bg-bleck border-amber-400 text-amber-400"
-      : "border-4 shadow-lg bg-bleck border-rose-600 text-rose-600";
-
   return (
     <>
       <div
-        className={`relative shadow-lg bg-white p-2 sm:p-3 ${style.container}`}
+        className={`relative shadow-xl hover:!shadow bg-white p-2 sm:p-3  ${style.container}`}
       >
         <Link href={`/movie/${movie.id}`}>
           <div className={`relative ${style.image}`}>
@@ -88,7 +77,9 @@ const MovieCard = ({ movie, imageSize }: Props) => {
             })}
           </div>
         </div>
-        <div className={`${rateStyle} ${style.rate}`}>{rate}</div>
+        <div className={`${style.rate}`}>
+          <CircularProgress percentage={+movie?.vote_average.toFixed(1)} />
+        </div>
       </div>
     </>
   );

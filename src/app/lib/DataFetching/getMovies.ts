@@ -11,16 +11,24 @@ const options = {
 
 const getMovies = async (
   page = 1,
-  cast='',
-  minDate= 1800,
-  maxDate= 2030,
-  minRate= 0,
-  maxRate= 10,
-  genre= "",
-  sort= ""
+  cast = "",
+  minDate = 1600,
+  maxDate = 2030,
+  minRate = 0,
+  maxRate = 10,
+  genre = "",
+  sort = ""
 ) => {
+  const castData = cast ? `&with_cast=${cast}` : "";
+  const minDateData = minDate ? `&release_date.gte=${minDate}-01-01` : "";
+  const maxDateData = maxDate ? `&release_date.lte=${maxDate}-01-01` : "";
+  const minRateData = minRate ? `&vote_average.gte=${minRate}` : "";
+  const maxRateData = maxRate ? `&vote_average.lte=${maxRate}` : "";
+  const sortData = sort ? `&sort_by=${sort}` : "";
+  const genreData = genre ? `&with_genres=${genre}` : "";
+
   const res = await fetch(
-    `https://api.themoviedb.org/3/discover/movie?page=${page}&release_date.gte=${minDate}-01-01&release_date.lte=${maxDate}-01-01&sort_by=${sort}&vote_average.gte=${minRate}&vote_average.lte=${maxRate}&with_cast=${cast}&with_genres=${genre}`,
+    `https://api.themoviedb.org/3/discover/movie?page=${page}${minDateData}${maxDateData}${sortData}${minRateData}${maxRateData}${castData}${genreData}`,
     options
   );
 
@@ -32,3 +40,5 @@ const getMovies = async (
 };
 
 export default getMovies;
+
+

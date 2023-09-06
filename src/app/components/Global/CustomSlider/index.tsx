@@ -42,9 +42,9 @@ const CustomSlider = ({ data }: Props) => {
     <>
       <div className="relative mb-32 xxs:mb-36 sm:mb-48 lg:mb-56">
         {/* <div className={`${style.info}`}>
-          <h1>{data[current]?.name?data[current]?.name:data[current]?.title}</h1>
+          <h6>{data[current]?.name?data[current]?.name:data[current]?.title}</h6>
         </div> */}
-        <Link href={`/${mediaType}/${data[current]?.id}`}>
+        <Link href={`/${mediaType}/${data[current]?.id}`} className={style.background}>
         <Img
           url={
             data[current-1]?.backdrop_path
@@ -52,7 +52,7 @@ const CustomSlider = ({ data }: Props) => {
               : data[current-1]?.profile_path
           }
           alternative="image"
-          style="opacity-70 max-h-[400px] max-w-[900px] mx-auto rounded-2xl"
+          style={`max-h-[400px] max-w-[900px] mx-auto rounded-2xl`}
           />
           </Link>
       <div className={`${style.slider} w-full h-full flex justify-center items-end absolute left-1/2 -bottom-[45%] xs:-bottom-[25%] sm:-bottom-[30%] md:-bottom-[35%] xm:-bottom-[25%] transform -translate-x-1/2 z-10`}>

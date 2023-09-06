@@ -66,8 +66,10 @@ const SliderHero = (props: Props) => {
               <div className={` ${style.detail}`}>
                 <ul className={`flex gap-1 items-center`}>
                   <li className="font-bold flex items-center text-text-light">
-                    <BsStarFill className="text-sm text-main-green me-0.5" />{" "}
+                    <BsStarFill className="text-sm text-main-green me-0.5" />
+                    <small className="!text-lg text-main-green">
                     {series[current]?.vote_average.toFixed(1)}
+                    </small>
                   </li>
                   <hr />
                   <li className="flex items-center text-text-light">

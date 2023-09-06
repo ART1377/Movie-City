@@ -39,7 +39,7 @@ const TopRatedSeries = (props: Props) => {
     async function getAllResults() {
       const initial = await getTopRatedSeries(+page!);
       setTotal(initial.total_pages);
-      const array = Array.from({ length: totalPages! }, (v, i) => i + 1);
+      const array = Array.from({ length: totalPages! + 1 }, (v, i) => i + 1);
 
       array.map(async (item) => {
         const allData = await getTopRatedSeries(item);

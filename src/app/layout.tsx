@@ -24,7 +24,7 @@ export default function RootLayout({
           className={`max-w-[1440px] mx-auto min-h-screen  ${inter.className}`}
         >
           <Header />
-          <main className="ms-auto pt-4 px-2 min-h-screen flex flex-col md:w-[calc(100%-180px)]">
+          <main className="ms-auto pt-4 px-2 min-h-screen flex flex-col md:w-[calc(100%-200px)]">
             {children}
             <Footer />
           </main>

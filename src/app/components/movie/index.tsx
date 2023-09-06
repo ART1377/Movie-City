@@ -12,7 +12,6 @@ import MultiRangeSlider from "multi-range-slider-react";
 import { BsChevronDown } from "react-icons/bs";
 import { genres } from "@/app/lib/DataFetching/getGenreNameByGenreId";
 import Button from "../Global/Button";
-import getPeopleDetailById from "@/app/lib/DataFetching/getPeopleDetailById";
 import getSearchResultsByQuery from "@/app/lib/DataFetching/getSearchResultsByQuery";
 
 type Props = {};
@@ -38,7 +37,7 @@ const MoviePage = (props: Props) => {
     setMaxDate(e.maxValue);
   };
 
-  const castRef = useRef<HTMLInputElement>(null);
+  const [castName, setCastName] = useState("");
 
   // Genre Checkboxes change handler
   const [genre, setGenre] = useState<string[]>([]);
@@ -61,11 +60,7 @@ const MoviePage = (props: Props) => {
   // Get All Data in order to implement sort
   useEffect(() => {
     const getMoviesData = setTimeout(async () => {
-      const castsData = await getSearchResultsByQuery(
-        "1",
-        castRef.current?.value!,
-        "person"
-      );
+      const castsData = await getSearchResultsByQuery("1", castName, "person");
       const cast = castsData.results[0]?.id.toString();
 
       const genreData = genre.join("");
@@ -80,14 +75,12 @@ const MoviePage = (props: Props) => {
         sort
       );
       setAllMovies(data);
-      console.log("first");
-    }, 1000);
-
+    }, 500);
 
     return () => {
       clearTimeout(getMoviesData);
     };
-  }, [genre, maxDate, maxRate, minDate, minRate, page, sort]);
+  }, [castName, genre, maxDate, maxRate, minDate, minRate, page, sort]);
 
   useEffect(() => {
     // Change Query by Pagination
@@ -111,28 +104,6 @@ const MoviePage = (props: Props) => {
     dropdown?.classList.toggle("h-32");
   };
 
-  const searchHandler = async () => {
-    const castsData = await getSearchResultsByQuery(
-      "1",
-      castRef.current?.value!,
-      "person"
-    );
-    const cast = castsData.results[0]?.id.toString();
-
-    const genreData = genre.join("");
-    const data: MoviesList = await getMovies(
-      +page!,
-      cast,
-      minDate,
-      maxDate,
-      minRate,
-      maxRate,
-      genreData,
-      sort
-    );
-    setAllMovies(data);
-  };
-
   if (!allMovies) {
     return <p>loading ...</p>;
   }
@@ -141,10 +112,24 @@ const MoviePage = (props: Props) => {
     <>
       {/* <CustomSlider data={lastFive} /> */}
       <div
-        className={`w-full flex flex-wrap items-center gap-8 border-b border-main-green mt-8 mb-4 pb-1 sm:ps-4`}
+        className={`w-full flex flex-col items-center gap-8 border-b border-main-green mb-8 py-2 px-4 bg-white rounded-2xl`}
       >
         {/* <Title>All Movies</Title> */}
-
+        <div className="mb-2">
+          <label
+            htmlFor="castName"
+            className="text-xs bg-white absolute -mt-2 ml-1 px-1 text-dark-green"
+          >
+            With Cast
+          </label>
+          <input
+            onChange={(e) => setCastName(e.target.value)}
+            value={castName}
+            type="text"
+            id="castName"
+            className="text-sm bg-transparent border border-dark-green p-2 focus:shadow-none focus:outline-none caret-dark-green text-text-dark"
+          />
+        </div>
         <div className="mb-2 relative">
           <div
             onClick={dropdownHandler}
@@ -182,42 +167,32 @@ const MoviePage = (props: Props) => {
           </div>
         </div>
 
-        <div className="mb-2">
-          <label
-            htmlFor="castName"
-            className="text-xs bg-bg-body absolute -mt-2 ml-1 px-1 text-dark-green"
-          >
-            With Cast
-          </label>
-          <input
-            ref={castRef}
-            type="text"
-            id="castName"
-            className="text-sm bg-transparent border border-dark-green p-2 focus:shadow-none focus:outline-none caret-dark-green text-text-dark"
-          />
-        </div>
-
         <div className="mb-2 w-[150px]">
-          <MultiRangeSlider
-            min={1875}
-            max={2025}
-            step={5}
-            minValue={minDate}
-            maxValue={maxDate}
-            ruler={false}
-            labels={[`${minDate}`, `${maxDate}`]}
-            style={{ border: "none ", boxShadow: "none" }}
-            barLeftColor="var(--light-green)"
-            barInnerColor="var(--main-green)"
-            barRightColor="var(--light-green)"
-            thumbLeftColor="var(--main-green)"
-            thumbRightColor="var(--main-green)"
-            onInput={(e) => {
-              handleInputDate(e);
-            }}
-          />
+          <div className="flex flex-col">
+            <small className='text-text-dark font-bold text-sm'>Release Date</small>
+            <MultiRangeSlider
+              min={1875}
+              max={2025}
+              step={1}
+              minValue={minDate}
+              maxValue={maxDate}
+              ruler={false}
+              labels={[`${minDate}`, `${maxDate}`]}
+              style={{ border: "none ", boxShadow: "none",width:'150px' }}
+              barLeftColor="var(--light-green)"
+              barInnerColor="var(--main-green)"
+              barRightColor="var(--light-green)"
+              thumbLeftColor="var(--main-green)"
+              thumbRightColor="var(--main-green)"
+              onInput={(e) => {
+                handleInputDate(e);
+              }}
+            />
+          </div>
         </div>
         <div className="mb-2 w-[150px]">
+        <div className="flex flex-col">
+            <small className='text-text-dark font-bold text-sm'>Rating</small>
           <MultiRangeSlider
             min={0}
             max={10}
@@ -226,7 +201,7 @@ const MoviePage = (props: Props) => {
             maxValue={maxRate}
             ruler={false}
             labels={[`${minRate}`, `${maxRate == 10 ? 10 : maxRate}`]}
-            style={{ border: "none ", boxShadow: "none" }}
+            style={{ border: "none ", boxShadow: "none",width:'150px' }}
             barLeftColor="var(--light-green)"
             barInnerColor="var(--main-green)"
             barRightColor="var(--light-green)"
@@ -237,11 +212,12 @@ const MoviePage = (props: Props) => {
             }}
           />
         </div>
+        </div>
 
         <div className="mb-2">
           <label
             htmlFor="underline_select"
-            className="text-xs bg-bg-body absolute -mt-2 ml-1 px-1 text-dark-green"
+            className="text-xs bg-white absolute -mt-2 ml-1 px-1 text-dark-green"
           >
             Sort by
           </label>
@@ -292,12 +268,11 @@ const MoviePage = (props: Props) => {
             </option>
           </select>
         </div>
-
-        <Button btnType="main" type="submit" onClick={searchHandler}>
-          Search
-        </Button>
       </div>
-
+      
+      <div>
+        <Title withLine>All Movies</Title>
+      </div>
       <div className="flex flex-wrap justify-center gap-4 mt-4 mx-auto">
         {allMovies?.results.length > 0 ? (
           allMovies?.results?.map((result: Movie, index: number) => {

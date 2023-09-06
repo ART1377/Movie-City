@@ -75,7 +75,7 @@
 
 @media only screen and (min-width: 768px) {
   .navbar{
-    width: 180px;
+    width: 200px;
     top: 56px;
     background-color: transparent;
     height: calc(100vh - 56px);

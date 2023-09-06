@@ -5,17 +5,7 @@ import Pagination from "../../Global/Pagination";
 import { Movie } from "../../../../../next-type-d";
 import getUpcomingMovies from "@/app/lib/DataFetching/getUpcomingMovies";
 import Title from "../../Global/Title";
-import {
-  makeUnique,
-  sortAscendingBasedDate,
-  sortDescendingBasedDate,
-  sortAscendingBasedRate,
-  sortDescendingBasedRate,
-  sortAlphabatically,
-  sortDescendingBasedPopularity,
-  sortAscendingBasedPopularity,
-  sortArray,
-} from "@/app/lib/Functions/Functions";
+import { makeUnique, sortArray } from "@/app/lib/Functions/Functions";
 import CustomSlider from "../../Global/CustomSlider";
 import MovieCard from "../../Global/MovieCard";
 
@@ -32,14 +22,14 @@ const UpcomingMoviesPage = (props: Props) => {
   const page = searchParams.get("page");
 
   const [currentPage, setCurrentPage] = useState(+page!);
-  const totalPages = Math.ceil(total / 10) - 5;
+  const totalPages = total;
 
   // Get All Data in order to implement sort
   useEffect(() => {
     async function getAllResults() {
       const initial = await getUpcomingMovies(+page!);
       setTotal(initial.total_pages);
-      const array = Array.from({ length: totalPages! }, (v, i) => i + 1);
+      const array = Array.from({ length: totalPages! + 1 }, (v, i) => i + 1);
 
       array.map(async (item) => {
         const allData = await getUpcomingMovies(item);

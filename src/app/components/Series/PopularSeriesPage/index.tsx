@@ -8,20 +8,13 @@ import SeriesCard from "../../Global/SeriesCard";
 import Title from "../../Global/Title";
 import {
   makeUnique,
-  sortAscendingBasedDate,
-  sortDescendingBasedDate,
-  sortAscendingBasedRate,
-  sortDescendingBasedRate,
-  sortAlphabatically,
-  sortDescendingBasedPopularity,
-  sortAscendingBasedPopularity,
   sortArray,
 } from "@/app/lib/Functions/Functions";
 import CustomSlider from "../../Global/CustomSlider";
 
 type Props = {};
 
-const TrendingSeriesPage = (props: Props) => {
+const PopularSeriesPage = (props: Props) => {
   const [sort, setSort] = useState<string>("");
   const [total, setTotal] = useState<number>(102);
 
@@ -32,14 +25,14 @@ const TrendingSeriesPage = (props: Props) => {
   const page = searchParams.get("page");
 
   const [currentPage, setCurrentPage] = useState(+page!);
-  const totalPages = Math.ceil(total / 10) - 5;
+  const totalPages = Math.ceil(total / 20) - 5;
 
   // Get All Data in order to implement sort
   useEffect(() => {
     async function getAllResults() {
       const initial = await getPopularSeries(+page!);
       setTotal(initial.total_pages);
-      const array = Array.from({ length: totalPages! }, (v, i) => i + 1);
+      const array = Array.from({ length: totalPages! + 1 }, (v, i) => i + 1);
 
       array.map(async (item) => {
         const allData = await getPopularSeries(item);
@@ -150,4 +143,4 @@ const TrendingSeriesPage = (props: Props) => {
   );
 };
 
-export default TrendingSeriesPage;
+export default PopularSeriesPage;

@@ -104,8 +104,10 @@ const SeriesDetailPage = ({ series, images }: Props) => {
                 <small>{series?.number_of_seasons} season </small>
                 <hr className={style.smallLine} />
                 <small className="flex items-center font-semibold">
-                  <BsStarFill className="text-main-green" />
+                  <BsStarFill className="text-main-green text-sm me-0.5" />
+                  <small className="!text-base text-main-green">
                   {series?.vote_average.toFixed(1)}
+                  </small>
                   <p className="opacity-80 font-normal"> /10</p>
                 </small>
                 {/* <hr className={`!hidden md:!inline-block ${style.smallLine}`} />

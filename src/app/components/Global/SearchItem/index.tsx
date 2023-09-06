@@ -1,7 +1,6 @@
 import React from "react";
 import { SearchResult } from "../../../../../next-type-d";
 import Link from "next/link";
-import { BsStarFill } from "react-icons/bs";
 import Img from "../Img";
 import CircularProgress from "../CircularProgress";
 
@@ -54,10 +53,6 @@ const SearchItem = (result: Props) => {
                 : result?.result?.known_for_department}
             </small>
             {result?.result?.vote_average ? (
-              // <small className="flex items-center font-semibold text-sm">
-              //   <BsStarFill className="text-main-green" />
-              //   {result?.result?.vote_average.toFixed(1)}
-              // </small>
               <div className={``}>
                 <CircularProgress percentage={+result?.result?.vote_average?.toFixed(1)} />
               </div>

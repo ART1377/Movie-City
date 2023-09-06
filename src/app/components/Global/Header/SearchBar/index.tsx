@@ -61,7 +61,7 @@ const SearchBar = (props: Props) => {
           type="text"
           placeholder="Search ..."
           maxLength={40}
-          className={`input shadow ${
+          className={`input shadow text-text-dark ${
             show
               ? "!max-w-full !opacity-100 sm:!max-w-full sm:!opacity-100"
               : "sm:!max-w-full sm:!opacity-100"

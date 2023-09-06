@@ -1,4 +1,4 @@
-import { Company, Series, SeriesDetail } from "../../next-type-d";
+import { Company, Genre, Series } from "../../next-type-d";
 
 export const series: Series[] = [
   {

@@ -32,7 +32,7 @@
 @tailwind utilities;
 :root {
   /* color */
-  --main-green: #47d796;
+  --main-green: #47d696;
   --dark-green: #01995f;
   --light-green: #c3f7dc;
   --header-color: #d9e3e4;
@@ -41,7 +41,7 @@
   --bg-body: #ecf0f1;
 
   /* transition */
-  --transition: all 0.2s ease-in-out;
+  --transition: all 0.3s ease-in-out;
 
   /* border */
   --radius: 1rem;
@@ -66,6 +66,36 @@
   -ms-border-radius: 8px;
   -o-border-radius: 8px;
 } */
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(71, 215, 150,.5);
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  opacity: .8!important;
+}
+
+
+
+
 html,
 html *,
 body,

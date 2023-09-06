@@ -1,7 +1,7 @@
 import React from "react";
 import { SearchResult, SearchResults } from "../../../../../next-type-d";
 import Img from "../Img";
-import { BsStarFill,BsArrowUpRightCircle } from "react-icons/bs";
+import { BsStarFill, BsArrowUpRightCircle } from "react-icons/bs";
 import Link from "next/link";
 import SearchItem from "../SearchItem";
 
@@ -27,9 +27,7 @@ const SearchItems = ({ data, query }: Props) => {
             result?.media_type == "movie" ||
             result?.media_type == "person")
         ) {
-          return (
-            <SearchItem key={result.id} result={result} />
-          );
+          return <SearchItem key={result.id} result={result} />;
         }
       })}
 
@@ -39,7 +37,7 @@ const SearchItems = ({ data, query }: Props) => {
           className="text-text-dark cursor-pointer pt-2 flex items-center gap-2 text-center mx-auto group"
         >
           {` show all resluts for  '${query}'`}
-          <BsArrowUpRightCircle className='group-hover:translate-x-0.5 group-hover:scale-110'/>
+          <BsArrowUpRightCircle className="group-hover:translate-x-0.5 group-hover:scale-110" />
         </Link>
       )}
       {+data.results.length > 0 && +data.results.length < 3 && (
@@ -48,7 +46,7 @@ const SearchItems = ({ data, query }: Props) => {
           className="text-text-dark cursor-pointer pt-2 flex items-center gap-2 text-center mx-auto group"
         >
           {` show all ${data.results.length} resluts for  '${query}'`}
-          <BsArrowUpRightCircle className='group-hover:translate-x-0.5 group-hover:scale-110'/>
+          <BsArrowUpRightCircle className="group-hover:translate-x-0.5 group-hover:scale-110" />
         </Link>
       )}
     </>

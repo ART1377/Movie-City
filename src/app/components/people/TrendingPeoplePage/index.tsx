@@ -5,14 +5,20 @@ import Pagination from "../../Global/Pagination";
 import { People } from "../../../../../next-type-d";
 import getTrendingPeople from "@/app/lib/DataFetching/getTrendingPeople";
 import Title from "../../Global/Title";
-import { makeUnique, sortAlphabatically } from "@/app/lib/Functions/Functions";
+import {
+  makeUnique,
+  sortAlphabatically,
+  sortArray,
+  sortAscendingBasedPopularity,
+  sortDescendingBasedPopularity,
+} from "@/app/lib/Functions/Functions";
 import CustomSlider from "../../Global/CustomSlider";
 import PersonCard from "../../Global/PersonCard";
 
 type Props = {};
 
 const TrendingPeoplePage = (props: Props) => {
-  const [sort, setSort] = useState<string>("none");
+  const [sort, setSort] = useState<string>("");
   const [total, setTotal] = useState<number>(102);
 
   const [allPeople, setAllPeople] = useState<any[]>([]);
@@ -55,10 +61,7 @@ const TrendingPeoplePage = (props: Props) => {
 
   const lastFive: People[] = filteredAllPeople.slice(0, 5);
 
-  const data =
-    sort == "alphabet"
-      ? sortAlphabatically(filteredAllPeople)
-      : filteredAllPeople;
+  const data = sortArray(sort, filteredAllPeople);
 
   if (!data) {
     return <p>loading ...</p>;
@@ -76,21 +79,33 @@ const TrendingPeoplePage = (props: Props) => {
         <div className="-mb-2 me-2">
           <label
             htmlFor="underline_select"
-            className="text-xs bg-bg-body absolute -mt-2 ml-1 px-1 text-main-green"
+            className="text-xs bg-bg-body absolute -mt-2 ml-1 px-1 text-dark-green"
           >
             Sort by
           </label>
           <select
             id="underline_select"
-            className="block cursor-pointer text-center p-2 rounded w-fit text-sm text-dark-green bg-transparent border border-main-green  dark:text-gray-400 dark:border-main-green focus:outline-none focus:ring-0 peer"
+            className="block cursor-pointer text-center p-2 rounded w-fit text-sm text-dark-green bg-transparent border border-dark-green  dark:text-gray-400 dark:border-main-green focus:outline-none focus:ring-0 peer"
             onChange={(e) => setSort(e?.target?.value as any)}
             value={sort}
           >
-            <option onClick={() => setSort("none")} value={"none"}>
+            <option onClick={() => setSort("")} value={""}>
               none
             </option>
             <option onClick={() => setSort("alphabet")} value={"alphabet"}>
               alphabet
+            </option>
+            <option
+              onClick={() => setSort("popularity.asc")}
+              value={"popularity.asc"}
+            >
+              popularity .asc
+            </option>
+            <option
+              onClick={() => setSort("popularity.desc")}
+              value={"popularity.desc"}
+            >
+              popularity .desc
             </option>
           </select>
         </div>
@@ -100,7 +115,10 @@ const TrendingPeoplePage = (props: Props) => {
         {data?.map((result: People, index: number) => {
           if (index >= (+page! - 1) * 20 && index < +page! * 20) {
             return (
-              <div key={result.id} className="max-w-[150px] sm:min-w-[180px]">
+              <div
+                key={result.id}
+                className="w-[260px] flex justify-center xxs:max-w-[144px] xs:max-w-[180px]"
+              >
                 <PersonCard imageSize="w185" person={result} />
               </div>
             );

@@ -5,21 +5,14 @@ import Pagination from "../../Global/Pagination";
 import { Movie } from "../../../../../next-type-d";
 import getTopRatedMovies from "@/app/lib/DataFetching/getTopRatedMovies";
 import Title from "../../Global/Title";
-import {
-  makeUnique,
-  sortAscendingBasedDate,
-  sortDescendingBasedDate,
-  sortAscendingBasedRate,
-  sortDescendingBasedRate,
-  sortAlphabatically,
-} from "@/app/lib/Functions/Functions";
+import { makeUnique, sortArray } from "@/app/lib/Functions/Functions";
 import CustomSlider from "../../Global/CustomSlider";
 import MovieCard from "../../Global/MovieCard";
 
 type Props = {};
 
 const TopRatedMoviesPage = (props: Props) => {
-  const [sort, setSort] = useState<string>("none");
+  const [sort, setSort] = useState<string>("");
   const [total, setTotal] = useState<number>(102);
 
   const [allMovies, setAllMovies] = useState<any[]>([]);
@@ -62,18 +55,7 @@ const TopRatedMoviesPage = (props: Props) => {
 
   const lastFive: Movie[] = filteredAllMovies.slice(0, 5);
 
-  const data =
-    sort == "alphabet"
-      ? sortAlphabatically(filteredAllMovies)
-      : sort == "rate .desc"
-      ? sortDescendingBasedRate(filteredAllMovies)
-      : sort == "rate .asc"
-      ? sortAscendingBasedRate(filteredAllMovies)
-      : sort == "date .desc"
-      ? sortDescendingBasedDate(filteredAllMovies)
-      : sort == "date .asc"
-      ? sortAscendingBasedDate(filteredAllMovies)
-      : filteredAllMovies;
+  const data = sortArray(sort, filteredAllMovies);
 
   if (!data) {
     return <p>loading ...</p>;
@@ -91,32 +73,44 @@ const TopRatedMoviesPage = (props: Props) => {
         <div className="-mb-2 me-2">
           <label
             htmlFor="underline_select"
-            className="text-xs bg-bg-body absolute -mt-2 ml-1 px-1 text-main-green"
+            className="text-xs bg-bg-body absolute -mt-2 ml-1 px-1 text-dark-green"
           >
             Sort by
           </label>
           <select
             id="underline_select"
-            className="block cursor-pointer text-center p-2 rounded w-fit text-sm text-dark-green bg-transparent border border-main-green  dark:text-gray-400 dark:border-main-green focus:outline-none focus:ring-0 peer"
+            className="block cursor-pointer text-center p-2 rounded w-fit text-sm text-dark-green bg-transparent border border-dark-green  dark:text-gray-400 dark:border-main-green focus:outline-none focus:ring-0 peer"
             onChange={(e) => setSort(e?.target?.value as any)}
             value={sort}
           >
-            <option onClick={() => setSort("none")} value={"none"}>
+            <option onClick={() => setSort("")} value={""}>
               none
             </option>
             <option onClick={() => setSort("alphabet")} value={"alphabet"}>
               alphabet
             </option>
-            <option onClick={() => setSort("rate .asc")} value={"rate .asc"}>
+            <option
+              onClick={() => setSort("popularity.asc")}
+              value={"popularity.asc"}
+            >
+              popularity .asc
+            </option>
+            <option
+              onClick={() => setSort("popularity.desc")}
+              value={"popularity.desc"}
+            >
+              popularity .desc
+            </option>
+            <option onClick={() => setSort("rate.asc")} value={"rate.asc"}>
               rate .asc
             </option>
-            <option onClick={() => setSort("rate .desc")} value={"rate .desc"}>
+            <option onClick={() => setSort("rate.desc")} value={"rate.desc"}>
               rate .desc
             </option>
-            <option onClick={() => setSort("date .asc")} value={"date .asc"}>
+            <option onClick={() => setSort("date.asc")} value={"date.asc"}>
               date .asc
             </option>
-            <option onClick={() => setSort("date .desc")} value={"date .desc"}>
+            <option onClick={() => setSort("date.desc")} value={"date.desc"}>
               date .desc
             </option>
           </select>
@@ -127,7 +121,10 @@ const TopRatedMoviesPage = (props: Props) => {
         {data?.map((result: Movie, index: number) => {
           if (index >= (+page! - 1) * 20 && index < +page! * 20) {
             return (
-              <div key={result.id} className="max-w-[150px] sm:min-w-[180px]">
+              <div
+                key={result.id}
+                className="w-[260px] flex justify-center xxs:max-w-[144px] xs:max-w-[180px]"
+              >
                 <MovieCard imageSize="w185" movie={result} />
               </div>
             );

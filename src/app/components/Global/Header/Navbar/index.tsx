@@ -23,7 +23,7 @@ const Navbar = ({ show, setState }: Props) => {
   return (
     <>
       <nav
-        className={`shadow z-50 hidden md:flex ${show ? "!flex" : "hidden"} ${
+        className={`shadow z-50 hidden md:flex  ${show ? `!flex ` : `hidden `} ${
           style.navbar
         }`}
       >

@@ -73,6 +73,30 @@
   -o-border-radius: 100%;
 }
 
+/* @media only screen and (max-width: 768px) {
+  .show{
+    opacity: 0;
+    transition: all 1s ease-out;
+    -webkit-transition: all 1s ease-out;
+    -moz-transition: all 1s ease-out;
+    -ms-transition: all 1s ease-out;
+    -o-transition: all 1s ease-out;
+    transform: translateX(-100px);
+    -webkit-transform: translateX(-100px);
+    -moz-transform: translateX(-100px);
+    -ms-transform: translateX(-100px);
+    -o-transform: translateX(-100px);
+  }
+  
+
+.fade{
+  opacity: 1;
+  transform: translateX(100px);
+}
+
+} */
+
+
 @media only screen and (min-width: 768px) {
   .navbar{
     width: 200px;

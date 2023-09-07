@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import style from './Movie.module.css'
 import Pagination from "../Global/Pagination";
 import { Company, Genre, Movie, MoviesList } from "../../../../next-type-d";
 import getMovies from "@/app/lib/DataFetching/getMovies";
@@ -158,7 +159,7 @@ const MoviePage = (props: Props) => {
     <>
       {/* <CustomSlider data={lastFive} /> */}
 
-      <div className="bg-white relative rounded-2xl w-full h-16 mb-3 overflow-hidden flex justify-between items-center max-w-[96%] mx-auto">
+      <div className="bg-white relative rounded-2xl w-full h-16 mb-3 overflow-hidden flex justify-between items-center max-w-[96%] lg:max-w-full lg:mb-6 mx-auto">
         <div className="flex items-center gap-2 ps-3 xs:ps-5">
           <BsSearch className="text-text-light text-3xl" />
           <p className="text-text-dark font-medium">
@@ -171,7 +172,10 @@ const MoviePage = (props: Props) => {
         </div>
       </div>
 
-      <div className="bg-white rounded-2xl border-b border-main-green overflow-hidden max-w-[96%] mx-auto">
+
+<div className="flex flex-col lg:flex-row-reverse lg:gap-2">
+
+      <div className="bg-white rounded-2xl border-b border-main-green overflow-hidden max-w-[96%] lg:h-fit lg:max-w-[240px] lg:mr-2 mx-auto">
         <div className="text-center py-2 mb-6">
           <h6 className="text-text-dark">
             <span className="text-main-green mr-1">Advance</span>
@@ -425,16 +429,13 @@ const MoviePage = (props: Props) => {
         </div>
       </div>
 
-      {/* <div className="mt-10">
-        <Title withLine>All Movies</Title>
-      </div> */}
-      <div className="flex flex-wrap justify-center gap-4 mt-16 mx-auto">
+      <div className="flex flex-wrap justify-center gap-2 xs:gap-3 mt-16 lg:mt-0 lg:justify-start mx-auto">
         {allMovies?.results.length > 0 ? (
           allMovies?.results?.map((result: Movie, index: number) => {
             return (
               <div
                 key={result.id}
-                className="flex justify-center w-[260px]  xxs:max-w-[144px] xs:max-w-[180px]"
+                className={`flex justify-center ${style.card}`}
               >
                 <MovieCard imageSize="w185" movie={result} />
               </div>
@@ -444,6 +445,10 @@ const MoviePage = (props: Props) => {
           <p>no movies found !</p>
         )}
       </div>
+
+</div>
+
+
       <Pagination
         total={totalPages!}
         current={+page!}

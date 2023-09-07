@@ -81,7 +81,7 @@ const MovieDetailPage = ({ movie, images }: Props) => {
 
         {/* Poster ************* */}
         <div
-          className={`h-[400px] w-full xxs:h-[500px] xs:h-[570px] s:h-[600px] sm:h-[700px] mx-auto mb-4 max-w-[500px]  ${style.imageContainer}`}
+          className={`h-[400px] w-full xxs:h-[500px] xs:h-[540px] mx-auto mb-4 max-w-[400px]  ${style.imageContainer}`}
         >
           <div className={`relative w-full h-[90%] ${style.image}`}>
             <Img

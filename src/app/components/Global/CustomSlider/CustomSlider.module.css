@@ -33,12 +33,22 @@
   z-index: 12;
   left: 0%;
   top: 2%;
+  opacity: 1;
+  transform: translateX(16px);
+  transition: var(--transition);
   animation:fade .5s ease-out ;
   -webkit-animation:fade .5s ease-out ;
+  -webkit-transition: var(--transition);
+  -moz-transition: var(--transition);
+  -ms-transition: var(--transition);
+  -o-transition: var(--transition);
+  -webkit-transform: translateX(16px);
+  -moz-transform: translateX(16px);
+  -ms-transform: translateX(16px);
+  -o-transform: translateX(16px);
 }
 
 .background {
-  opacity: 1;
   position: relative;
   border-radius: var(--radius);
   -webkit-border-radius: var(--radius);
@@ -51,6 +61,8 @@
   border-radius: var(--radius);
   position: absolute;
   width: 100%;
+  max-width: 900px;
+  margin: auto;
   height: 100%;
   top: 0;
   right: 0;

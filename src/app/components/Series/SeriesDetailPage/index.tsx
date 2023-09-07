@@ -73,7 +73,7 @@ const SeriesDetailPage = ({ series, images }: Props) => {
 
         {/* Poster ************* */}
         <div
-          className={`h-[400px] w-full xxs:h-[500px] xs:h-[570px] s:h-[600px] sm:h-[700px] mx-auto mb-4 max-w-[500px]  ${style.imageContainer}`}
+          className={`h-[400px] w-full xxs:h-[500px] xs:h-[540px] mx-auto mb-4 max-w-[400px]  ${style.imageContainer}`}
         >
           <div className={`relative w-full h-[90%] ${style.image}`}>
             <Img
@@ -199,7 +199,7 @@ const SeriesDetailPage = ({ series, images }: Props) => {
         <div className={`w-full py-2 px-1 ${style.info}`}>
           {/* Storyline ************* */}
           {series.overview && (
-            <section className="mt-8">
+            <section className={`mt-8 ${style.overview}`}>
               <Title>Storyline</Title>
               <p className="text-text-dark text-sm md:max-w-[90%]">
                 {series?.overview}
@@ -209,7 +209,7 @@ const SeriesDetailPage = ({ series, images }: Props) => {
 
           {/* keywords *********** */}
           {series.keywords?.results.length! > 0 && (
-            <div className="mt-3 flex flex-wrap gap-2">
+            <div className={`mt-3 flex flex-wrap gap-2 ${style.keyword}`}>
               {series?.keywords?.results.map(
                 (keyword: Genre, index: number) => {
                   if (index < 5) {

@@ -27,7 +27,7 @@
   z-index: 10;
   border-top-right-radius: var(--radius);
   border-top-left-radius: var(--radius);
-    background: rgb(0, 0, 0);
+  background: rgb(0, 0, 0);
   background: linear-gradient(
     0deg,
     rgba(0, 0, 0, 1) 0%,
@@ -37,7 +37,6 @@
     rgba(0, 0, 0, 0) 50%,
     rgba(0, 0, 0, 0) 100%
   );
- 
 }
 
 .info {
@@ -70,28 +69,96 @@ hr.smallLine {
   }
 }
 
-.background {
-  display: none;
-}
-@media only screen and (min-width: 768px) {
-  .background {
-    display: block;
-    position: absolute;
-    top: 56px;
-    right: 8px;
-    left: 188px;
-    opacity: 0.7;
-    height: 360px;
-    max-width: 1244px;
-    margin: auto;
-    overflow: hidden;
-    border-radius: var(--radius);
-    -webkit-border-radius: var(--radius);
-    -moz-border-radius: var(--radius);
-    -ms-border-radius: var(--radius);
-    -o-border-radius: var(--radius);
+@media only screen and (min-width: 640px) {
+  .imageContainer {
+    height: 340px;
+    width: 220px;
+    margin-left: 0 !important;
   }
-
-
+  .image::after{
+    display: none;
+  }
+  .title {
+    left: 230px;
+    top: 0;
+    color: var(--text-dark);
+    width: 340px;
+    margin-top: 12px;
+  }
+  .detail {
+    left: 230px;
+    top: 0;
+    color: var(--text-dark) !important ;
+    width: 340px;
+    margin-top: 40px;
+  }
+  .detail small {
+    color: var(--text-dark) !important ;
+  }
+  .options {
+    margin-bottom: 40px;
+    justify-content: center;
+  }
+  .biography{
+    position: absolute;
+    top: 0;
+    margin-top: 160px;
+    width: calc(100% - 280px);
+    margin-left: 230px;
+  }
+  .biography p{
+    overflow: hidden;
+display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 8;
+  }
 }
 
+@media only screen and (min-width: 900px) {
+  .imageContainer {
+    height: 420px;
+    width: 300px;
+    margin-left: 0 !important;
+  }
+  .image::after{
+    display: none;
+  }
+  .title {
+    left: 320px;
+    top: 0;
+    color: var(--text-dark);
+    width: 400px;
+    margin-top: 12px;
+  }
+  .detail {
+    left: 320px;
+    top: 0;
+    color: var(--text-dark) !important ;
+    width: 400px;
+    margin-top: 48px;
+  }
+  .detail small {
+    color: var(--text-dark) !important ;
+  }
+  .options {
+    margin-bottom: 40px;
+    justify-content: center;
+    position: absolute;
+    margin-left: 320px;
+    top: 380px;
+  }
+  .biography{
+    position: absolute;
+    top: 0;
+    margin-top: 160px;
+    width: calc(100% - 360px);
+    margin-left: 320px;
+    max-width: 600px;
+  }
+  .biography p{
+    overflow: hidden;
+display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 8;
+  }
+}

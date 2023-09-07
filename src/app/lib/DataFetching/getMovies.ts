@@ -11,15 +11,20 @@ const options = {
 
 const getMovies = async (
   page = 1,
+  adult = false,
   cast = "",
+  crew = "",
   minDate = 1600,
   maxDate = 2030,
   minRate = 0,
   maxRate = 10,
   genre = "",
-  sort = ""
+  sort = "",
+  company = "",
 ) => {
   const castData = cast ? `&with_cast=${cast}` : "";
+  const crewData = crew ? `&with_crew=${crew}` : "";
+  const companyData = company ? `&with_companies=${company}` : "";
   const minDateData = minDate ? `&release_date.gte=${minDate}-01-01` : "";
   const maxDateData = maxDate ? `&release_date.lte=${maxDate}-01-01` : "";
   const minRateData = minRate ? `&vote_average.gte=${minRate}` : "";
@@ -28,7 +33,7 @@ const getMovies = async (
   const genreData = genre ? `&with_genres=${genre}` : "";
 
   const res = await fetch(
-    `https://api.themoviedb.org/3/discover/movie?page=${page}${minDateData}${maxDateData}${sortData}${minRateData}${maxRateData}${castData}${genreData}`,
+    `https://api.themoviedb.org/3/discover/movie?include_adult=${adult}&page=${page}${companyData}${minDateData}${maxDateData}${sortData}${minRateData}${maxRateData}${castData}${crewData}${genreData}`,
     options
   );
 
@@ -40,5 +45,3 @@ const getMovies = async (
 };
 
 export default getMovies;
-
-

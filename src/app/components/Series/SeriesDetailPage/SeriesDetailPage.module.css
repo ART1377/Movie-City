@@ -210,12 +210,12 @@ display: -webkit-box;
   .title {
     color: var(--text-dark);
     left: 190px;
-    bottom: 80px;
+    bottom: 65px;
     min-width: 340px;
   }
   .detail {
     left: 190px;
-    bottom: 12px;
+    bottom: 10px;
     min-width: 340px;
   }
   .options {
@@ -237,10 +237,10 @@ display: -webkit-box;
 }
 @media only screen and (min-width: 1024px) {
   .title {
-    min-width: 500px;
+    min-width: 560px;
   }
   .detail {
-    min-width: 500px;
+    min-width: 560px;
   }
 }
 @media only screen and (min-width: 1200px) {
@@ -249,5 +249,11 @@ display: -webkit-box;
   }
   .imageContainer {
     margin-top: 300px;
+  }
+  .title {
+    min-width: 650px;
+  }
+  .detail {
+    min-width: 650px;
   }
 }

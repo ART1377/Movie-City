@@ -87,7 +87,7 @@ const SeriesDetailPage = ({ series, images }: Props) => {
             </p>
 
             <h6
-              className={`text-text-light absolute z-30 bottom-10 left-2 xs:left-4 xs:bottom-14 xs:text-2xl lg:text-3xl ${style.title}`}
+              className={`text-text-light absolute z-30 bottom-10 left-2 xs:left-4 xs:bottom-14 xs:text-2xl line-clamp-2 ${style.title}`}
             >
               {series?.name}
             </h6>

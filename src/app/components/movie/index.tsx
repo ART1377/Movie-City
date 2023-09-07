@@ -2,17 +2,26 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Pagination from "../Global/Pagination";
-import { Genre, Movie, MoviesList } from "../../../../next-type-d";
+import { Company, Genre, Movie, MoviesList } from "../../../../next-type-d";
 import getMovies from "@/app/lib/DataFetching/getMovies";
 import Title from "../Global/Title";
 import { makeUnique } from "@/app/lib/Functions/Functions";
 import CustomSlider from "../Global/CustomSlider";
 import MovieCard from "../Global/MovieCard";
 import MultiRangeSlider from "multi-range-slider-react";
-import { BsChevronDown } from "react-icons/bs";
-import { genres } from "@/app/lib/DataFetching/getGenreNameByGenreId";
+import {
+  BsChevronDown,
+  BsTrash3,
+  BsSearch,
+  BsCameraReels,
+} from "react-icons/bs";
+import getGenreNameByGenreId, {
+  genres,
+} from "@/app/lib/DataFetching/getGenreNameByGenreId";
 import Button from "../Global/Button";
 import getSearchResultsByQuery from "@/app/lib/DataFetching/getSearchResultsByQuery";
+import Toggle from "../Global/Toggle";
+import { companies } from "@/app/data";
 
 type Props = {};
 
@@ -23,6 +32,8 @@ const MoviePage = (props: Props) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const page = searchParams.get("page");
+
+  const [adult, setAdult] = useState<boolean>(false);
 
   const [minRate, setMinRate] = useState(0);
   const [maxRate, setMaxRate] = useState(10);
@@ -38,6 +49,9 @@ const MoviePage = (props: Props) => {
   };
 
   const [castName, setCastName] = useState("");
+  const [crewName, setCrewName] = useState("");
+
+  const [companyName, setCompanyName] = useState<string>("");
 
   // Genre Checkboxes change handler
   const [genre, setGenre] = useState<string[]>([]);
@@ -53,6 +67,20 @@ const MoviePage = (props: Props) => {
     }
   };
 
+  // Reset Handler
+  const resetHandler = () => {
+    setCastName("");
+    setCrewName("");
+    setGenre([]);
+    setAdult(false);
+    setCompanyName("");
+    setMinRate(0);
+    setMaxRate(10);
+    setMinDate(1875);
+    setMaxRate(2025);
+    setSort("");
+  };
+
   const [currentPage, setCurrentPage] = useState(+page!);
   const totalPages =
     allMovies?.total_pages! <= 500 ? allMovies?.total_pages : 500;
@@ -63,16 +91,22 @@ const MoviePage = (props: Props) => {
       const castsData = await getSearchResultsByQuery("1", castName, "person");
       const cast = castsData.results[0]?.id.toString();
 
-      const genreData = genre.join("");
+      const crewsData = await getSearchResultsByQuery("1", crewName, "person");
+      const crew = crewsData.results[0]?.id.toString();
+
+      const genreData = genre.join("%2C");
       const data: MoviesList = await getMovies(
         +page!,
+        adult,
         cast,
+        crew,
         minDate,
         maxDate,
         minRate,
         maxRate,
         genreData,
-        sort
+        sort,
+        companyName
       );
       setAllMovies(data);
     }, 500);
@@ -80,7 +114,19 @@ const MoviePage = (props: Props) => {
     return () => {
       clearTimeout(getMoviesData);
     };
-  }, [castName, genre, maxDate, maxRate, minDate, minRate, page, sort]);
+  }, [
+    castName,
+    genre,
+    maxDate,
+    maxRate,
+    minDate,
+    minRate,
+    page,
+    sort,
+    adult,
+    crewName,
+    companyName,
+  ]);
 
   useEffect(() => {
     // Change Query by Pagination
@@ -111,175 +157,284 @@ const MoviePage = (props: Props) => {
   return (
     <>
       {/* <CustomSlider data={lastFive} /> */}
-      <div
-        className={`w-full flex flex-col items-center gap-8 border-b border-main-green mb-8 py-2 px-4 bg-white rounded-2xl`}
-      >
-        {/* <Title>All Movies</Title> */}
-        <div className="mb-2">
-          <label
-            htmlFor="castName"
-            className="text-xs bg-white absolute -mt-2 ml-1 px-1 text-dark-green"
-          >
-            With Cast
-          </label>
-          <input
-            onChange={(e) => setCastName(e.target.value)}
-            value={castName}
-            type="text"
-            id="castName"
-            className="text-sm bg-transparent border border-dark-green p-2 focus:shadow-none focus:outline-none caret-dark-green text-text-dark"
-          />
-        </div>
-        <div className="mb-2 relative">
-          <div
-            onClick={dropdownHandler}
-            className="p-1 border-b border-dark-green text-dark-green min-w-[80px] cursor-pointer flex justify-between items-center"
-          >
-            <small className="text-sm">Genre</small>
-            <div id="arrow" className={`transform transition-all duration-300`}>
-              <BsChevronDown className="text-sm" />
-            </div>
-          </div>
-          <div
-            id="dropdown"
-            className="bg-white py-1.5 px-3 overflow-y-auto rounded-lg absolute z-10 left-1/2 transform -translate-x-1/2 transition-all duration-300 opacity-0 h-0 min-w-[160px] border border-dark-green"
-          >
-            <ul className="space-y-2">
-              {genres.map((genre: Genre, index: number) => {
-                return (
-                  <li
-                    key={genre.id}
-                    className={`flex items-center justify-between gap-1 pb-0.5 ${
-                      index != genres.length - 1 && "border-b"
-                    }`}
-                  >
-                    <small>{genre.name}</small>
-                    <input
-                      onChange={(e) => checkboxHandler(e)}
-                      type="checkbox"
-                      name={`${genre.id.toString()}%2C`}
-                      id={genre.id.toString()}
-                    />
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        </div>
 
-        <div className="mb-2 w-[150px]">
-          <div className="flex flex-col">
-            <small className='text-text-dark font-bold text-sm'>Release Date</small>
-            <MultiRangeSlider
-              min={1875}
-              max={2025}
-              step={1}
-              minValue={minDate}
-              maxValue={maxDate}
-              ruler={false}
-              labels={[`${minDate}`, `${maxDate}`]}
-              style={{ border: "none ", boxShadow: "none",width:'150px' }}
-              barLeftColor="var(--light-green)"
-              barInnerColor="var(--main-green)"
-              barRightColor="var(--light-green)"
-              thumbLeftColor="var(--main-green)"
-              thumbRightColor="var(--main-green)"
-              onInput={(e) => {
-                handleInputDate(e);
-              }}
+      <div className="bg-white relative rounded-2xl w-full h-16 mb-3 overflow-hidden flex justify-between items-center max-w-[96%] mx-auto">
+        <div className="flex items-center gap-2 ps-3 xs:ps-5">
+          <BsSearch className="text-text-light text-3xl" />
+          <p className="text-text-dark font-medium">
+            Search in all
+            <span className="text-main-green ml-1">Movies</span>
+          </p>
+        </div>
+        <div className="bg-dark-green w-16 h-16 flex justify-center items-center">
+          <BsCameraReels className="text-white text-2xl" />
+        </div>
+      </div>
+
+      <div className="bg-white rounded-2xl border-b border-main-green overflow-hidden max-w-[96%] mx-auto">
+        <div className="text-center py-2 mb-6">
+          <h6 className="text-text-dark">
+            <span className="text-main-green mr-1">Advance</span>
+            Search
+          </h6>
+        </div>
+        <div
+          className={`w-full flex flex-wrap justify-center items-center gap-8 mb-8 py-2 px-4 rounded-none `}
+        >
+
+          {/* Cast Name Input */}
+          <div className="mb-2 w-[200px]">
+            <label
+              htmlFor="castName"
+              className="text-xs bg-white absolute -mt-2 ml-1 px-1 text-dark-green"
+            >
+              Cast Name
+            </label>
+            <input
+              onChange={(e) => setCastName(e.target.value)}
+              value={castName}
+              type="text"
+              id="castName"
+              className="text-sm bg-transparent border border-dark-green p-2 focus:shadow-none focus:outline-none caret-dark-green text-text-dark w-full"
             />
           </div>
-        </div>
-        <div className="mb-2 w-[150px]">
-        <div className="flex flex-col">
-            <small className='text-text-dark font-bold text-sm'>Rating</small>
-          <MultiRangeSlider
-            min={0}
-            max={10}
-            step={0.1}
-            minValue={minRate}
-            maxValue={maxRate}
-            ruler={false}
-            labels={[`${minRate}`, `${maxRate == 10 ? 10 : maxRate}`]}
-            style={{ border: "none ", boxShadow: "none",width:'150px' }}
-            barLeftColor="var(--light-green)"
-            barInnerColor="var(--main-green)"
-            barRightColor="var(--light-green)"
-            thumbLeftColor="var(--main-green)"
-            thumbRightColor="var(--main-green)"
-            onInput={(e) => {
-              handleInputVote(e);
-            }}
-          />
-        </div>
+
+          {/* Crew Name Input */}
+          <div className="mb-2 w-[200px]">
+            <label
+              htmlFor="castName"
+              className="text-xs bg-white absolute -mt-2 ml-1 px-1 text-dark-green"
+            >
+              Crew Name
+            </label>
+            <input
+              onChange={(e) => setCrewName(e.target.value)}
+              value={crewName}
+              type="text"
+              id="castName"
+              className="text-sm bg-transparent border border-dark-green p-2 focus:shadow-none focus:outline-none caret-dark-green text-text-dark w-full"
+            />
+          </div>
+
+          {/* SortBy Select Option */}
+          <div className="mb-2 w-[200px]">
+            <label
+              htmlFor="underline_select"
+              className="text-xs bg-white absolute -mt-2 ml-1 px-1 text-dark-green"
+            >
+              Company
+            </label>
+            <select
+              id="underline_select"
+              className="block cursor-pointer text-center p-2 rounded text-sm text-dark-green bg-transparent border border-dark-green dark:text-gray-400 dark:border-main-green focus:outline-none focus:ring-0 peer w-full"
+              onChange={(e) => setCompanyName(e?.target?.value as any)}
+              value={companyName}
+            >
+              <option onClick={() => setCompanyName("")} value={""}>
+                none
+              </option>
+              {companies.map((company: Company) => {
+                return (
+                  <option
+                    key={company.id}
+                    onClick={() => setCompanyName(company.id.toString())}
+                    value={company.id.toString()}
+                  >
+                    {company.name}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+
+          {/* SortBy Select Option */}
+          <div className="mb-2 w-[200px]">
+            <label
+              htmlFor="underline_select"
+              className="text-xs bg-white absolute -mt-2 ml-1 px-1 text-dark-green"
+            >
+              Sort by
+            </label>
+            <select
+              id="underline_select"
+              className="block cursor-pointer text-center p-2 rounded text-sm text-dark-green bg-transparent border border-dark-green dark:text-gray-400 dark:border-main-green focus:outline-none focus:ring-0 peer w-full"
+              onChange={(e) => setSort(e?.target?.value as any)}
+              value={sort}
+            >
+              <option onClick={() => setSort("")} value={""}>
+                none
+              </option>
+              <option
+                onClick={() => setSort("popularity.asc")}
+                value={"popularity.asc"}
+              >
+                popularity .asc
+              </option>
+              <option
+                onClick={() => setSort("popularity.desc")}
+                value={"popularity.desc"}
+              >
+                popularity .desc
+              </option>
+              <option
+                onClick={() => setSort("vote_average.asc")}
+                value={"vote_average.asc"}
+              >
+                rate .asc
+              </option>
+              <option
+                onClick={() => setSort("vote_average.desc")}
+                value={"vote_average.desc"}
+              >
+                rate .desc
+              </option>
+              <option
+                onClick={() => setSort("primary_release_date.asc")}
+                value={"primary_release_date.asc"}
+              >
+                date .asc
+              </option>
+              <option
+                onClick={() => setSort("primary_release_date.desc")}
+                value={"primary_release_date.desc"}
+              >
+                date .desc
+              </option>
+            </select>
+          </div>
+
+          {/* Release Date Range */}
+          <div className="mb-2 w-[200px]">
+            <div className="flex flex-col">
+              <small className="text-text-dark font-bold text-sm">
+                Release Date
+              </small>
+              <MultiRangeSlider
+                min={1875}
+                max={2025}
+                step={1}
+                minValue={minDate}
+                maxValue={maxDate}
+                ruler={false}
+                labels={[`${minDate}`, `${maxDate}`]}
+                style={{ border: "none ", boxShadow: "none", width: "100%" }}
+                barLeftColor="var(--light-green)"
+                barInnerColor="var(--main-green)"
+                barRightColor="var(--light-green)"
+                thumbLeftColor="var(--main-green)"
+                thumbRightColor="var(--main-green)"
+                onInput={(e) => {
+                  handleInputDate(e);
+                }}
+              />
+            </div>
+          </div>
+
+          {/* Vote Rate Range */}
+          <div className="mb-2 w-[200px]">
+            <div className="flex flex-col">
+              <small className="text-text-dark font-bold text-sm">Rating</small>
+              <MultiRangeSlider
+                min={0}
+                max={10}
+                step={0.1}
+                minValue={minRate}
+                maxValue={maxRate}
+                ruler={false}
+                labels={[`${minRate}`, `${maxRate == 10 ? 10 : maxRate}`]}
+                style={{ border: "none ", boxShadow: "none", width: "100%" }}
+                barLeftColor="var(--light-green)"
+                barInnerColor="var(--main-green)"
+                barRightColor="var(--light-green)"
+                thumbLeftColor="var(--main-green)"
+                thumbRightColor="var(--main-green)"
+                onInput={(e) => {
+                  handleInputVote(e);
+                }}
+              />
+            </div>
+          </div>
+
+          {/* Genre Dropdown */}
+          <div className="mb-2 relative w-[200px]">
+            <div
+              onClick={dropdownHandler}
+              className="p-1 border-b border-dark-green text-dark-green min-w-[80px] cursor-pointer flex justify-between items-center"
+            >
+              <small className="text-sm flex !line-clamp-1 ">
+                {genre.length == 1
+                  ? getGenreNameByGenreId(+genre[0])
+                  : genre.length > 1
+                  ? `${getGenreNameByGenreId(
+                      +genre[genre.length - 2]
+                    )} , ${getGenreNameByGenreId(
+                      +genre[genre.length - 1]
+                    )} , ...`
+                  : "Genre"}
+              </small>
+              <div
+                id="arrow"
+                className={`transform transition-all duration-300`}
+              >
+                <BsChevronDown className="text-sm" />
+              </div>
+            </div>
+            <div
+              id="dropdown"
+              className="bg-white py-1.5 px-3 overflow-y-auto rounded-lg absolute z-10 left-1/2 transform -translate-x-1/2 transition-all duration-300 opacity-0 h-0 min-w-[160px] border border-dark-green"
+            >
+              <ul className="space-y-2">
+                {genres.map((genre: Genre, index: number) => {
+                  return (
+                    <li
+                      key={genre.id}
+                      className={`flex items-center justify-between gap-1 pb-0.5 ${
+                        index != genres.length - 1 && "border-b"
+                      }`}
+                    >
+                      <small>{genre.name}</small>
+                      <input
+                        onChange={(e) => checkboxHandler(e)}
+                        type="checkbox"
+                        name={genre.id.toString()}
+                        id={genre.id.toString()}
+                      />
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </div>
+
+          {/* Adult Toggle */}
+          <div className="mb-2 flex justify-between items-center w-[200px]">
+            <small className="text-sm font-bold text-text-dark">
+              Include Adult
+            </small>
+            <Toggle toggle={adult} setToggle={setAdult} />
+          </div>
+
+          
         </div>
 
-        <div className="mb-2">
-          <label
-            htmlFor="underline_select"
-            className="text-xs bg-white absolute -mt-2 ml-1 px-1 text-dark-green"
-          >
-            Sort by
-          </label>
-          <select
-            id="underline_select"
-            className="block cursor-pointer text-center p-2 rounded w-fit text-sm text-dark-green bg-transparent border border-dark-green dark:text-gray-400 dark:border-main-green focus:outline-none focus:ring-0 peer"
-            onChange={(e) => setSort(e?.target?.value as any)}
-            value={sort}
-          >
-            <option onClick={() => setSort("")} value={""}>
-              none
-            </option>
-            <option
-              onClick={() => setSort("popularity.asc")}
-              value={"popularity.asc"}
-            >
-              popularity .asc
-            </option>
-            <option
-              onClick={() => setSort("popularity.desc")}
-              value={"popularity.desc"}
-            >
-              popularity .desc
-            </option>
-            <option
-              onClick={() => setSort("vote_average.asc")}
-              value={"vote_average.asc"}
-            >
-              rate .asc
-            </option>
-            <option
-              onClick={() => setSort("vote_average.desc")}
-              value={"vote_average.desc"}
-            >
-              rate .desc
-            </option>
-            <option
-              onClick={() => setSort("primary_release_date.asc")}
-              value={"primary_release_date.asc"}
-            >
-              date .asc
-            </option>
-            <option
-              onClick={() => setSort("primary_release_date.desc")}
-              value={"primary_release_date.desc"}
-            >
-              date .desc
-            </option>
-          </select>
+        <div
+          onClick={resetHandler}
+          className="w-full min-h-[48px] bg-dark-green flex justify-center items-center text-white"
+        >
+          <BsTrash3 className="text-white text-2xl" />
         </div>
       </div>
-      
-      <div>
+
+      {/* <div className="mt-10">
         <Title withLine>All Movies</Title>
-      </div>
-      <div className="flex flex-wrap justify-center gap-4 mt-4 mx-auto">
+      </div> */}
+      <div className="flex flex-wrap justify-center gap-4 mt-16 mx-auto">
         {allMovies?.results.length > 0 ? (
           allMovies?.results?.map((result: Movie, index: number) => {
             return (
               <div
                 key={result.id}
-                className="w-[260px] flex justify-center xxs:max-w-[144px] xs:max-w-[180px]"
+                className="flex justify-center w-[260px]  xxs:max-w-[144px] xs:max-w-[180px]"
               >
                 <MovieCard imageSize="w185" movie={result} />
               </div>

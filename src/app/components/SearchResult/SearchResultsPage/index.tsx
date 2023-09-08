@@ -47,7 +47,7 @@ const SearchResultsPage = (props: Props) => {
 
   return (
     <>
-      <Title >{`all Results form '${query}'`}</Title>
+      <Title >{`All Results form '${query}'`}</Title>
       <div className="w-full flex gap-8 border-b border-main-green mt-8 mb-4 pb-2 ps-2 sm:ps-4">
         <small
           className={`${

@@ -11,7 +11,8 @@ import {
   BsX,
   BsPerson,
   BsTelegram,
-  BsGithub,BsGoogle
+  BsGithub,
+  BsGoogle,
 } from "react-icons/bs";
 import { BsPeople } from "react-icons/bs";
 
@@ -23,9 +24,9 @@ const Navbar = ({ show, setState }: Props) => {
   return (
     <>
       <nav
-        className={`shadow z-50 hidden md:flex  ${show ? `!flex ` : `hidden `} ${
-          style.navbar
-        }`}
+        className={`shadow z-50 hidden md:flex  ${
+          show ? `!flex ` : `hidden `
+        } ${style.navbar}`}
       >
         {/* <hr className={style.divider} /> */}
 
@@ -49,32 +50,32 @@ const Navbar = ({ show, setState }: Props) => {
         <ul className={`h-full inline-flex flex-col my-2 ${style.navLinks}`}>
           <li>
             <Link href={"/"} className="flex items-center gap-1">
-              <BsHouse className='mt-[3px]' />
+              <BsHouse className="mt-[3px]" />
               <p className="font-normal">Home</p>
             </Link>
           </li>
           <li>
             <Link href={"/movie?page=1"} className="flex items-center gap-1">
-              <BsCameraReels className='mt-[3px]' />
+              <BsCameraReels className="mt-[3px]" />
               <p className="font-normal">Movies</p>
             </Link>
           </li>
           <li>
             <Link href={"/series"} className="flex items-center gap-1">
-              <BsTv className='mt-[3px]' />
+              <BsTv className="mt-[3px]" />
               <p className="font-normal">Series</p>
             </Link>
           </li>
           <li>
             <Link href={"/people"} className="flex items-center gap-1">
-              <BsPeople className='mt-[3px]' />
+              <BsPeople className="mt-[3px]" />
               <p className="font-normal">Celebs</p>
             </Link>
           </li>
           <li>
-            <Link href={"/favorites"} className="flex items-center gap-1">
-              <BsHeart className='mt-[3px]' />
-              <p className="font-normal">Watchlist</p>
+            <Link href={"/favorites?page=1"} className="flex items-center gap-1">
+              <BsHeart className="mt-[3px]" />
+              <p className="font-normal">Favorites</p>
             </Link>
           </li>
           {/* <li>

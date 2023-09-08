@@ -45,6 +45,8 @@ const index = (props: Props) => {
           </div>
           {/* contact us */}
           <div className="flex flex-col items-center gap-3 xs:flex-row xs:justify-between lg:!justify-around w-full">
+            <div className="flex flex-col items-center gap-4 xxs:flex-row xxs:justify-between">
+
             <Link
               className="text-xs xxs:text-sm flex items-center gap-0.5"
               href="mailto:alirezatt705@gmail.com"
@@ -57,6 +59,7 @@ const index = (props: Props) => {
             >
               <BsTelephone /> 09193050762
             </Link>
+            </div>
             <div className={`h-full ${style.social}`}>
               <ul className="h-full inline-flex gap-2">
                 <li>

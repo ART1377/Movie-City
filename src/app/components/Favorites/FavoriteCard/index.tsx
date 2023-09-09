@@ -21,6 +21,7 @@ import {
   addToFavoriteSeries,
   removeFromFavoriteSeries,
 } from "../../../redux/slices/favorite";
+import Link from "next/link";
 
 type Props = {
   data: any;
@@ -39,12 +40,12 @@ const FavoriteCard = ({ data, count, searchItem }: Props) => {
 
   const dateCard =
     typeCard == "series"
-      ? `${data?.first_air_date?.split("-")[0]} - ${
-          data?.last_air_date?.split("-")[0]
+      ? `${data?.first_air_date?.split("-")?.[0]}  ${
+         - data?.last_air_date?.split("-")?.[0]?data?.last_air_date?.split("-")?.[0]:''
         }`
       : typeCard == "movie"
-      ? data.release_date?.split("-")[0]
-      : `${data?.birthday?.split("-")[0]} - ${
+      ? data?.release_date?.split("-")?.[0]
+      : `${data?.birthday?.split("-")?.[0]} - ${
           data?.deathday?.split("-")?.[0] && data?.deathday?.split("-")?.[0]
         }`;
 
@@ -56,24 +57,24 @@ const FavoriteCard = ({ data, count, searchItem }: Props) => {
       : typeCard == "series"
       ? favoriteLists.favoriteSeries
       : favoriteLists.favoritePeople;
-  const isInList = searchItem && list.find((item) => item == data.id);
+  const isInList = searchItem && list.find((item) => item == data?.id);
 
   const removeHandler = () => {
     if (searchItem && !isInList) {
       if (typeCard == "movie") {
-        dispatch(addToFavoriteMovies(data.id));
+        dispatch(addToFavoriteMovies(data?.id));
       } else if (typeCard == "series") {
-        dispatch(addToFavoriteSeries(data.id));
+        dispatch(addToFavoriteSeries(data?.id));
       } else {
-        dispatch(addToFavoritePeople(data.id));
+        dispatch(addToFavoritePeople(data?.id));
       }
     } else {
       if (typeCard == "movie") {
-        dispatch(removeFromFavoriteMovies(data.id));
+        dispatch(removeFromFavoriteMovies(data?.id));
       } else if (typeCard == "series") {
-        dispatch(removeFromFavoriteSeries(data.id));
+        dispatch(removeFromFavoriteSeries(data?.id));
       } else {
-        dispatch(removeFromFavoritePeople(data.id));
+        dispatch(removeFromFavoritePeople(data?.id));
       }
     }
   };
@@ -86,7 +87,7 @@ const FavoriteCard = ({ data, count, searchItem }: Props) => {
         count == 1 && "!w-full !max-w-[600px]"
       }`}
     >
-      <div
+      <Link href={`/${typeCard}/${data?.id}`}
         className={`relative w-[38%] max-w-[140px] overflow-hidden bg-bg-body pr-2 pb-2 rounded-ss-sm rounded-se-sm rounded-ee-[40px] rounded-es-sm`}
       >
         <Img
@@ -95,8 +96,8 @@ const FavoriteCard = ({ data, count, searchItem }: Props) => {
           size="w185"
           style=" rounded-ss-sm rounded-se-sm rounded-ee-[40px] rounded-es-sm"
         />
-      </div>
-      <div className="p-2 flex flex-col gap-1 sm:gap-1.5 w-[75%]">
+      </Link>
+      <Link href={`/${typeCard}/${data?.id}`} className="p-2 flex flex-col gap-1 sm:gap-1.5 w-[75%]">
         <p
           className={`line-clamp-2 mb-1 sm:mb-1.5 text-text-dark ${
             searchItem && "!mb-3"
@@ -110,7 +111,7 @@ const FavoriteCard = ({ data, count, searchItem }: Props) => {
               <BsCameraReels className="text-main-green mr-0.5 pt-0.5" />{" "}
               Department
             </small>
-            {data.known_for_department}
+            {data?.known_for_department}
           </small>
         ) : (
           <small className="sm:text-sm flex items-baseline text-text-dark gap-0.5">
@@ -165,7 +166,7 @@ const FavoriteCard = ({ data, count, searchItem }: Props) => {
               : data?.vote_average.toFixed(1)}
           </small>
         </small>
-      </div>
+      </Link>
       <div className="w-12 h-12 rounded-xl bg-bg-body transform rotate-45 flex justify-center items-center absolute z-[2] right-6 -bottom-6">
         <div
           onClick={removeHandler}

@@ -59,25 +59,25 @@ const SliderHero = (props: Props) => {
               className={`w-full z-20 p-4 xxs:p-5 sm:p-6 xl:p-8 absolute bottom-0 ${style.info}`}
             >
               <Link href={`/series/${series[current].id}`}>
-                <h5 className="text-text-light inline lg:text-5xl xs:text-3xl">
+                <h5 className="text-header-color inline lg:text-5xl xs:text-3xl">
                   {series[current]?.name}
                 </h5>
               </Link>
               <div className={` ${style.detail}`}>
                 <ul className={`flex gap-1 items-center`}>
-                  <li className="font-bold flex items-center text-text-light">
+                  <li className="font-bold flex items-center text-header-color">
                     <BsStarFill className="text-sm text-main-green me-0.5" />
                     <small className="!text-lg text-main-green">
                     {series[current]?.vote_average.toFixed(1)}
                     </small>
                   </li>
-                  <hr />
-                  <li className="flex items-center text-text-light">
+                  <div className={`mr-1 ml-0.5 ${style.divider}`}></div>
+                  <li className="flex items-center text-header-color">
                     <small>
                       {series[current]?.first_air_date?.split("-")[0]}
                     </small>
                   </li>
-                  <hr />
+                  <div className={`mr-1 ml-0.5 ${style.divider}`}></div>
                   <li className="items-center gap-1 my-2">
                     {series[current]?.genre_ids.map(
                       (genreId: number, index: number) => {
@@ -87,9 +87,9 @@ const SliderHero = (props: Props) => {
                               href={`/genres/${getGenreNameByGenreId(genreId)}`}
                               key={genreId}
                             >
-                              <small className="!text-xs lg:text-sm text-text-light">
+                              <small className="!text-xs lg:text-sm text-header-color">
                                 {getGenreNameByGenreId(genreId)}
-                                {index < 1 && <hr className="!mx-1" />}
+                                {index < 1 && <hr />}
                               </small>
                             </Link>
                           );
@@ -100,7 +100,7 @@ const SliderHero = (props: Props) => {
                 </ul>
 
                 <li className="flex items-start gap-1 !text-sm xs:my-1 ">
-                  <small className="!line-clamp-1 xs:!line-clamp-2 max-w-[480px] xm:!max-w-[330px] xl:!max-w-[520px] text-text-light !text-sm">
+                  <small className="!line-clamp-1 xs:!line-clamp-2 max-w-[480px] xm:!max-w-[330px] xl:!max-w-[520px] text-header-color !text-sm">
                     {series[current]?.overview}
                   </small>
                 </li>

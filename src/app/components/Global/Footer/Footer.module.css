@@ -17,6 +17,7 @@
   position: relative;
   bottom: 0;
   max-width: 100%!important;
+  background-color: var(--bg-light);
 }
 .social {
   margin-top: auto;

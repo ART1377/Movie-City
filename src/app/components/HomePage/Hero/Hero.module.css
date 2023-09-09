@@ -46,11 +46,23 @@
 }
 
 .info hr {
-  margin: auto 2px;
+  margin: auto 4px;
   display: inline-block;
   width: 1px;
   height: 10px;
-  background-color: var(--text-light);
+  background-color: #fff;
+}
+.info .divider{
+  display: inline-flex;
+  /* margin-bottom: 2px; */
+  width: 4px;
+  height: 4px;
+  background-color: #fff;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
 }
 
 @media only screen and (max-width: 500px) {

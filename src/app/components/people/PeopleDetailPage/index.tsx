@@ -49,6 +49,7 @@ const PeopleDetailPage = ({ people, credits }: Props) => {
     target.classList.toggle("line-clamp-6");
   };
 
+  
   return (
     <>
       <div className={`${style.container}`}>
@@ -145,7 +146,7 @@ const PeopleDetailPage = ({ people, credits }: Props) => {
             </ModalComponent>
             <Link
               href={people?.homepage ?? "/"}
-              className={`flex flex-col gap-1 items-center ${style.option}`}
+              className={`flex flex-col gap-1 items-center ms-1 ${style.option}`}
             >
               <div className="p-2">
                 <BsInfoCircle className="text-base xs:text-lg" />
@@ -173,7 +174,7 @@ const PeopleDetailPage = ({ people, credits }: Props) => {
           )}
 
           {/* Gallery ************* */}
-          {people.images.profiles && (
+          {people.images.profiles.length>0 && (
             <section className={`mt-6 sm:mt-16 xm:mt-0 ${style.gallery}`}>
               <Title>Top Images</Title>
               <PhotoGallery peopleImages={people.images} />
@@ -181,7 +182,7 @@ const PeopleDetailPage = ({ people, credits }: Props) => {
           )}
 
           {/* Cast's Movies ************* */}
-          {credits.cast.length! > 0 && (
+          {credits.cast.find(item=>item.media_type=='movie') && (
             <section className="mt-14">
               <Title>{`${people.name}'s Movies`}</Title>
               <Slider>
@@ -198,7 +199,7 @@ const PeopleDetailPage = ({ people, credits }: Props) => {
             </section>
           )}
           {/* Cast's Series ************* */}
-          {credits.cast.length! > 0 && (
+          {credits.cast.find(item=>item.media_type=='tv') && (
             <section className="mt-14">
               <Title>{`${people.name}'s Series`}</Title>
               <Slider>
@@ -215,7 +216,7 @@ const PeopleDetailPage = ({ people, credits }: Props) => {
             </section>
           )}
           {/* Crew's Movies ************* */}
-          {credits.crew.length! > 0 && (
+          {credits.crew.find(item=>item.media_type=='movie') && (
             <section className="mt-14">
               <Title>{`${people.name}'s Movies as Crew`}</Title>
               <Slider>
@@ -232,7 +233,7 @@ const PeopleDetailPage = ({ people, credits }: Props) => {
             </section>
           )}
           {/* Crew's Series ************* */}
-          {credits.crew.length! > 0 && (
+          {credits.crew.find(item=>item.media_type=='tv') && (
             <section className="mt-14">
               <Title>{`${people.name}'s Series as Crew`}</Title>
               <Slider>

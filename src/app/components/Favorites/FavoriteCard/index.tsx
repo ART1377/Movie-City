@@ -1,4 +1,5 @@
 import React from "react";
+import style from "./FavoriteCard.module.css";
 import Img from "../../Global/Img";
 import {
   BsCalendarRange,
@@ -6,10 +7,12 @@ import {
   BsGlobeAmericas,
   BsPeople,
   BsStarFill,
-  BsTextParagraph,
   BsTrash3,
+  BsHeart,
+  BsHeartFill,
+  BsCameraReels,
 } from "react-icons/bs";
-import { useAppDispatch } from "@/app/redux/hooks/hook";
+import { useAppDispatch, useAppSelector } from "@/app/redux/hooks/hook";
 import {
   addToFavoriteMovies,
   removeFromFavoriteMovies,
@@ -21,9 +24,11 @@ import {
 
 type Props = {
   data: any;
+  count: number;
+  searchItem?: boolean;
 };
 
-const FavoriteCard = ({ data }: Props) => {
+const FavoriteCard = ({ data, count, searchItem }: Props) => {
   const dispatch = useAppDispatch();
 
   const typeCard = data?.gender ? "people" : data?.title ? "movie" : "series";
@@ -38,25 +43,51 @@ const FavoriteCard = ({ data }: Props) => {
           data?.last_air_date?.split("-")[0]
         }`
       : typeCard == "movie"
-      ? data.release_date
+      ? data.release_date?.split("-")[0]
       : `${data?.birthday?.split("-")[0]} - ${
           data?.deathday?.split("-")?.[0] && data?.deathday?.split("-")?.[0]
         }`;
 
+  //check is in list or not
+  const favoriteLists = useAppSelector((state) => state.favorite);
+  const list =
+    typeCard == "movie"
+      ? favoriteLists.favoriteMovies
+      : typeCard == "series"
+      ? favoriteLists.favoriteSeries
+      : favoriteLists.favoritePeople;
+  const isInList = searchItem && list.find((item) => item == data.id);
+
   const removeHandler = () => {
-    if (typeCard == "movie") {
-      dispatch(removeFromFavoriteMovies(data.id));
-    } else if (typeCard == "series") {
-      dispatch(removeFromFavoriteSeries(data.id));
+    if (searchItem && !isInList) {
+      if (typeCard == "movie") {
+        dispatch(addToFavoriteMovies(data.id));
+      } else if (typeCard == "series") {
+        dispatch(addToFavoriteSeries(data.id));
+      } else {
+        dispatch(addToFavoritePeople(data.id));
+      }
     } else {
-      dispatch(removeFromFavoritePeople(data.id));
+      if (typeCard == "movie") {
+        dispatch(removeFromFavoriteMovies(data.id));
+      } else if (typeCard == "series") {
+        dispatch(removeFromFavoriteSeries(data.id));
+      } else {
+        dispatch(removeFromFavoritePeople(data.id));
+      }
     }
   };
 
   return (
-    <div className="relative bg-white w-[260px] min-h-[140px] xxs:w-[300px] xxs:min-h-[160px] lg:w-[400px] lg:min-h-[220px] rounded-2xl flex shadow-md mb-6">
+    <div
+      className={`${
+        style.container
+      } relative bg-bg-white w-full max-w-[360px] min-h-[140px] max-h-[150px] xxs:w-[90%] xs:w-[48%] lg:w-[46%] lg:max-w-[500px] xl:w-[32%] rounded-2xl flex mx-auto shadow-lg hover:shadow mb-6 cursor-pointer ${
+        count == 1 && "!w-full !max-w-[600px]"
+      }`}
+    >
       <div
-        className={`relative w-[38%] overflow-hidden bg-bg-body pr-2 pb-2 rounded-ss-sm rounded-se-sm rounded-ee-[40px] rounded-es-sm`}
+        className={`relative w-[38%] max-w-[140px] overflow-hidden bg-bg-body pr-2 pb-2 rounded-ss-sm rounded-se-sm rounded-ee-[40px] rounded-es-sm`}
       >
         <Img
           url={imageCard}
@@ -65,44 +96,62 @@ const FavoriteCard = ({ data }: Props) => {
           style=" rounded-ss-sm rounded-se-sm rounded-ee-[40px] rounded-es-sm"
         />
       </div>
-      <div className="p-2 flex flex-col gap-1 xxs:gap-1.5 w-[75%]">
-        <p className="line-clamp-2 mb-1 xxs:mb-1.5">{nameCard}</p>
-        <small className="xxs:text-sm flex items-baseline">
-          <small className="flex items-baseline mr-0.5 text-main-green xxs:text-sm">
-            <BsCalendarRange className="text-main-green mr-0.5 mt-0.5" />{" "}
-            {typeCard == "series"
-              ? "Date :"
-              : typeCard == "movie"
-              ? "Release Date :"
-              : "Born"}
+      <div className="p-2 flex flex-col gap-1 sm:gap-1.5 w-[75%]">
+        <p
+          className={`line-clamp-2 mb-1 sm:mb-1.5 text-text-dark ${
+            searchItem && "!mb-3"
+          }`}
+        >
+          {nameCard}
+        </p>
+        {searchItem && typeCard == "people" ? (
+          <small className="sm:text-sm flex items-baseline text-text-dark gap-0.5">
+            <small className="flex items-baseline mr-0.5 text-main-green sm:text-sm">
+              <BsCameraReels className="text-main-green mr-0.5 pt-0.5" />{" "}
+              Department
+            </small>
+            {data.known_for_department}
           </small>
-          {dateCard}
-        </small>
-        <small className="xxs:text-sm flex items-baseline">
-          <small className="flex items-baseline mr-0.5 text-main-green xxs:text-sm">
-            {typeCard == "people" ? (
-              <BsGlobeAmericas className="text-main-green mr-0.5 mt-0.5" />
-            ) : (
-              <BsFillXDiamondFill className="text-main-green mr-0.5 mt-0.5" />
-            )}
-            {typeCard == "series"
-              ? "Season Number :"
-              : typeCard == "movie"
-              ? "Runtime :"
-              : "Country"}
+        ) : (
+          <small className="sm:text-sm flex items-baseline text-text-dark gap-0.5">
+            <small className="flex items-baseline mr-0.5 text-main-green sm:text-sm">
+              <BsCalendarRange className="text-main-green mr-0.5 pt-0.5" />{" "}
+              {typeCard == "series"
+                ? "Date :"
+                : typeCard == "movie"
+                ? "Release Date :"
+                : "Born"}
+            </small>
+            {dateCard}
           </small>
-          {typeCard == "series"
-            ? data?.number_of_seasons
-            : typeCard == "movie"
-            ? data?.runtime
-            : data?.place_of_birth.split(",").splice(-1)}
-        </small>
-        <small className="flex items-baseline font-semibold">
-          <small className="flex items-baseline mr-0.5 text-main-green xxs:text-sm">
+        )}
+        {!searchItem && (
+          <small className="sm:text-sm flex items-baseline text-text-dark gap-0.5">
+            <small className="flex items-baseline mr-0.5 text-main-green sm:text-sm">
+              {typeCard == "people" ? (
+                <BsGlobeAmericas className="text-main-green mr-0.5 pt-0.5" />
+              ) : (
+                <BsFillXDiamondFill className="text-main-green mr-0.5 pt-0.5" />
+              )}
+              {typeCard == "series"
+                ? "Season Number :"
+                : typeCard == "movie"
+                ? "Runtime :"
+                : "Country"}
+            </small>
+            {typeCard == "series"
+              ? data?.number_of_seasons
+              : typeCard == "movie"
+              ? data?.runtime
+              : data?.place_of_birth?.split(",")?.splice(-1)}
+          </small>
+        )}
+        <small className="flex items-baseline font-semibold text-text-dark gap-0.5">
+          <small className="flex items-baseline mr-0.5 text-main-green sm:text-sm">
             {typeCard == "people" ? (
-              <BsPeople className="text-main-green mr-0.5 mt-0.5" />
+              <BsPeople className="text-main-green mr-0.5 pt-0.5" />
             ) : (
-              <BsStarFill className="text-main-green mr-0.5 mt-0.5" />
+              <BsStarFill className="text-main-green mr-0.5 pt-0.5" />
             )}
             {typeCard == "series"
               ? " Rate :"
@@ -110,37 +159,27 @@ const FavoriteCard = ({ data }: Props) => {
               ? " Rate :"
               : " Popularity :"}
           </small>
-          <small className="xxs:text-sm font-normal">
+          <small className="sm:text-sm font-normal">
             {typeCard == "people"
               ? data?.popularity
               : data?.vote_average.toFixed(1)}
           </small>
         </small>
-
-
-
-
-
-{/* 
-        <small className="hidden lg:flex items-baseline font-semibold !line-clamp-2">
-          <small className="flex items-baseline mr-0.5 text-main-green xxs:text-sm">
-              <BsTextParagraph className="text-main-green mr-0.5 mt-0.5" />
-              {typeCard == "people"
-              ? " Biography "
-              :  " Storyline  "} :
-          </small>
-            {typeCard == "people"
-              ? data?.biography
-              : data?.overview}
-        </small> */}
-        
       </div>
       <div className="w-12 h-12 rounded-xl bg-bg-body transform rotate-45 flex justify-center items-center absolute z-[2] right-6 -bottom-6">
         <div
           onClick={removeHandler}
-          className="bg-main-green w-[75%] h-[75%] rounded-xl flex justify-center items-center cursor-pointer"
+          className={`${style.trash} bg-main-green w-[75%] h-[75%] rounded-xl flex justify-center items-center cursor-pointer`}
         >
-          <BsTrash3 className="text-white transform -rotate-45" />
+          {searchItem ? (
+            isInList ? (
+              <BsHeartFill className="text-white transform -rotate-45" />
+            ) : (
+              <BsHeart className="text-white transform -rotate-45" />
+            )
+          ) : (
+            <BsTrash3 className="text-white transform -rotate-45" />
+          )}
         </div>
       </div>
     </div>

@@ -14,7 +14,7 @@ const Comments = ({ authors }: Props) => {
 
   if (!authors.length) {
     return (
-      <div className="items-center text-center w-fit mx-auto mt-8 p-8 px-14 bg-white rounded-2xl">
+      <div className="items-center text-center w-fit mx-auto mt-8 p-8 px-14 bg-bg-white rounded-2xl">
         <h6>No comments yet</h6>
         <p>You can be first !</p>
         <BsEmojiSmileUpsideDown className="text-main-green text-5xl mx-auto mt-3" />
@@ -43,7 +43,7 @@ const Comments = ({ authors }: Props) => {
             return (
               <div
                 key={author.id}
-                className="relative text-center bg-white rounded-2xl pb-3 pt-12 w-full max-w-[500px] lg:max-w-[700px] "
+                className="relative text-center bg-bg-white rounded-2xl pb-3 pt-12 w-full max-w-[500px] lg:max-w-[700px] "
               >
                 <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 h-16 w-16 rounded-full overflow-hidden">
                   <Img

@@ -9,7 +9,6 @@ type Props = {
 };
 
 const SearchItem = (result: Props) => {
-
   return (
     <>
       <Link
@@ -21,7 +20,7 @@ const SearchItem = (result: Props) => {
             : "movie"
         }/${result?.result?.id}`}
         key={result?.result?.id}
-        className={`flex bg-white shadow-md py-2 px-3 rounded-2xl !w-full gap-3 pb-2 text-text-dark cursor-pointer hover:text-text-dark hover:shadow-none transition-shadow duration-500`}
+        className={`flex bg-bg-white shadow-md py-2 px-3 rounded-2xl !w-full gap-3 pb-2 text-text-dark cursor-pointer hover:text-text-dark hover:shadow-none transition-shadow duration-500`}
       >
         <div className="relative !w-24 !h-28 rounded-xl overflow-hidden">
           <Img
@@ -54,17 +53,17 @@ const SearchItem = (result: Props) => {
             </small>
             {result?.result?.vote_average ? (
               <div className={``}>
-                <CircularProgress percentage={+result?.result?.vote_average?.toFixed(1)} />
+                <CircularProgress
+                  percentage={+result?.result?.vote_average?.toFixed(1)}
+                />
               </div>
             ) : (
-              <small
-                className="text-sm cursor-pointer line-clamp-1"
-              >
+              <small className="text-sm cursor-pointer line-clamp-1">
                 {result?.result?.known_for?.[0]?.title}
               </small>
               // <Link
               //   href={`/movie/${result?.result?.known_for?.[0]?.id}`}
-                
+
               //   className="text-sm cursor-pointer line-clamp-1"
               // >
               //   {result?.result?.known_for?.[0]?.title}

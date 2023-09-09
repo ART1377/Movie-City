@@ -11,7 +11,7 @@ type Props = {
 const CastCard = ({ cast, crew }: Props) => {
   return (
     <Link href={`/people/${cast?.id ? cast.id : crew?.id} `}>
-      <div className="flex items-center gap-2 bg-white p-2 rounded-full min-w-[200px] shadow-lg hover:shadow-none">
+      <div className="flex items-center gap-2 bg-bg-white p-2 rounded-full min-w-[200px] shadow-lg hover:shadow-none">
         <div className="relative !w-14 !h-14 rounded-full overflow-hidden">
           <Img
             url={cast?.profile_path ? cast?.profile_path : crew?.profile_path!}

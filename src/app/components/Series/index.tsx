@@ -1,31 +1,30 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import style from "./Movie.module.css";
+import style from "./Series.module.css";
 import Pagination from "../Global/Pagination";
-import { Company, Genre, Movie, MoviesList } from "../../../../next-type-d";
-import getMovies from "@/app/lib/DataFetching/getMovies";
+import { Company, Genre, Series, SeriesList } from "../../../../next-type-d";
+import getSeries from "@/app/lib/DataFetching/getSeries";
 import CustomSlider from "../Global/CustomSlider";
-import MovieCard from "../Global/MovieCard";
 import MultiRangeSlider from "multi-range-slider-react";
 import {
   BsChevronDown,
   BsTrash3,
   BsSearch,
-  BsCameraReels,
+  BsTv,
 } from "react-icons/bs";
 import getGenreNameByGenreId, {
   genres,
 } from "@/app/lib/DataFetching/getGenreNameByGenreId";
-import getSearchResultsByQuery from "@/app/lib/DataFetching/getSearchResultsByQuery";
 import Toggle from "../Global/Toggle";
 import { companies } from "@/app/data";
+import SeriesCard from "../Global/SeriesCard";
 
 type Props = {};
 
-const MoviePage = (props: Props) => {
+const SeriesPage = (props: Props) => {
   const [sort, setSort] = useState<string>("");
-  const [allMovies, setAllMovies] = useState<MoviesList>();
+  const [allSeries, setAllSeries] = useState<SeriesList>();
 
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -46,8 +45,6 @@ const MoviePage = (props: Props) => {
     setMaxDate(e.maxValue);
   };
 
-  const [castName, setCastName] = useState("");
-  const [crewName, setCrewName] = useState("");
 
   const [companyName, setCompanyName] = useState<string>("");
 
@@ -67,8 +64,6 @@ const MoviePage = (props: Props) => {
 
   // Reset Handler
   const resetHandler = () => {
-    setCastName("");
-    setCrewName("");
     setGenre([]);
     setAdult(false);
     setCompanyName("");
@@ -81,23 +76,15 @@ const MoviePage = (props: Props) => {
 
   const [currentPage, setCurrentPage] = useState(+page!);
   const totalPages =
-    allMovies?.total_pages! <= 500 ? allMovies?.total_pages : 500;
+    allSeries?.total_pages! <= 500 ? allSeries?.total_pages : 500;
 
   // Get All Data in order to implement sort
   useEffect(() => {
-    const getMoviesData = setTimeout(async () => {
-      const castsData = await getSearchResultsByQuery("1", castName, "person");
-      const cast = castsData.results[0]?.id.toString();
-
-      const crewsData = await getSearchResultsByQuery("1", crewName, "person");
-      const crew = crewsData.results[0]?.id.toString();
-
+    const getSeriesData = setTimeout(async () => {
       const genreData = genre.join("%2C");
-      const data: MoviesList = await getMovies(
+      const data: SeriesList = await getSeries(
         +page!,
         adult,
-        cast,
-        crew,
         minDate,
         maxDate,
         minRate,
@@ -106,14 +93,13 @@ const MoviePage = (props: Props) => {
         sort,
         companyName
       );
-      setAllMovies(data);
+      setAllSeries(data);
     }, 500);
 
     return () => {
-      clearTimeout(getMoviesData);
+      clearTimeout(getSeriesData);
     };
   }, [
-    castName,
     genre,
     maxDate,
     maxRate,
@@ -122,7 +108,6 @@ const MoviePage = (props: Props) => {
     page,
     sort,
     adult,
-    crewName,
     companyName,
   ]);
 
@@ -148,7 +133,7 @@ const MoviePage = (props: Props) => {
     dropdown?.classList.toggle("h-32");
   };
 
-  if (!allMovies) {
+  if (!allSeries) {
     return <p>loading ...</p>;
   }
 
@@ -159,13 +144,13 @@ const MoviePage = (props: Props) => {
       <div className="bg-bg-white relative rounded-2xl w-full h-16 mb-3 overflow-hidden flex justify-between items-center max-w-[96%] lg:max-w-full lg:mb-6 mx-auto">
         <div className="flex items-center gap-2 ps-3 xs:ps-5">
           <BsSearch className="text-gray-300 text-3xl" />
-          <p className="text-text-dark font-medium xs:text-xl sm:text-2xl">
+          <p className="text-text-dark font-medium xs:text-xl">
             Search in all
-            <span className="text-main-green ml-1">Movies</span>
+            <span className="text-main-green ml-1">Series</span>
           </p>
         </div>
         <div className="bg-dark-green w-16 h-16 flex justify-center items-center">
-          <BsCameraReels className="text-white text-2xl" />
+          <BsTv className="text-white text-2xl" />
         </div>
       </div>
 
@@ -180,39 +165,6 @@ const MoviePage = (props: Props) => {
           <div
             className={`w-full flex flex-wrap justify-center items-center gap-8 mb-8 py-2 px-4 rounded-none `}
           >
-            {/* Cast Name Input */}
-            <div className="mb-2 w-[200px]">
-              <label
-                htmlFor="castName"
-                className="text-xs bg-bg-white absolute -mt-2 ml-1 px-1 text-dark-green"
-              >
-                Cast Name
-              </label>
-              <input
-                onChange={(e) => setCastName(e.target.value)}
-                value={castName}
-                type="text"
-                id="castName"
-                className="text-sm bg-transparent border border-dark-green p-2 focus:shadow-none focus:outline-none caret-dark-green text-text-dark w-full"
-              />
-            </div>
-
-            {/* Crew Name Input */}
-            <div className="mb-2 w-[200px]">
-              <label
-                htmlFor="castName"
-                className="text-xs bg-bg-white absolute -mt-2 ml-1 px-1 text-dark-green"
-              >
-                Crew Name
-              </label>
-              <input
-                onChange={(e) => setCrewName(e.target.value)}
-                value={crewName}
-                type="text"
-                id="castName"
-                className="text-sm bg-transparent border border-dark-green p-2 focus:shadow-none focus:outline-none caret-dark-green text-text-dark w-full"
-              />
-            </div>
 
             {/* SortBy Select Option */}
             <div className="mb-2 w-[200px]">
@@ -424,19 +376,19 @@ const MoviePage = (props: Props) => {
         </div>
 
         <div className="flex flex-wrap justify-center gap-2 xs:gap-3 mt-16 lg:mt-0 mx-auto">
-          {allMovies?.results.length > 0 ? (
-            allMovies?.results?.map((result: Movie, index: number) => {
+          {allSeries?.results.length > 0 ? (
+            allSeries?.results?.map((result: Series, index: number) => {
               return (
                 <div
                   key={result.id}
                   className={`flex justify-center ${style.card}`}
                 >
-                  <MovieCard imageSize="w185" movie={result} />
+                  <SeriesCard imageSize="w185" series={result} />
                 </div>
               );
             })
           ) : (
-            <p>no movies found !</p>
+            <p>no Series found !</p>
           )}
         </div>
       </div>
@@ -450,4 +402,4 @@ const MoviePage = (props: Props) => {
   );
 };
 
-export default MoviePage;
+export default SeriesPage;

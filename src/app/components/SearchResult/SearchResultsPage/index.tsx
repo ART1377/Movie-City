@@ -1,11 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import getSearchResultsByQuery from '../../../lib/DataFetching/getSearchResultsByQuery'
+import getSearchResultsByQuery from "../../../lib/DataFetching/getSearchResultsByQuery";
 import { SearchResult, SearchResults } from "../../../../../next-type-d";
 import SearchItem from "../../Global/SearchItem";
 import Title from "../../Global/Title";
 import Pagination from "../../Global/Pagination";
+import FavoriteCard from "../../Favorites/FavoriteCard";
 
 type Props = {};
 
@@ -47,12 +48,12 @@ const SearchResultsPage = (props: Props) => {
 
   return (
     <>
-      <Title >{`All Results form '${query}'`}</Title>
+      <Title>{`All Results form '${query}'`}</Title>
       <div className="w-full flex gap-8 border-b border-main-green mt-8 mb-4 pb-2 ps-2 sm:ps-4">
         <small
           className={`${
             category == "multi" && "border-t border-main-green text-main-green"
-          } pt-1 xs:text-sm sm:text-base hover:text-main-green transition-all duration-300 cursor-pointer`}
+          } pt-1 xxs:text-sm sm:text-base hover:text-main-green transition-all duration-300 cursor-pointer`}
           onClick={() => setCategory("multi")}
         >
           all
@@ -60,7 +61,7 @@ const SearchResultsPage = (props: Props) => {
         <small
           className={`${
             category == "movie" && "border-t border-main-green text-main-green"
-          } pt-1 xs:text-sm sm:text-base hover:text-main-green transition-all duration-300 cursor-pointer`}
+          } pt-1 xxs:text-sm sm:text-base hover:text-main-green transition-all duration-300 cursor-pointer`}
           onClick={() => setCategory("movie")}
         >
           movies
@@ -68,7 +69,7 @@ const SearchResultsPage = (props: Props) => {
         <small
           className={`${
             category == "tv" && "border-t border-main-green text-main-green"
-          } pt-1 xs:text-sm sm:text-base hover:text-main-green transition-all duration-300 cursor-pointer`}
+          } pt-1 xxs:text-sm sm:text-base hover:text-main-green transition-all duration-300 cursor-pointer`}
           onClick={() => setCategory("tv")}
         >
           series
@@ -76,7 +77,7 @@ const SearchResultsPage = (props: Props) => {
         <small
           className={`${
             category == "person" && "border-t border-main-green text-main-green"
-          } pt-1 xs:text-sm sm:text-base hover:text-main-green transition-all duration-300 cursor-pointer`}
+          } pt-1 xxs:text-sm sm:text-base hover:text-main-green transition-all duration-300 cursor-pointer`}
           onClick={() => setCategory("person")}
         >
           person
@@ -85,12 +86,18 @@ const SearchResultsPage = (props: Props) => {
       <div className="flex flex-wrap justify-around gap-4 mt-4 mb-12 mx-auto">
         {results?.results?.map((result: SearchResult) => {
           return (
-            <div
+            // <div
+            //   key={result.id}
+            //   className="w-full xm:w-[45%] max-w-[500px] bg-bg-white rounded-2xl"
+            // >
+            //   <SearchItem result={result} />
+            // </div>
+            <FavoriteCard
               key={result.id}
-              className="w-full xm:w-[45%] max-w-[500px] bg-white rounded-2xl"
-            >
-              <SearchItem result={result} />
-            </div>
+              data={result}
+              count={results?.results?.length}
+              searchItem={true}
+            />
           );
         })}
       </div>

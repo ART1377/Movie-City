@@ -5,16 +5,22 @@ import SearchBar from "./SearchBar";
 import style from "./Header.module.css";
 import { BsSun, BsMoon, BsPerson, BsMenuButtonWide } from "react-icons/bs";
 import Navbar from "./Navbar";
+import { useTheme } from "next-themes";
 
 type Props = {};
 
 const Header = (props: Props) => {
   const [showNavbar, setShowNavbar] = useState<boolean>(false);
 
+  const { systemTheme, theme, setTheme } = useTheme();
+    const currentTheme = theme === 'system' ? systemTheme : theme;
+
+    console.log(currentTheme,theme,systemTheme)
+
   return (
     <>
-      <header className={`sticky top-0 shadow-sm z-40 ${style.header}`}>
-        <div className="flex justify-between items-center py-3 px-2 xs:px-3">
+      <header className={`sticky top-0 shadow-sm z-40 ${style.header} ${theme == "dark"&&'border-b border-text-light'}`}>
+        <div className="flex justify-between items-center py-3 px-2 xs:px-3 sm:!px-5">
           <div
             className="md:!hidden !flex items-center cursor-pointer"
             onClick={() => setShowNavbar((prev) => !prev)}
@@ -38,7 +44,7 @@ const Header = (props: Props) => {
           <Logo />
           <SearchBar />
           <div className={`flex items-center gap-2 ${style.icons}`}>
-            <div>
+            <div onClick={() => theme == "dark"? setTheme('light'): setTheme("dark")}>
               <BsSun />
             </div>
             <div>

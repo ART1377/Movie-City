@@ -11,4 +11,5 @@
   .page-item .page-link,.page-item a.page-link	{
     font-family: "Alegreya", serif !important;
     color: var(--main-green);
+    background-color: var(--bg-white)!important;
   }

@@ -35,7 +35,7 @@
   z-index: 40;
   padding: 40px 8px 16px 8px;
   margin: 0 auto;
-  background-color: #fff;
+  background-color: var(--bg-white);
   overflow-y: auto;
   transform: translateY(-1000px);
   -webkit-transform: translateY(-1000px);

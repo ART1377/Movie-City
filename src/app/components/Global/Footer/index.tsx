@@ -17,10 +17,10 @@ const index = (props: Props) => {
   return (
     <>
       <footer
-        className={`${style.footer} bg-white w-full  py-3 px-2 xs:px-3 mt-auto`}
+        className={`${style.footer} w-full py-3 px-2 xs:px-3 mt-auto`}
       >
-        <div className="flex flex-col items-center lg:flex-row lg:!justify-around gap-3 lg:gap-8">
-          <div className="flex flex-col items-center gap-3 xs:flex-row xs:justify-between lg:!justify-around w-full">
+        <div className="flex flex-col items-center xxs:items-start xs:items-center lg:flex-row lg:!justify-around gap-3 lg:gap-8">
+          <div className="flex flex-col items-center xxs:items-start xs:items-center gap-3 xs:flex-row xs:justify-between lg:!justify-around w-full">
             <div>
               <Logo />
             </div>
@@ -32,33 +32,34 @@ const index = (props: Props) => {
                   <Link href={"/movie?page=1"}>Movies</Link>
                 </li>
                 <li className="text-sm xs:text-base">
-                  <Link href={"/series"}>Series</Link>
+                  <Link href={"/series?page=1"}>Series</Link>
                 </li>
                 <li className="text-sm xs:text-base">
                   <Link href={"/people"}>Celebs</Link>
                 </li>
                 <li className="text-sm xs:text-base">
-                  <Link href={"/favorites?page=1"}>Favorites</Link>
+                  <Link href={"/favorites?page=1&category=movies"}>
+                    Favorites
+                  </Link>
                 </li>
               </ul>
             </div>
           </div>
           {/* contact us */}
-          <div className="flex flex-col items-center gap-3 xs:flex-row xs:justify-between lg:!justify-around w-full">
+          <div className="flex flex-col items-center xxs:items-start xs:items-center gap-3 xs:flex-row xs:justify-between lg:!justify-around w-full">
             <div className="flex flex-col items-center gap-4 xxs:flex-row xxs:justify-between">
-
-            <Link
-              className="text-xs xxs:text-sm flex items-center gap-0.5"
-              href="mailto:alirezatt705@gmail.com"
-            >
-              <BsEnvelope /> alirezatt705@gmail.com
-            </Link>
-            <Link
-              className="text-xs xxs:text-sm flex items-center gap-0.5"
-              href="tel:+989193050762"
-            >
-              <BsTelephone /> 09193050762
-            </Link>
+              <Link
+                className="text-xs xxs:text-sm flex items-center gap-0.5"
+                href="mailto:alirezatt705@gmail.com"
+              >
+                <BsEnvelope /> alirezatt705@gmail.com
+              </Link>
+              <Link
+                className="text-xs xxs:text-sm flex items-center gap-0.5"
+                href="tel:+989193050762"
+              >
+                <BsTelephone /> 09193050762
+              </Link>
             </div>
             <div className={`h-full ${style.social}`}>
               <ul className="h-full inline-flex gap-2">

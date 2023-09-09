@@ -13,7 +13,7 @@ type Props = {
 const SearchItems = ({ data, query }: Props) => {
   if (+data?.results?.length == 0 || !data) {
     return (
-      <div className="flex justify-center items-center text-center min-h-[100px]">
+      <div className="flex justify-center items-center text-center min-h-[100px] bg-bg-white">
         <p>No Results !</p>
       </div>
     );

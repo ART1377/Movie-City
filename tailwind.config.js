@@ -27,6 +27,8 @@ module.exports = {
         "text-dark": "var(--text-dark)",
         "text-light": "var(--text-light)",
         "bg-body": "var(--bg-body)",
+        "bg-white": "var(--bg-white)",
+        "bg-black": "var(--bg-black)",
       },
       boxShadow: {
         "box-shadow":

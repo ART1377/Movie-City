@@ -1,5 +1,5 @@
-import React from 'react'
 import type { Metadata } from "next";
+import SeriesPage from "../components/Series";
 
 
 export const metadata: Metadata = {
@@ -12,7 +12,9 @@ type Props = {}
 
 const page = (props: Props) => {
   return (
-    <div>seriesPage</div>
+    <h1>
+      <SeriesPage/>
+    </h1>
   )
 }
 

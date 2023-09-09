@@ -28,7 +28,7 @@ const MovieCard = ({ movie, imageSize }: Props) => {
   return (
     <>
       <div
-        className={`relative shadow-xl hover:!shadow bg-white p-2 sm:p-3  ${style.container}`}
+        className={`relative shadow-xl hover:!shadow bg-bg-white p-2 sm:p-3  ${style.container}`}
       >
         <Link href={`/movie/${movie.id}`}>
           <div className={`relative ${style.image}`}>

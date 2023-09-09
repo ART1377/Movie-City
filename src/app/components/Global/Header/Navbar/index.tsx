@@ -15,18 +15,22 @@ import {
   BsGoogle,
 } from "react-icons/bs";
 import { BsPeople } from "react-icons/bs";
+import { useTheme } from "next-themes";
 
 type Props = {
   show: boolean;
   setState: React.Dispatch<React.SetStateAction<any>>;
 };
 const Navbar = ({ show, setState }: Props) => {
+  const { systemTheme, theme, setTheme } = useTheme();
+  const currentTheme = theme === 'system' ? systemTheme : theme;
+
   return (
     <>
       <nav
         className={`shadow z-50 hidden md:flex  ${
           show ? `!flex ` : `hidden `
-        } ${style.navbar}`}
+        } ${style.navbar} ${theme == "dark"&&'border-r border-text-light'}`}
       >
         {/* <hr className={style.divider} /> */}
 
@@ -61,7 +65,7 @@ const Navbar = ({ show, setState }: Props) => {
             </Link>
           </li>
           <li>
-            <Link href={"/series"} className="flex items-center gap-1">
+            <Link href={"/series?page=1"} className="flex items-center gap-1">
               <BsTv className="mt-[3px]" />
               <p className="font-normal">Series</p>
             </Link>
@@ -73,7 +77,7 @@ const Navbar = ({ show, setState }: Props) => {
             </Link>
           </li>
           <li>
-            <Link href={"/favorites?page=1"} className="flex items-center gap-1">
+            <Link href={"/favorites?page=1&category=movies"} className="flex items-center gap-1">
               <BsHeart className="mt-[3px]" />
               <p className="font-normal">Favorites</p>
             </Link>

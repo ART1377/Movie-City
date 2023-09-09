@@ -13,7 +13,6 @@ import {
 } from "../../../../next-type-d";
 
 import FavoriteCard from "./FavoriteCard";
-import { series } from "@/app/data";
 import { useRouter, useSearchParams } from "next/navigation";
 
 type Props = {};
@@ -31,11 +30,10 @@ const Favorites = (props: Props) => {
   // Use Favorite Slice
   const favoriteList = useAppSelector((state) => state.favorite);
 
-  
   const router = useRouter();
   const searchParams = useSearchParams();
   const page = searchParams.get("page");
-
+  const categoryQuery = searchParams.get("category");
 
   const allIDs =
     category == "movies"
@@ -65,24 +63,27 @@ const Favorites = (props: Props) => {
     getData();
   }, [allIDs, category]);
 
-  
-  const showData=category=='movies'?allFavoriteMovies:category=='series'?allFavoriteSeries:allFavoritePeople;
-  
+  const showData =
+    category == "movies"
+      ? allFavoriteMovies
+      : category == "series"
+      ? allFavoriteSeries
+      : allFavoritePeople;
+
   const [currentPage, setCurrentPage] = useState(+page!);
-  const totalPages =showData.length;
+  const totalPages = Math.ceil(showData.length/20);
 
   useEffect(() => {
     // Change Query by Pagination
     const searchParams = new URLSearchParams(window.location.search);
     searchParams.set("page", currentPage.toString());
+    searchParams.set("category", category);
     const newPathName = `${
       window.location.pathname
     }?${searchParams.toString()}`;
     router.push(newPathName);
-  }, [totalPages, page, router, currentPage]);
+  }, [totalPages, page, router, currentPage,category]);
 
-
- 
   return (
     <>
       <Title>{category == "" ? "All Favorites" : `Favorite ${category}`}</Title>
@@ -91,7 +92,7 @@ const Favorites = (props: Props) => {
         <small
           className={`${
             category == "movies" && "border-t border-main-green text-main-green"
-          } pt-1 xs:text-sm sm:text-base hover:text-main-green transition-all duration-300 cursor-pointer`}
+          } pt-1 xxs:text-sm sm:text-base hover:text-main-green transition-all duration-300 cursor-pointer`}
           onClick={() => setCategory("movies")}
         >
           movies
@@ -99,7 +100,7 @@ const Favorites = (props: Props) => {
         <small
           className={`${
             category == "series" && "border-t border-main-green text-main-green"
-          } pt-1 xs:text-sm sm:text-base hover:text-main-green transition-all duration-300 cursor-pointer`}
+          } pt-1 xxs:text-sm sm:text-base hover:text-main-green transition-all duration-300 cursor-pointer`}
           onClick={() => setCategory("series")}
         >
           series
@@ -107,23 +108,16 @@ const Favorites = (props: Props) => {
         <small
           className={`${
             category == "people" && "border-t border-main-green text-main-green"
-          } pt-1 xs:text-sm sm:text-base hover:text-main-green transition-all duration-300 cursor-pointer`}
+          } pt-1 xxs:text-sm sm:text-base hover:text-main-green transition-all duration-300 cursor-pointer`}
           onClick={() => setCategory("people")}
         >
           people
         </small>
       </div>
-      <div className="flex flex-wrap justify-center gap-4 mt-4 mx-auto">
+      <div className="flex flex-wrap gap-4 mt-4 mx-auto w-full">
         {showData?.map((item, index: number) => {
           if (index >= (+page! - 1) * 20 && index < +page! * 20) {
-            return (
-              <div
-                key={item.id}
-                className=""
-              >
-                <FavoriteCard data={item} />
-              </div>
-            );
+            return <FavoriteCard key={item.id} data={item} count={showData.length} />;
           }
         })}
       </div>

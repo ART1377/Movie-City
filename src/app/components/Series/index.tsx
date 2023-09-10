@@ -119,7 +119,7 @@ const SeriesPage = (props: Props) => {
       window.location.pathname
     }?${searchParams.toString()}`;
     router.push(newPathName);
-  }, [totalPages, page, router, currentPage]);
+  }, [currentPage, router]);
 
   // Dropdown Handler Funtion
   const dropdownHandler = () => {
@@ -133,9 +133,6 @@ const SeriesPage = (props: Props) => {
     dropdown?.classList.toggle("h-32");
   };
 
-  if (!allSeries) {
-    return <p>loading ...</p>;
-  }
 
   return (
     <>
@@ -292,7 +289,7 @@ const SeriesPage = (props: Props) => {
                   minValue={minRate}
                   maxValue={maxRate}
                   ruler={false}
-                  labels={[`${minRate}`, `${maxRate == 10 ? 10 : maxRate}`]}
+                  labels={[`${minRate == 0 ? 0 : minRate}`, `${maxRate == 10 ? 10 : maxRate}`]}
                   style={{ border: "none ", boxShadow: "none", width: "100%" }}
                   barLeftColor="var(--light-green)"
                   barInnerColor="var(--main-green)"
@@ -368,26 +365,26 @@ const SeriesPage = (props: Props) => {
 
           <div
             onClick={resetHandler}
-            className="w-full min-h-[48px] bg-dark-green flex justify-center items-center text-white"
+            className="w-full min-h-[48px] bg-dark-green flex justify-center items-center text-white cursor-pointer"
           >
             <BsTrash3 className="text-white text-2xl" />
           </div>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-y-6 gap-x-2 xs:gap-x-3 mt-16 lg:mt-0 mx-auto">
-          {allSeries?.results.length > 0 ? (
+        <div className={`flex flex-wrap justify-center gap-y-6 gap-x-2 xs:gap-x-3 mt-16 lg:mt-0 mx-auto ${allSeries?.results?.length! <4&&'lg:mr-auto lg:ml-0'}`}>
+          {allSeries?.results?.length! > 0 ? (
             allSeries?.results?.map((result: Series, index: number) => {
               return (
                 <div
                   key={result.id}
-                  className={`flex justify-center ${style.card}`}
+                  className={`flex justify-center ${style.card} ${allSeries.results.length<4&&'!min-w-[160px] lg:!min-w-[180px]'} `}
                 >
                   <SeriesCard imageSize="w185" series={result} />
                 </div>
               );
             })
           ) : (
-            <p>no Series found !</p>
+            <p>No Series Found !</p>
           )}
         </div>
       </div>

@@ -15,9 +15,7 @@ const getSeriesImagesById = async (id: number) => {
     options
   );
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch Images");
-  }
+  if (!res.ok) undefined
   const data: Image = await res.json();
   return data;
 };

@@ -26,6 +26,7 @@
     "react-dom": "18.2.0",
     "react-fast-marquee": "^1.6.0",
     "react-icons": "^4.10.1",
+    "react-loader-spinner": "^5.4.5",
     "react-photoswipe-gallery": "^2.2.7",
     "react-redux": "^8.1.2",
     "react-responsive-modal": "^6.4.2",

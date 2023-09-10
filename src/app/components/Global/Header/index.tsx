@@ -18,7 +18,7 @@ const Header = (props: Props) => {
 
   return (
     <>
-      <header className={`sticky top-0 shadow-sm z-40 ${style.header} ${theme == "dark"&&'border-b border-text-light'}`}>
+      <header className={`sticky top-0 shadow-sm z-40 ${style.header} ${currentTheme == "dark"&&'border-b border-text-light'}`}>
         <div className="flex justify-between items-center py-3 px-2 xs:px-3 sm:!px-5">
           <div
             className="md:!hidden !flex items-center cursor-pointer"

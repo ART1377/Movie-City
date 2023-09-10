@@ -7,6 +7,7 @@ import getUpcomingMovies from "@/app/lib/DataFetching/getUpcomingMovies";
 import getMovieDetailById from "@/app/lib/DataFetching/getMovieDetailById";
 import getMovieImagesById from "@/app/lib/DataFetching/getMovieImagesById";
 import MovieDetailPage from "@/app/components/movie/MovieDetailPage";
+import { notFound } from "next/navigation";
 
 // Generate Static Params
 export async function generateStaticParams() {
@@ -45,6 +46,13 @@ export async function generateMetadata({
 }: Props): Promise<Metadata> {
   const detail = (await getMovieDetailById(movieId)) as MovieDetail;
 
+  if (!detail.title||!detail.id){
+    return {
+      title: 'Not Found',
+      description: `Not Found Page`,
+    };
+  }
+
   return {
     title: detail.title,
     description: `This is a page of ${detail.title} detail`,
@@ -54,6 +62,11 @@ export async function generateMetadata({
 const page = async ({ params: { movieId } }: Props) => {
   const detail = (await getMovieDetailById(movieId)) as MovieDetail;
   const images = (await getMovieImagesById(movieId)) as Image;
+
+  if (!detail.title||!detail.id) return notFound()
+
+
+
   return (
     <>
       <MovieDetailPage movie={detail} images={images} />

@@ -15,9 +15,7 @@ const getSeriesDetailById = async (id: number) => {
     options
   );
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch Series Detail");
-  }
+  if (!res.ok) undefined
   const data: SeriesDetail = await res.json();
   return data;
 };

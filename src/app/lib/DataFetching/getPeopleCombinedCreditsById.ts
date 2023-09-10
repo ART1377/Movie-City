@@ -15,9 +15,7 @@ const getPeopleCombinedCreditsById = async (id: number) => {
     options
   );
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch People Credits");
-  }
+  if (!res.ok) undefined
   const data: PeopleCombinedCredits = await res.json();
   return data;
 };

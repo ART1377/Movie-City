@@ -91,7 +91,7 @@ const PhotoGallery = ({ images, peopleImages }: Props) => {
   };
 
   const data =
-    +images?.backdrops.length! > 0
+    +images?.backdrops?.length! > 0
       ? [...images?.backdrops!]
       : peopleImages?.profiles;
 

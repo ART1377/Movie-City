@@ -30,7 +30,7 @@ const Navbar = ({ show, setState }: Props) => {
       <nav
         className={`shadow z-50 hidden md:flex  ${
           show ? `!flex ` : `hidden `
-        } ${style.navbar} ${theme == "dark"&&'border-r border-text-light'}`}
+        } ${style.navbar} ${currentTheme == "dark"&&'border-r border-text-light'}`}
       >
         {/* <hr className={style.divider} /> */}
 

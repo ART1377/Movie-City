@@ -8,6 +8,7 @@ import getTrendingSeries from "@/app/lib/DataFetching/getTrendingSeries";
 import getTopRatedSeries from "@/app/lib/DataFetching/getTopRatedSeries";
 import { series } from "@/app/data";
 import getPopularSeries from "@/app/lib/DataFetching/getPopularSeries";
+import { notFound } from "next/navigation";
 
 // Generate Static Params
 export async function generateStaticParams() {
@@ -47,6 +48,13 @@ export async function generateMetadata({
 }: Props): Promise<Metadata> {
   const detail = (await getSeriesDetailById(seriesId)) as SeriesDetail;
 
+  if (!detail.name||!detail.id){
+    return {
+      title: 'Not Found',
+      description: `Not Found Page`,
+    };
+  }
+
   return {
     title: detail.name,
     description: `This is a page of ${detail.name} detail`,
@@ -56,6 +64,11 @@ export async function generateMetadata({
 const page = async ({ params: { seriesId } }: Props) => {
   const detail = (await getSeriesDetailById(seriesId)) as SeriesDetail;
   const images = (await getSeriesImagesById(seriesId)) as Image;
+
+
+  if (!detail.name||!detail.id) return notFound()
+
+
   return (
     <>
       <SeriesDetailPage series={detail} images={images} />

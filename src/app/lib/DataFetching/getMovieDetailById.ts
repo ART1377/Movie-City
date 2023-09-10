@@ -15,9 +15,7 @@ const getMovieDetailById = async (id: number) => {
     options
   );
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch Movie Detail");
-  }
+  if (!res.ok) undefined
   const data: MovieDetail = await res.json();
   return data;
 };

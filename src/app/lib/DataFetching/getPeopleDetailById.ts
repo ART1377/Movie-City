@@ -15,9 +15,7 @@ const getPeopleDetailById = async (id: number) => {
     options
   );
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch People Detail");
-  }
+  if (!res.ok) undefined
   const data: PeopleDetail = await res.json();
   return data;
 };

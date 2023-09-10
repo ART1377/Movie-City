@@ -20,7 +20,7 @@ const getMovies = async (
   sort = "",
   company = "",
 ) => {
-  const companyData = company ? `&with_networks=${company}` : "";
+  const companyData = company ? `&with_companies=${company}` : "";
   const minDateData = minDate ? `&first_air_date.gte=${minDate}-01-01` : "";
   const maxDateData = maxDate ? `&first_air_date.lte=${maxDate}-01-01` : "";
   const minRateData = minRate ? `&vote_average.gte=${minRate}` : "";

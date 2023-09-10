@@ -49,8 +49,8 @@ const Header = (props: Props) => {
           <Logo />
           <SearchBar />
           <div className={`flex items-center gap-2 ${style.icons}`}>
-            <div onClick={() => theme == "dark"? setTheme('light'): setTheme("dark")} className="overflow-hidden">
-              {current == "dark"?(<BsMoon className={`transform translate-y-6 transition-all duration-500 ${current=='dark'&&'translate-y-0'}`} />):(<BsSun className={`transform translate-y-6 transition-all duration-500 ${current=='light'&&'translate-y-0'}`} />)}
+            <div onClick={() => theme == "dark"? setTheme('light'): setTheme("dark")} className="">
+              {current == "dark"?(<BsMoon className={``} />):(<BsSun className={``} />)}
             </div>
             <div>
               <BsPerson />

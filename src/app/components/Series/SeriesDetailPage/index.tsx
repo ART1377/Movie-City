@@ -87,7 +87,7 @@ const SeriesDetailPage = ({ series, images }: Props) => {
             </p>
 
             <h6
-              className={`text-text-light absolute z-30 bottom-10 left-2 xs:left-4 xs:bottom-14 xs:text-2xl line-clamp-2 ${style.title}`}
+              className={`text-header-color absolute z-30 bottom-10 left-2 xs:left-4 xs:bottom-14 xs:text-2xl line-clamp-2 ${style.title}`}
             >
               {series?.name}
             </h6>
@@ -95,7 +95,7 @@ const SeriesDetailPage = ({ series, images }: Props) => {
             <div
               className={`flex flex-col items-start pt-2 gap-2 absolute bottom-2 left-2 xs:left-4 xs:bottom-4 z-30 ${style.detail}`}
             >
-              <div className="text-text-light md:text-text-dark flex items-center gap-1.5">
+              <div className="text-header-color md:text-text-dark flex items-center gap-1.5">
                 <small>
                   {series?.first_air_date?.split("-")[0]} -{" "}
                   {series?.last_air_date?.split("-")[0]}{" "}

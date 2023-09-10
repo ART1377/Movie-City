@@ -45,9 +45,10 @@ const FavoriteCard = ({ data, count, searchItem }: Props) => {
         }`
       : typeCard == "movie"
       ? data?.release_date?.split("-")?.[0]
-      : `${data?.birthday?.split("-")?.[0]} - ${
-          data?.deathday?.split("-")?.[0] && data?.deathday?.split("-")?.[0]
-        }`;
+      : `${data?.birthday?.split("-")?.[0]} 
+      ${
+        - data?.deathday?.split("-")?.[0]?data?.deathday?.split("-")?.[0]:''
+       }`;
 
   //check is in list or not
   const favoriteLists = useAppSelector((state) => state.favorite);
@@ -83,12 +84,12 @@ const FavoriteCard = ({ data, count, searchItem }: Props) => {
     <div
       className={`${
         style.container
-      } relative bg-bg-white w-full max-w-[360px] min-h-[140px] max-h-[150px] xxs:w-[90%] xs:w-[48%] lg:w-[46%] lg:max-w-[500px] xl:w-[32%] rounded-2xl flex mx-auto shadow-lg hover:shadow mb-6 cursor-pointer ${
-        count == 1 && "!w-full !max-w-[600px]"
+      } relative bg-bg-white rounded-2xl flex mx-auto shadow-lg hover:shadow mb-6 cursor-pointer ${
+        count == 1 && "!w-[95%] !max-w-[600px]"
       }`}
     >
       <Link href={`/${typeCard}/${data?.id}`}
-        className={`relative w-[38%] max-w-[140px] overflow-hidden bg-bg-body pr-2 pb-2 rounded-ss-sm rounded-se-sm rounded-ee-[40px] rounded-es-sm`}
+        className={`relative w-[40%] max-w-[140px] overflow-hidden bg-bg-body pr-2 pb-2 rounded-ss-sm rounded-se-sm rounded-ee-[40px] rounded-es-sm`}
       >
         <Img
           url={imageCard}
@@ -97,7 +98,7 @@ const FavoriteCard = ({ data, count, searchItem }: Props) => {
           style=" rounded-ss-sm rounded-se-sm rounded-ee-[40px] rounded-es-sm"
         />
       </Link>
-      <Link href={`/${typeCard}/${data?.id}`} className="p-2 flex flex-col gap-1 sm:gap-1.5 w-[75%]">
+      <Link href={`/${typeCard}/${data?.id}`} className="p-2 flex flex-col gap-1 xxs:gap-1.5 lg:gap-2 w-[75%]">
         <p
           className={`line-clamp-2 mb-1 sm:mb-1.5 text-text-dark ${
             searchItem && "!mb-3"
@@ -162,7 +163,7 @@ const FavoriteCard = ({ data, count, searchItem }: Props) => {
           </small>
           <small className="sm:text-sm font-normal">
             {typeCard == "people"
-              ? data?.popularity
+              ? data?.popularity.toFixed(1)
               : data?.vote_average.toFixed(1)}
           </small>
         </small>

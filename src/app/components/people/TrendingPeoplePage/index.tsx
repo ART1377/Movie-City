@@ -55,9 +55,7 @@ const TrendingPeoplePage = (props: Props) => {
 
   const filteredAllPeople = makeUnique(allPeople);
 
-  // totalPages = Math.floor(allTrendingSeries.length/20);
 
-  // console.log(Math.floor(filteredAllPeople.length/20))
 
   const lastFive: People[] = filteredAllPeople.slice(0, 5);
 

@@ -1,11 +1,11 @@
 .navbar {
-  background-color: #fff;
+  background-color: var(--bg-white);
   width: 250px;
   position: fixed;
   top: 51px;
   flex-direction: column;
   align-items: center;
-  height: calc(100vh - 56px);
+  height: calc(100vh - 51px);
   padding: 1rem;
   text-align: center;
 }

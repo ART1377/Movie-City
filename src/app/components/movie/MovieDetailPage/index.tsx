@@ -90,7 +90,7 @@ const MovieDetailPage = ({ movie, images }: Props) => {
             />
                <p className={`text-white absolute top-full right-0 z-30 !px-4 md:!hidden ${style.status}`}>{movie?.status}</p>
             <h6
-              className={`text-text-light absolute z-30 bottom-10 left-2 xs:left-4 xs:bottom-14 xs:text-2xl line-clamp-2 ${style.title}`}
+              className={`text-header-color absolute z-30 bottom-10 left-2 xs:left-4 xs:bottom-14 xs:text-2xl line-clamp-2 ${style.title}`}
             >
               {movie?.title}
             </h6>
@@ -98,7 +98,7 @@ const MovieDetailPage = ({ movie, images }: Props) => {
             <div
               className={`flex flex-col items-start pt-2 gap-2 absolute bottom-2 left-2 xs:left-4 xs:bottom-4 z-30 ${style.detail}`}
             >
-              <div className="text-text-light md:text-text-dark flex items-center gap-1.5">
+              <div className="text-header-color md:text-text-dark flex items-center gap-1.5">
                 <small>{movie?.release_date?.split("-")[0]}</small>
                 <hr className={style.smallLine} />
                 <small>{movie?.runtime} m</small>

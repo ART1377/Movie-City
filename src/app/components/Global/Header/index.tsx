@@ -15,7 +15,6 @@ const Header = (props: Props) => {
   const { systemTheme, theme, setTheme } = useTheme();
     const currentTheme = theme === 'system' ? systemTheme : theme;
 
-    console.log(currentTheme,theme,systemTheme)
 
   return (
     <>

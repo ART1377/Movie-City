@@ -60,7 +60,7 @@ hr.smallLine {
   color: var(--main-green) !important;
 }
 
-@media only screen and (min-width: 480px) {
+@media only screen and (min-width: 340px) {
   .container small {
     font-size: 14px;
   }

@@ -1,5 +1,5 @@
 .hide {
-  background-color: white;
+  background-color: var(--bg-white);
   color: var(--text-text-dark);
 }
 .show {

@@ -52,9 +52,7 @@ const PopularSeriesPage = (props: Props) => {
 
   const filteredAllSeries = makeUnique(allSeries);
 
-  // totalPages = Math.floor(allTrendingSeries.length/20);
-
-  // console.log(Math.floor(filteredAllSeries.length/20))
+ 
 
   const lastFive: Series[] = filteredAllSeries.slice(0, 5);
 

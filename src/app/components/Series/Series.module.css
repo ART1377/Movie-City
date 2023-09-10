@@ -1,3 +1,8 @@
+.input{
+  width: 100%;
+  max-width: 300px;
+}
+
 .card {
     width: 260px;
   }
@@ -7,19 +12,28 @@
       max-width: 180px;
     }
   }
-  /* @media only screen and (min-width: 480px) {
-    .card {
-      width: 180px;
-    }
-  } */
   @media only screen and (min-width: 480px) {
     .card {
       width: 180px;
+    }
+    .input{
+      width: 46%;
     }
   }
   @media only screen and (min-width: 520px) {
     .card {
       width: 30%;
+    }
+  }
+  @media only screen and (min-width: 640px) {
+    .input {
+      width: 29%;
+    }
+  }
+  @media only screen and (min-width: 1024px) {
+    .input {
+      width: 100%;
+      min-width: 200px;
     }
   }
   @media only screen and (min-width: 1100px) {
@@ -28,3 +42,4 @@
     }
   }
   
+

@@ -49,9 +49,6 @@ const TopRatedMoviesPage = (props: Props) => {
 
   const filteredAllMovies = makeUnique(allMovies);
 
-  // totalPages = Math.floor(allTrendingSeries.length/20);
-
-  // console.log(Math.floor(filteredAllMovies.length/20))
 
   const lastFive: Movie[] = filteredAllMovies.slice(0, 5);
 

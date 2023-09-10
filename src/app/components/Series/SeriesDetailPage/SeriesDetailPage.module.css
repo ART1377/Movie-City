@@ -88,7 +88,7 @@ hr.smallLine {
 }
 
 /* media queries */
-@media only screen and (min-width: 480px) {
+@media only screen and (min-width: 340px) {
   .container small {
     font-size: 14px;
   }
@@ -171,7 +171,6 @@ display: -webkit-box;
     top: 56px;
     right: 8px;
     left: 208px;
-    opacity: 0.7;
     height: 360px;
     max-width: 1200px;
     margin: auto;
@@ -181,9 +180,9 @@ display: -webkit-box;
     -ms-border-radius: var(--radius);
     -o-border-radius: var(--radius);
   }
-  /*.background img {
-     clip-path: polygon(0 0, 100% 0, 100% 91%, 86% 91%, 83% 100%, 0 100%)
-  } */
+  .background img {
+    opacity: 0.7;
+  }
 
   .imageContainer {
     margin-top: 240px;

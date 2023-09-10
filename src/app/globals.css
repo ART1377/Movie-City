@@ -21,11 +21,11 @@
   }
   h5 {
     font-size: 24px;
-    font-weight: 700;
+    font-weight: 600;
   }
   h6 {
     font-size: 20px;
-    font-weight: 700;
+    font-weight: 600;
   }
 }
 @tailwind components;

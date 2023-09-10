@@ -181,7 +181,7 @@ const MoviePage = (props: Props) => {
             className={`w-full flex flex-wrap justify-center items-center gap-8 mb-8 py-2 px-4 rounded-none `}
           >
             {/* Cast Name Input */}
-            <div className="mb-2 w-[200px]">
+            <div className={`mb-2 ${style.input}`}>
               <label
                 htmlFor="castName"
                 className="text-xs bg-bg-white absolute -mt-2 ml-1 px-1 text-dark-green"
@@ -198,7 +198,7 @@ const MoviePage = (props: Props) => {
             </div>
 
             {/* Crew Name Input */}
-            <div className="mb-2 w-[200px]">
+            <div className={`mb-2 ${style.input}`}>
               <label
                 htmlFor="castName"
                 className="text-xs bg-bg-white absolute -mt-2 ml-1 px-1 text-dark-green"
@@ -215,7 +215,7 @@ const MoviePage = (props: Props) => {
             </div>
 
             {/* SortBy Select Option */}
-            <div className="mb-2 w-[200px]">
+            <div className={`mb-2 ${style.input}`}>
               <label
                 htmlFor="underline_select"
                 className="text-xs bg-bg-white absolute -mt-2 ml-1 px-1 text-dark-green"
@@ -246,7 +246,7 @@ const MoviePage = (props: Props) => {
             </div>
 
             {/* SortBy Select Option */}
-            <div className="mb-2 w-[200px]">
+            <div className={`mb-2 ${style.input}`}>
               <label
                 htmlFor="underline_select"
                 className="text-xs bg-bg-white absolute -mt-2 ml-1 px-1 text-dark-green"
@@ -302,7 +302,7 @@ const MoviePage = (props: Props) => {
             </div>
 
             {/* Release Date Range */}
-            <div className="mb-2 w-[200px]">
+            <div className={`mb-2 ${style.input}`}>
               <div className="flex flex-col">
                 <small className="text-text-dark font-bold text-sm">
                   Release Date
@@ -329,7 +329,7 @@ const MoviePage = (props: Props) => {
             </div>
 
             {/* Vote Rate Range */}
-            <div className="mb-2 w-[200px]">
+            <div className={`mb-2 ${style.input}`}>
               <div className="flex flex-col">
                 <small className="text-text-dark font-bold text-sm">
                   Rating
@@ -356,7 +356,7 @@ const MoviePage = (props: Props) => {
             </div>
 
             {/* Genre Dropdown */}
-            <div className="mb-2 relative w-[200px]">
+            <div className={`mb-2 relative ${style.input}`}>
               <div
                 onClick={dropdownHandler}
                 className="p-1 border-b border-dark-green text-dark-green min-w-[80px] cursor-pointer flex justify-between items-center"
@@ -407,7 +407,7 @@ const MoviePage = (props: Props) => {
             </div>
 
             {/* Adult Toggle */}
-            <div className="mb-2 flex justify-between items-center w-[200px]">
+            <div className={`mb-2 flex justify-between items-center ${style.input}`}>
               <small className="text-sm font-bold text-text-dark">
                 Include Adult
               </small>
@@ -423,7 +423,7 @@ const MoviePage = (props: Props) => {
           </div>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-2 xs:gap-3 mt-16 lg:mt-0 mx-auto">
+        <div className="flex flex-wrap justify-center gap-y-6 gap-x-2 xs:gap-x-3 mt-16 lg:mt-0 mx-auto">
           {allMovies?.results.length > 0 ? (
             allMovies?.results?.map((result: Movie, index: number) => {
               return (

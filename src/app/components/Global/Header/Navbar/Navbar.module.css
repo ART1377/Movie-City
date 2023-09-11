@@ -29,6 +29,9 @@
 .navbar a:hover p {
   color: var(--text-dark);
 }
+.active a:hover p {
+  color: var(--main-green);
+}
 .navbar .navLinks li a {
   transition: var(--transition);
   -webkit-transition: var(--transition);

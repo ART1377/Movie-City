@@ -111,7 +111,7 @@ const People = (props: Props) => {
             <div className={`mb-2 ${style.input}`}>
               <label
                 htmlFor="underline_select"
-                className="text-xs bg-bg-body absolute -mt-2 ml-1 px-1 text-dark-green"
+                className="text-xs bg-bg-white absolute -mt-2 ml-1 px-1 text-dark-green"
               >
                 Gender
               </label>
@@ -137,7 +137,7 @@ const People = (props: Props) => {
             <div className={`mb-2 ${style.input}`}>
               <label
                 htmlFor="underline_select"
-                className="text-xs bg-bg-body absolute -mt-2 ml-1 px-1 text-dark-green"
+                className="text-xs bg-bg-white absolute -mt-2 ml-1 px-1 text-dark-green"
               >
                 Sort by
               </label>

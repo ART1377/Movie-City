@@ -14,7 +14,12 @@
   -ms-transition: var(--transition);
   -o-transition: var(--transition);
 }
-
+@media only screen and (max-height:580px) {
+  .navbar{
+    min-height:220px;
+    overflow-x: scroll;
+  }
+}
 
 .navbar .navLinks {
   margin-top: 1rem;
@@ -63,6 +68,35 @@
   margin-top: auto;
   border: none !important;
 }
+
+.active *{
+  color: var(--main-green);
+}
+.active p{
+  position: relative;
+}
+.active p::after{
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  left: 110%;
+    top: 60%;
+  transform: translate(0,-50%);
+  z-index: 5;
+  background-color: var(--main-green);
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+  -webkit-transform: translate(0,-50%);
+  -moz-transform: translate(0,-50%);
+  -ms-transform: translate(0,-50%);
+  -o-transform: translate(0,-50%);
+}
+
+
 .user {
   display: flex;
   flex-direction: column;
@@ -81,7 +115,12 @@
   -o-border-radius: 100%;
 }
 
-
+@media only screen and (max-width: 640px) {
+  .navbar {
+    top: 50px;
+    height: calc(100vh - 50px);
+  }
+}
 @media only screen and (max-width: 768px) {
   .hide{
     display: flex;

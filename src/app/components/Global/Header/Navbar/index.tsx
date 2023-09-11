@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import style from "./Navbar.module.css";
+import { usePathname } from 'next/navigation'
 import Link from "next/link";
 import {
   BsHouse,
@@ -25,10 +26,14 @@ const Navbar = ({ show, setState }: Props) => {
   const { systemTheme, theme, setTheme } = useTheme();
   const currentTheme = theme === 'system' ? systemTheme : theme;
 
+  const pathname = usePathname()
+console.log(pathname)
+
+
   return (
     <>
       <nav
-        className={`shadow z-50 hidden md:flex  ${
+        className={`shadow z-50 hidden md:flex   ${
           show ? `${style.show} ` : `${style.hide} `
         } ${style.navbar} ${currentTheme == "dark"&&'border-r border-text-light'} `}
       >
@@ -52,31 +57,31 @@ const Navbar = ({ show, setState }: Props) => {
         <hr className="h-1 w-full bg-text-light" />
 
         <ul className={`h-full inline-flex flex-col my-2 ${style.navLinks}`}>
-          <li>
+          <li className={`${pathname=='/'&&style.active}`}>
             <Link href={"/"} className="flex items-center gap-1">
               <BsHouse className="mt-[3px]" />
               <p className="font-normal">Home</p>
             </Link>
           </li>
-          <li>
+          <li className={`${pathname=='/movie'&&style.active}`}>
             <Link href={"/movie?page=1"} className="flex items-center gap-1">
               <BsCameraReels className="mt-[3px]" />
               <p className="font-normal">Movies</p>
             </Link>
           </li>
-          <li>
+          <li className={`${pathname=='/series'&&style.active}`}>
             <Link href={"/series?page=1"} className="flex items-center gap-1">
               <BsTv className="mt-[3px]" />
               <p className="font-normal">Series</p>
             </Link>
           </li>
-          <li>
+          <li className={`${pathname=='/people'&&style.active}`}>
             <Link href={"/people?page=1"} className="flex items-center gap-1">
               <BsPeople className="mt-[3px]" />
               <p className="font-normal">Celebs</p>
             </Link>
           </li>
-          <li>
+          <li className={`${pathname=='/favorites'&&style.active}`}>
             <Link href={"/favorites?page=1&category=movies"} className="flex items-center gap-1">
               <BsHeart className="mt-[3px]" />
               <p className="font-normal">Favorites</p>
@@ -120,15 +125,14 @@ const Navbar = ({ show, setState }: Props) => {
               </li>
             </ul>
           </li>
-        </ul>
-        <hr className="h-.5 w-full bg-text-light" />
-
-        <li className="list-none mt-4">
+          <li className="list-none mt-4">
           <Link href={"/"} className="flex items-center gap-1">
             <BsBoxArrowRight />
             <p className="font-normal">Logout</p>
           </Link>
         </li>
+        </ul>
+
       </nav>
     </>
   );

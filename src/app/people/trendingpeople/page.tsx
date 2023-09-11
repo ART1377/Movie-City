@@ -1,4 +1,3 @@
-// import TrendingPeoplePage from "@/app/components/people/TrendingPeoplePage";
 import TrendingPeoplePage from '../../components/people/TrendingPeoplePage/index'
 import type { Metadata } from "next";
 

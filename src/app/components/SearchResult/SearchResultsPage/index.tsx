@@ -10,8 +10,6 @@ import FavoriteCard from "../../Favorites/FavoriteCard";
 
 type Props = {};
 
-export const dynamic = "force-dynamic";
-
 const SearchResultsPage = (props: Props) => {
   const [category, setCategory] = useState<string>("multi");
   const [results, setResults] = useState<SearchResults>();

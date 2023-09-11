@@ -1,9 +1,18 @@
+import { People } from "../../../../next-type-d";
+
 export const makeUnique = (data: any) => {
   const newData = data.filter((obj: any, index: number) => {
     return index === data.findIndex((o: any) => obj.id === o.id);
   });
   return newData;
 };
+
+export const filterByGender = (data: any, gen: number) => {
+  const newData = data.filter((item: any) => item.gender == gen.toString());
+  return newData;
+};
+
+
 export const sortAlphabatically = (data: any) => {
   const newData = data.sort((a: any, b: any) => {
     if (data[0].name) {
@@ -80,7 +89,6 @@ export const sortDescendingBasedDate = (data: any) => {
 };
 
 export const sortArray = (sortBy: string, data: any[]) => {
-
   const newData =
     sortBy == "alphabet"
       ? sortAlphabatically(data)

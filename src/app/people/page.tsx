@@ -1,5 +1,6 @@
 import React from 'react'
 import type { Metadata } from "next";
+import People from '../components/people';
 
 
 export const metadata: Metadata = {
@@ -9,10 +10,11 @@ export const metadata: Metadata = {
 
 
 type Props = {}
+export const dynamic = "force-dynamic";
 
 const page = (props: Props) => {
   return (
-    <div>PeoplePage</div>
+    <People/>
   )
 }
 

@@ -179,6 +179,7 @@ const MoviePage = (props: Props) => {
               Search
             </h6>
           </div>
+
           <div
             className={`w-full flex flex-wrap justify-center items-center gap-8 mb-8 py-2 px-4 rounded-none `}
           >
@@ -447,7 +448,7 @@ const MoviePage = (props: Props) => {
               );
             })
           ) : (
-            <p>No movies Found !</p>
+            <p>No Movies Found !</p>
           )}
         </div>
       </div>

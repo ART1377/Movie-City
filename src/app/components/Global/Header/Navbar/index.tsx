@@ -71,7 +71,7 @@ const Navbar = ({ show, setState }: Props) => {
             </Link>
           </li>
           <li>
-            <Link href={"/people"} className="flex items-center gap-1">
+            <Link href={"/people?page=1"} className="flex items-center gap-1">
               <BsPeople className="mt-[3px]" />
               <p className="font-normal">Celebs</p>
             </Link>

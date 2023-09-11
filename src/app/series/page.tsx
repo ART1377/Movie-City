@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 
 
 type Props = {}
+export const dynamic = "force-dynamic";
 
 const page = (props: Props) => {
   return (

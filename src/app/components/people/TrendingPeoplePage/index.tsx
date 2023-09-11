@@ -19,7 +19,7 @@ type Props = {};
 
 const TrendingPeoplePage = (props: Props) => {
   const [sort, setSort] = useState<string>("");
-  const [total, setTotal] = useState<number>(102);
+  const [total, setTotal] = useState<number>(95);
 
   const [allPeople, setAllPeople] = useState<any[]>([]);
 
@@ -28,7 +28,7 @@ const TrendingPeoplePage = (props: Props) => {
   const page = searchParams.get("page");
 
   const [currentPage, setCurrentPage] = useState(+page!);
-  const totalPages = Math.ceil(total / 10) - 5;
+  const totalPages = total <= 10 ? total : 10;
 
   // Get All Data in order to implement sort
   useEffect(() => {
@@ -54,8 +54,6 @@ const TrendingPeoplePage = (props: Props) => {
   }, [totalPages, page, router, currentPage]);
 
   const filteredAllPeople = makeUnique(allPeople);
-
-
 
   const lastFive: People[] = filteredAllPeople.slice(0, 5);
 

@@ -35,7 +35,7 @@ const index = (props: Props) => {
                   <Link href={"/series?page=1"}>Series</Link>
                 </li>
                 <li className="text-sm xs:text-base">
-                  <Link href={"/people"}>Celebs</Link>
+                  <Link href={"/people?page=1"}>Celebs</Link>
                 </li>
                 <li className="text-sm xs:text-base">
                   <Link href={"/favorites?page=1&category=movies"}>

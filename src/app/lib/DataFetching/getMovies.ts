@@ -11,6 +11,8 @@ const options = {
 
 const getMovies = async (
   page = 1,
+  genre = "",
+  sort = "",
   adult = false,
   cast = "",
   crew = "",
@@ -18,8 +20,6 @@ const getMovies = async (
   maxDate = 2030,
   minRate = 0,
   maxRate = 10,
-  genre = "",
-  sort = "",
   company = "",
 ) => {
   const castData = cast ? `&with_cast=${cast}` : "";

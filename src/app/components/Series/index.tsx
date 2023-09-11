@@ -7,12 +7,7 @@ import { Company, Genre, Series, SeriesList } from "../../../../next-type-d";
 import getSeries from "@/app/lib/DataFetching/getSeries";
 import CustomSlider from "../Global/CustomSlider";
 import MultiRangeSlider from "multi-range-slider-react";
-import {
-  BsChevronDown,
-  BsTrash3,
-  BsSearch,
-  BsTv,
-} from "react-icons/bs";
+import { BsChevronDown, BsTrash3, BsSearch, BsTv } from "react-icons/bs";
 import getGenreNameByGenreId, {
   genres,
 } from "@/app/lib/DataFetching/getGenreNameByGenreId";
@@ -44,7 +39,6 @@ const SeriesPage = (props: Props) => {
     setMinDate(e.minValue);
     setMaxDate(e.maxValue);
   };
-
 
   const [companyName, setCompanyName] = useState<string>("");
 
@@ -84,13 +78,13 @@ const SeriesPage = (props: Props) => {
       const genreData = genre.join("%2C");
       const data: SeriesList = await getSeries(
         +page!,
+        genreData,
+        sort,
         adult,
         minDate,
         maxDate,
         minRate,
         maxRate,
-        genreData,
-        sort,
         companyName
       );
       setAllSeries(data);
@@ -133,7 +127,6 @@ const SeriesPage = (props: Props) => {
     dropdown?.classList.toggle("h-32");
   };
 
-
   return (
     <>
       {/* <CustomSlider data={lastFive} /> */}
@@ -161,7 +154,6 @@ const SeriesPage = (props: Props) => {
           <div
             className={`w-full flex flex-wrap justify-center items-center gap-8 mb-8 py-2 px-4 rounded-none `}
           >
-
             {/* SortBy Select Option */}
             <div className={`mb-2 ${style.input}`}>
               <label
@@ -289,7 +281,10 @@ const SeriesPage = (props: Props) => {
                   minValue={minRate}
                   maxValue={maxRate}
                   ruler={false}
-                  labels={[`${minRate == 0 ? 0 : minRate}`, `${maxRate == 10 ? 10 : maxRate}`]}
+                  labels={[
+                    `${minRate == 0 ? 0 : minRate}`,
+                    `${maxRate == 10 ? 10 : maxRate}`,
+                  ]}
                   style={{ border: "none ", boxShadow: "none", width: "100%" }}
                   barLeftColor="var(--light-green)"
                   barInnerColor="var(--main-green)"
@@ -355,7 +350,9 @@ const SeriesPage = (props: Props) => {
             </div>
 
             {/* Adult Toggle */}
-            <div className={`mb-2 flex justify-between items-center ${style.input}`}>
+            <div
+              className={`mb-2 flex justify-between items-center ${style.input}`}
+            >
               <small className="text-sm font-bold text-text-dark">
                 Include Adult
               </small>
@@ -371,13 +368,20 @@ const SeriesPage = (props: Props) => {
           </div>
         </div>
 
-        <div className={`flex flex-wrap justify-center gap-y-6 gap-x-2 xs:gap-x-3 mt-16 lg:mt-0 mx-auto ${allSeries?.results?.length! <4&&'lg:mr-auto lg:ml-0'}`}>
+        <div
+          className={`flex flex-wrap justify-center gap-y-6 gap-x-2 xs:gap-x-3 mt-16 lg:mt-0 mx-auto ${
+            allSeries?.results?.length! < 4 && "lg:mr-auto lg:ml-0"
+          }`}
+        >
           {allSeries?.results?.length! > 0 ? (
             allSeries?.results?.map((result: Series, index: number) => {
               return (
                 <div
                   key={result.id}
-                  className={`flex justify-center ${style.card} ${allSeries.results.length<4&&'!min-w-[160px] lg:!min-w-[180px]'} `}
+                  className={`flex justify-center ${style.card} ${
+                    allSeries.results.length < 4 &&
+                    "!min-w-[160px] lg:!min-w-[180px]"
+                  } `}
                 >
                   <SeriesCard imageSize="w185" series={result} />
                 </div>

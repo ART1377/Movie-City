@@ -1,6 +1,19 @@
 .container {
   border-radius: var(--radius);
 }
+.container:hover img {
+  transition: var(--transition);
+  -webkit-transition: var(--transition);
+  -moz-transition: var(--transition);
+  -ms-transition: var(--transition);
+  -o-transition: var(--transition);
+  transform: scale(1.01);
+  -webkit-transform: scale(1.01);
+  -moz-transform: scale(1.01);
+  -ms-transform: scale(1.01);
+  -o-transform: scale(1.01);
+  opacity: .9;
+}
 .image,
 .image img {
   border-radius: var(--radius);
@@ -31,4 +44,11 @@
 }
 .current * {
   opacity: 1;
+}
+.container hr {
+  margin: auto 4px;
+  display: inline-block;
+  width: 1px;
+  height: 10px;
+  background-color: var(--text-dark);
 }

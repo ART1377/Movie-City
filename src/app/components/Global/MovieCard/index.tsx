@@ -66,7 +66,7 @@ const MovieCard = ({ movie, imageSize }: Props) => {
             {movie?.genre_ids?.map((genreId: number, index: number) => {
               if (index < 2) {
                 return (
-                  <Link href={`/genres/${genreId}`} key={genreId}>
+                  <Link href={`/genres/${genreId}?page=1`} key={genreId}>
                     <small>
                       {getGenreNameByGenreId(genreId)}
                       {+movie.genre_ids.length > 1 && index < 1 && <hr />}

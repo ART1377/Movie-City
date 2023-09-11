@@ -18,15 +18,26 @@
 
 .container:hover {
   box-shadow: none;
+  transform: scale(1.01);
+  -webkit-transform: scale(1.01);
+  -moz-transform: scale(1.01);
+  -ms-transform: scale(1.01);
+  -o-transform: scale(1.01);
 }
-.container:hover .image {
-  opacity: .9;
+.container:hover img {
   transition: var(--transition);
   -webkit-transition: var(--transition);
   -moz-transition: var(--transition);
   -ms-transition: var(--transition);
   -o-transition: var(--transition);
+  transform: scale(1.03);
+  -webkit-transform: scale(1.03);
+  -moz-transform: scale(1.03);
+  -ms-transform: scale(1.03);
+  -o-transform: scale(1.03);
+  opacity: .9;
 }
+
 .image {
   width: 100%;
   height: 75% !important;
@@ -46,7 +57,7 @@
   font-size: 11px;
 }
 .info small hr {
-  margin: auto 2px;
+  margin: auto 4px;
   display: inline-block;
   width: 1px;
   height: 10px;

@@ -83,11 +83,6 @@ const MoviePage = (props: Props) => {
   const totalPages =
     allMovies?.total_pages! <= 500 ? allMovies?.total_pages : 500;
 
-
-
-    
-
-
   // Get All Data in order to implement sort
   useEffect(() => {
     const getMoviesData = setTimeout(async () => {
@@ -100,6 +95,8 @@ const MoviePage = (props: Props) => {
       const genreData = genre.join("%2C");
       const data: MoviesList = await getMovies(
         +page!,
+        genreData,
+        sort,
         adult,
         cast,
         crew,
@@ -107,8 +104,6 @@ const MoviePage = (props: Props) => {
         maxDate,
         minRate,
         maxRate,
-        genreData,
-        sort,
         companyName
       );
       setAllMovies(data);
@@ -153,7 +148,6 @@ const MoviePage = (props: Props) => {
     dropdown?.classList.toggle("h-32");
   };
 
-
   return (
     <>
       {/* <CustomSlider data={lastFive} /> */}
@@ -187,7 +181,7 @@ const MoviePage = (props: Props) => {
             <div className={`mb-2 ${style.input}`}>
               <label
                 htmlFor="castName"
-                className="text-xs bg-bg-white absolute -mt-2 ml-1 px-1 text-dark-green"
+                className="text-xs bg-bg-white   absolute -mt-2 ml-1 px-1 text-dark-green"
               >
                 Cast Name
               </label>
@@ -204,7 +198,7 @@ const MoviePage = (props: Props) => {
             <div className={`mb-2 ${style.input}`}>
               <label
                 htmlFor="castName"
-                className="text-xs bg-bg-white absolute -mt-2 ml-1 px-1 text-dark-green"
+                className="text-xs bg-bg-white  absolute -mt-2 ml-1 px-1 text-dark-green"
               >
                 Crew Name
               </label>
@@ -217,7 +211,7 @@ const MoviePage = (props: Props) => {
               />
             </div>
 
-            {/* SortBy Select Option */}
+            {/* Company Name Select Option */}
             <div className={`mb-2 ${style.input}`}>
               <label
                 htmlFor="underline_select"
@@ -252,7 +246,7 @@ const MoviePage = (props: Props) => {
             <div className={`mb-2 ${style.input}`}>
               <label
                 htmlFor="underline_select"
-                className="text-xs bg-bg-white absolute -mt-2 ml-1 px-1 text-dark-green"
+                className="text-xs bg-bg-white  absolute -mt-2 ml-1 px-1 text-dark-green"
               >
                 Sort by
               </label>
@@ -344,7 +338,10 @@ const MoviePage = (props: Props) => {
                   minValue={minRate}
                   maxValue={maxRate}
                   ruler={false}
-                  labels={[`${minRate == 0 ? 0 : minRate}`, `${maxRate == 10 ? 10 : maxRate}`]}
+                  labels={[
+                    `${minRate == 0 ? 0 : minRate}`,
+                    `${maxRate == 10 ? 10 : maxRate}`,
+                  ]}
                   style={{ border: "none ", boxShadow: "none", width: "100%" }}
                   barLeftColor="var(--light-green)"
                   barInnerColor="var(--main-green)"

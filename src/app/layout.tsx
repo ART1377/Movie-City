@@ -1,11 +1,9 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import Header from "./components/Global/Header";
 import Providers from "./components/Global/Providers";
 import Footer from "./components/Global/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Movie City",
@@ -20,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
         <body
-          className={`max-w-[1440px] mx-auto min-h-screen  ${inter.className}`}
+          className={`max-w-[1440px] mx-auto min-h-screen`}
           >
           <Providers>
           <Header />

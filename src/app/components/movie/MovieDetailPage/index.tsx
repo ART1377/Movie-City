@@ -236,7 +236,7 @@ const MovieDetailPage = ({ movie, images }: Props) => {
               <Title>Genres</Title>
               {movie?.genres.map((genre: Genre, index: number) => {
                 return (
-                  <Link key={genre.id} href={`/genres/${genre.id}`}>
+                  <Link key={genre.id} href={`/genres/${genre.id}?page=1`}>
                     <small className="inline-flex flex-wrap items-center gap-1 me-1.5">
                       {genre.name}
                       {index != movie?.genres?.length - 1 && (

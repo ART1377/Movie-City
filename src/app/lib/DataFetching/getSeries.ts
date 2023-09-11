@@ -11,13 +11,13 @@ const options = {
 
 const getMovies = async (
   page = 1,
+  genre = "",
+  sort = "",
   adult = false,
   minDate = 1600,
   maxDate = 2030,
   minRate = 0,
   maxRate = 10,
-  genre = "",
-  sort = "",
   company = "",
 ) => {
   const companyData = company ? `&with_companies=${company}` : "";

@@ -233,7 +233,7 @@ const SeriesDetailPage = ({ series, images }: Props) => {
               <Title>Genres</Title>
               {series?.genres?.map((genre: Genre, index: number) => {
                 return (
-                  <Link key={genre?.id} href={`${genre?.id?`/genres/${genre?.id}`:'/'}`}>
+                  <Link key={genre?.id} href={`${genre?.id?`/genres/${genre?.id}?page=1`:'/'}`}>
                     <small className="inline-flex flex-wrap items-center gap-1 me-1.5">
                       {genre?.name}
                       {index != series?.genres?.length - 1 && (

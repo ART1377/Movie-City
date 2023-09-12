@@ -51,7 +51,7 @@ hr.smallLine {
 
 
 .statusContainer{
-  clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%);
+  clip-path: polygon(17% 0%, 100% 0%, 100% 100%, 0% 100%);
   background-color: var(--bg-body);
 
 }

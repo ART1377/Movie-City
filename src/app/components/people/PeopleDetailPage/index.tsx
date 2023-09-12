@@ -30,6 +30,8 @@ import ModalComponent from "../../Global/ModalComponent";
 import Share from "../../Global/Share";
 import MovieCard from "../../Global/MovieCard";
 import SeriesCard from "../../Global/SeriesCard";
+import { motion } from "framer-motion";
+import { scaleOpacity } from "@/app/animations/animation";
 
 type Props = {
   people: PeopleDetail;
@@ -49,13 +51,12 @@ const PeopleDetailPage = ({ people, credits }: Props) => {
     target.classList.toggle("line-clamp-6");
   };
 
-  
   return (
     <>
       <div className={`${style.container}`}>
-           {/* Background ************* */}
+        {/* Background ************* */}
 
-           {/* {people?.profile_path && (
+        {/* {people?.profile_path && (
           <div className={` ${style.background}`}>
             <Img
               url={people?.profile_path}
@@ -67,9 +68,7 @@ const PeopleDetailPage = ({ people, credits }: Props) => {
         <div
           className={`h-[400px] w-full xxs:h-[500px] xs:h-[540px] mx-auto mb-4 max-w-[400px]  ${style.imageContainer}`}
         >
-          <div
-            className={`relative w-full h-[90%] ${style.image}`}
-          >
+          <div className={`relative w-full h-[90%] ${style.image}`}>
             <Img
               url={people?.profile_path}
               alternative={`${people?.name} image`}
@@ -93,7 +92,7 @@ const PeopleDetailPage = ({ people, credits }: Props) => {
                   {people?.popularity.toFixed(1)}
                 </small>
                 <hr className={style.smallLine} />
-                <small>{people?.place_of_birth?.split(',')?.splice(-1)}</small>
+                <small>{people?.place_of_birth?.split(",")?.splice(-1)}</small>
               </div>
             </div>
           </div>
@@ -109,10 +108,12 @@ const PeopleDetailPage = ({ people, credits }: Props) => {
                   className={`flex flex-col gap-1 items-center ${style.option}`}
                 >
                   <div className="p-2 relative">
-                  <BsFillBookmarkFill className="text-main-green text-base xs:text-lg" />
-                  <BsCheck className="absolute bottom-[28%] left-[28%] xs:bottom-[29%] xsleft-[29%] text-white text-sm" />
-                </div>
-                <small className="text-xs xs:text-sm text-main-green">Bookmark</small>
+                    <BsFillBookmarkFill className="text-main-green text-base xs:text-lg" />
+                    <BsCheck className="absolute bottom-[28%] left-[28%] xs:bottom-[29%] xsleft-[29%] text-white text-sm" />
+                  </div>
+                  <small className="text-xs xs:text-sm text-main-green">
+                    Bookmark
+                  </small>
                 </div>
               </>
             ) : (
@@ -121,10 +122,10 @@ const PeopleDetailPage = ({ people, credits }: Props) => {
                   onClick={() => dispatch(addToFavoritePeople(people?.id))}
                   className={`flex flex-col gap-1 items-center ${style.option}`}
                 >
-                 <div className="p-2">
-                  <BsBookmark className="text-base xs:text-lg" />
-                </div>
-                <small className="text-xs xs:text-sm">Bookmark</small>
+                  <div className="p-2">
+                    <BsBookmark className="text-base xs:text-lg" />
+                  </div>
+                  <small className="text-xs xs:text-sm">Bookmark</small>
                 </div>
               </>
             )}
@@ -161,8 +162,6 @@ const PeopleDetailPage = ({ people, credits }: Props) => {
           {/* Biography ************* */}
           {people.biography && (
             <section className={`mt-8 ${style.biography}`}>
-              
-
               <Title>Biography</Title>
               <p
                 onClick={clickHandler}
@@ -174,7 +173,7 @@ const PeopleDetailPage = ({ people, credits }: Props) => {
           )}
 
           {/* Gallery ************* */}
-          {people.images.profiles.length>0 && (
+          {people.images.profiles.length > 0 && (
             <section className={`mt-6 sm:mt-16 xm:mt-0 ${style.gallery}`}>
               <Title>Top Images</Title>
               <PhotoGallery peopleImages={people.images} />
@@ -182,8 +181,14 @@ const PeopleDetailPage = ({ people, credits }: Props) => {
           )}
 
           {/* Cast's Movies ************* */}
-          {credits.cast.find(item=>item.media_type=='movie') && (
-            <section className="mt-14">
+          {credits.cast.find((item) => item.media_type == "movie") && (
+            <motion.section
+              variants={scaleOpacity}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="mt-14"
+            >
               <Title>{`${people.name}'s Movies`}</Title>
               <Slider>
                 {credits.cast.map((item) => {
@@ -196,11 +201,17 @@ const PeopleDetailPage = ({ people, credits }: Props) => {
                   }
                 })}
               </Slider>
-            </section>
+            </motion.section>
           )}
           {/* Cast's Series ************* */}
-          {credits.cast.find(item=>item.media_type=='tv') && (
-            <section className="mt-14">
+          {credits.cast.find((item) => item.media_type == "tv") && (
+            <motion.section
+              variants={scaleOpacity}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="mt-14"
+            >
               <Title>{`${people.name}'s Series`}</Title>
               <Slider>
                 {credits.cast.map((item) => {
@@ -213,11 +224,17 @@ const PeopleDetailPage = ({ people, credits }: Props) => {
                   }
                 })}
               </Slider>
-            </section>
+            </motion.section>
           )}
           {/* Crew's Movies ************* */}
-          {credits.crew.find(item=>item.media_type=='movie') && (
-            <section className="mt-14">
+          {credits.crew.find((item) => item.media_type == "movie") && (
+            <motion.section
+              variants={scaleOpacity}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="mt-14"
+            >
               <Title>{`${people.name}'s Movies as Crew`}</Title>
               <Slider>
                 {credits.crew.map((item) => {
@@ -230,11 +247,17 @@ const PeopleDetailPage = ({ people, credits }: Props) => {
                   }
                 })}
               </Slider>
-            </section>
+            </motion.section>
           )}
           {/* Crew's Series ************* */}
-          {credits.crew.find(item=>item.media_type=='tv') && (
-            <section className="mt-14">
+          {credits.crew.find((item) => item.media_type == "tv") && (
+            <motion.section
+              variants={scaleOpacity}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="mt-14"
+            >
               <Title>{`${people.name}'s Series as Crew`}</Title>
               <Slider>
                 {credits.crew.map((item) => {
@@ -247,7 +270,7 @@ const PeopleDetailPage = ({ people, credits }: Props) => {
                   }
                 })}
               </Slider>
-            </section>
+            </motion.section>
           )}
           <div className="mb-40"></div>
         </div>

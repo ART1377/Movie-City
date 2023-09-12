@@ -36,6 +36,8 @@ import {
 import { useAppSelector, useAppDispatch } from "../../../redux/hooks/hook";
 import ModalComponent from "../../Global/ModalComponent";
 import Share from "../../Global/Share";
+import { motion } from "framer-motion";
+import { scaleOpacity } from "@/app/animations/animation";
 
 type Props = {
   series: SeriesDetail;
@@ -106,7 +108,7 @@ const SeriesDetailPage = ({ series, images }: Props) => {
                 <small className="flex items-center font-semibold">
                   <BsStarFill className="text-main-green text-sm me-0.5" />
                   <small className="!text-base text-main-green">
-                  {series?.vote_average?.toFixed(1)}
+                    {series?.vote_average?.toFixed(1)}
                   </small>
                   <p className="opacity-80 font-normal"> /10</p>
                 </small>
@@ -184,7 +186,7 @@ const SeriesDetailPage = ({ series, images }: Props) => {
               <Share />
             </ModalComponent>
             <Link
-              href={series?.homepage?series?.homepage:'/'}
+              href={series?.homepage ? series?.homepage : "/"}
               className={`flex flex-col gap-1 items-center ${style.option}`}
             >
               <div className="p-2">
@@ -233,7 +235,10 @@ const SeriesDetailPage = ({ series, images }: Props) => {
               <Title>Genres</Title>
               {series?.genres?.map((genre: Genre, index: number) => {
                 return (
-                  <Link key={genre?.id} href={`${genre?.id?`/genres/${genre?.id}?page=1`:'/'}`}>
+                  <Link
+                    key={genre?.id}
+                    href={`${genre?.id ? `/genres/${genre?.id}?page=1` : "/"}`}
+                  >
                     <small className="inline-flex flex-wrap items-center gap-1 me-1.5">
                       {genre?.name}
                       {index != series?.genres?.length - 1 && (
@@ -261,7 +266,10 @@ const SeriesDetailPage = ({ series, images }: Props) => {
               <div className="flex gap-5">
                 {series?.created_by?.map((creator: Createdby) => {
                   return (
-                    <Link key={creator?.id} href={`${creator?.id?`/people/${creator?.id}`:'/'}`}>
+                    <Link
+                      key={creator?.id}
+                      href={`${creator?.id ? `/people/${creator?.id}` : "/"}`}
+                    >
                       <div className="mt-3 w-fit flex flex-col items-center text-center">
                         <div className="relative w-16 h-16 rounded-full overflow-hidden">
                           <Img
@@ -284,7 +292,13 @@ const SeriesDetailPage = ({ series, images }: Props) => {
 
           {/* Casts ************* */}
           {series?.credits?.cast?.length! > 0 && (
-            <section className="mt-6">
+            <motion.section
+              variants={scaleOpacity}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="mt-6"
+            >
               <Title>Cast</Title>
               <Slider slideCount={1.2}>
                 {series?.credits?.cast?.map((item: Cast) => {
@@ -295,12 +309,18 @@ const SeriesDetailPage = ({ series, images }: Props) => {
                   );
                 })}
               </Slider>
-            </section>
+            </motion.section>
           )}
 
           {/* Crew ************* */}
           {series?.credits?.crew?.length! > 0 && (
-            <section className="mt-6">
+            <motion.section
+              variants={scaleOpacity}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="mt-6"
+            >
               <Title>Crew</Title>
               <Slider slideCount={1.2}>
                 {series?.credits?.crew?.map((item: Crew) => {
@@ -311,21 +331,33 @@ const SeriesDetailPage = ({ series, images }: Props) => {
                   );
                 })}
               </Slider>
-            </section>
+            </motion.section>
           )}
 
           {/* Seasons ************* */}
           {series?.seasons?.length! > 0 && (
-            <section className="mt-10">
+            <motion.section
+              variants={scaleOpacity}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="mt-10"
+            >
               <Title withLine>Season</Title>
               <div className="h-4 w-full"></div>
               <SeasonDetail data={series?.seasons} id={series?.id} />
-            </section>
+            </motion.section>
           )}
 
           {/* Similar ************* */}
           {series?.similar?.results?.length! > 0 && (
-            <section className="mt-14">
+            <motion.section
+              variants={scaleOpacity}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="mt-14"
+            >
               <Title>More Like This</Title>
               <Slider>
                 {series?.similar?.results?.map((item: Series) => {
@@ -336,12 +368,18 @@ const SeriesDetailPage = ({ series, images }: Props) => {
                   );
                 })}
               </Slider>
-            </section>
+            </motion.section>
           )}
 
           {/* Recommendations ************* */}
           {series?.recommendations?.results?.length! > 0 && (
-            <section className="mt-10">
+            <motion.section
+              variants={scaleOpacity}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="mt-10"
+            >
               <Title>Recommendations</Title>
               <Slider>
                 {series?.recommendations?.results?.map((item: Series) => {
@@ -352,14 +390,20 @@ const SeriesDetailPage = ({ series, images }: Props) => {
                   );
                 })}
               </Slider>
-            </section>
+            </motion.section>
           )}
 
           {/* Comments ************* */}
-          <section className="mt-10 mb-40">
+          <motion.section
+            variants={scaleOpacity}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="mt-10 mb-40"
+          >
             <Title>Comments</Title>
             <Comments authors={series?.reviews?.results!} />
-          </section>
+          </motion.section>
         </div>
       </div>
     </>

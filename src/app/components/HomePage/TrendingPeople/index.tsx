@@ -5,6 +5,8 @@ import Slider from "../../Global/Slider";
 import { SwiperSlide } from "swiper/react";
 import PersonCard from "../../Global/PersonCard";
 import { People } from "../../../../../next-type-d";
+import { motion } from "framer-motion";
+import { scaleOpacity } from "../../../animations/animation";
 
 type Props = {
   data: People[];
@@ -13,8 +15,17 @@ type Props = {
 const TrendingPeople = ({ data }: Props) => {
   return (
     <>
-      <section className="mb-12">
-        <SectionDevider title="Trending People" path="/people/trendingpeople/?page=1" />
+      <motion.section
+        variants={scaleOpacity}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        className="mb-12"
+      >
+        <SectionDevider
+          title="Trending People"
+          path="/people/trendingpeople/?page=1"
+        />
         <Slider>
           {data.map((item: People) => {
             return (
@@ -24,7 +35,7 @@ const TrendingPeople = ({ data }: Props) => {
             );
           })}
         </Slider>
-      </section>
+      </motion.section>
     </>
   );
 };

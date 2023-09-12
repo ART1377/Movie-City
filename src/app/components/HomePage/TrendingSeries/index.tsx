@@ -5,26 +5,27 @@ import Slider from "../../Global/Slider";
 import SeriesCard from "../../Global/SeriesCard";
 import { SwiperSlide } from "swiper/react";
 import { Series } from "../../../../../next-type-d";
+import { motion } from "framer-motion";
+import { scaleOpacity } from "../../../animations/animation";
 
 type Props = {
   data: Series[];
 };
 
 const TrendingSeries = ({ data }: Props) => {
-  // const [data, setData] = useState<Series[]>();
-
-  // useEffect(() => {
-  //   async function getData() {
-  //     const info:TrendingSeriesType|undefined = await getTrendingSeries();
-  //     setData(info?.results);
-  //   }
-  //   getData()
-  // }, []);
-
   return (
     <>
-      <section className="mb-12">
-        <SectionDevider title="Trending Series" path="/series/trendingseries/?page=1" />
+      <motion.section
+        variants={scaleOpacity}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        className="mb-12"
+      >
+        <SectionDevider
+          title="Trending Series"
+          path="/series/trendingseries/?page=1"
+        />
         <Slider>
           {data?.map((item: Series) => {
             return (
@@ -34,7 +35,7 @@ const TrendingSeries = ({ data }: Props) => {
             );
           })}
         </Slider>
-      </section>
+      </motion.section>
     </>
   );
 };

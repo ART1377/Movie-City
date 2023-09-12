@@ -39,13 +39,13 @@
   -ms-transition: var(--transition);
   -o-transition: var(--transition);
 }
-.navbar .navLinks li a:hover {
+/* .navbar .navLinks li a:hover {
   transform: translateX(2px);
   -webkit-transform: translateX(2px);
   -moz-transform: translateX(2px);
   -ms-transform: translateX(2px);
   -o-transform: translateX(2px);
-}
+} */
 .navbar .social li a:hover {
   transform: translateX(0);
   -webkit-transform: translateX(0);

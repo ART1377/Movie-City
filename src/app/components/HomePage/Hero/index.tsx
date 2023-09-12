@@ -2,13 +2,17 @@
 import React, { useEffect, useState } from "react";
 import style from "./Hero.module.css";
 import { series } from "@/app/data";
-import {
-  Series
-} from "../../../../../next-type-d";
+import { Series } from "../../../../../next-type-d";
 import { BsStarFill } from "react-icons/bs";
 import Link from "next/link";
 import Img from "@/app/components/Global/Img";
 import getGenreNameByGenreId from "@/app/lib/DataFetching/getGenreNameByGenreId";
+import { motion } from "framer-motion";
+import {
+  heroContainer,
+  heroInfo,
+  heroSmallImages,
+} from "../../../animations/animation";
 
 type Props = {};
 
@@ -37,7 +41,12 @@ const SliderHero = (props: Props) => {
 
   return (
     <>
-      <div className="h-[520px] xxs:h-[570px] xs:h-[700px] sm:h-[800px] md:h-[550px] 2xl:h-[750px] mb-10 xs:mb-[90px] sm:mb-10 md:mb-16">
+      <motion.div
+        variants={heroContainer}
+        initial="hidden"
+        animate="show"
+        className="h-[520px] xxs:h-[570px] xs:h-[700px] sm:h-[800px] md:h-[550px] 2xl:h-[750px] mb-10 xs:mb-[90px] sm:mb-10 md:mb-16"
+      >
         <div className={`relative h-full sm:h-[65%] md:h-full ${style.slider}`}>
           <div className={`relative w-full h-[65%] sm:h-full ${style.image}`}>
             <Link
@@ -55,7 +64,8 @@ const SliderHero = (props: Props) => {
               />
             </Link>
             {/* information //////////////// */}
-            <div
+            <motion.div
+              variants={heroInfo}
               className={`w-full z-20 p-4 xxs:p-5 sm:p-6 xl:p-8 absolute bottom-0 ${style.info}`}
             >
               <Link href={`/series/${series[current].id}`}>
@@ -68,7 +78,7 @@ const SliderHero = (props: Props) => {
                   <li className="font-bold flex items-center text-header-color">
                     <BsStarFill className="text-sm text-main-green me-0.5" />
                     <small className="!text-lg text-main-green">
-                    {series[current]?.vote_average.toFixed(1)}
+                      {series[current]?.vote_average.toFixed(1)}
                     </small>
                   </li>
                   <div className={`mr-1 ml-0.5 ${style.divider}`}></div>
@@ -84,7 +94,9 @@ const SliderHero = (props: Props) => {
                         if (index < 2) {
                           return (
                             <Link
-                              href={`/genres/${getGenreNameByGenreId(genreId)}?page=1`}
+                              href={`/genres/${getGenreNameByGenreId(
+                                genreId
+                              )}?page=1`}
                               key={genreId}
                             >
                               <small className="!text-xs lg:text-sm text-header-color">
@@ -105,7 +117,7 @@ const SliderHero = (props: Props) => {
                   </small>
                 </li>
               </div>
-            </div>
+            </motion.div>
           </div>
 
           {/* small images //////////////// */}
@@ -114,7 +126,8 @@ const SliderHero = (props: Props) => {
           >
             {series?.map((item: Series, index: number) => {
               return (
-                <div
+                <motion.div
+                  variants={heroSmallImages}
                   key={item.id}
                   onClick={() => changeSlide(index)}
                   className={`relative w-[30%] max-h-[250px] max-w-[180px] md:max-w-[100px] lg:max-w-[120px] z-30 cursor-pointer lg:mx-2 ${
@@ -126,12 +139,12 @@ const SliderHero = (props: Props) => {
                     alternative={`${item?.name} image`}
                     size="w500"
                   />
-                </div>
+                </motion.div>
               );
             })}
           </div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };

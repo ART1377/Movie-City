@@ -6,6 +6,8 @@ import SectionDevider from "../../Global/SectionDevider";
 import Link from "next/link";
 import Img from "../../Global/Img";
 import getGenreNameByGenreId from "@/app/lib/DataFetching/getGenreNameByGenreId";
+import { motion } from "framer-motion";
+import { scaleOpacity } from "../../../animations/animation";
 
 type Props = {
   data: Series[];
@@ -38,7 +40,13 @@ const TopRatedSeries = ({ data }: Props) => {
 
   return (
     <>
-      <section className="mb-12">
+      <motion.section
+        variants={scaleOpacity}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        className="mb-12"
+      >
         <SectionDevider
           title="TopRated Series"
           path="/series/topratedseries/?page=1"
@@ -98,7 +106,7 @@ const TopRatedSeries = ({ data }: Props) => {
             })}
           </div>
         </div>
-      </section>
+      </motion.section>
     </>
   );
 };

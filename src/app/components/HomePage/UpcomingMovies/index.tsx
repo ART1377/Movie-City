@@ -5,6 +5,8 @@ import SectionDevider from "../../Global/SectionDevider";
 import Slider from "../../Global/Slider";
 import { SwiperSlide } from "swiper/react";
 import MovieCard from "../../Global/MovieCard";
+import { motion } from "framer-motion";
+import { scaleOpacity } from "../../../animations/animation";
 
 type Props = {
   data: Movie[];
@@ -13,8 +15,17 @@ type Props = {
 const UpcomingMovies = ({ data }: Props) => {
   return (
     <>
-      <section className="mb-12">
-        <SectionDevider title="Upcoming Movies" path="/movie/upcomingmovies/?page=1" />
+      <motion.section
+        variants={scaleOpacity}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        className="mb-12"
+      >
+        <SectionDevider
+          title="Upcoming Movies"
+          path="/movie/upcomingmovies/?page=1"
+        />
         <Slider>
           {data.map((item: Movie, index: number) => {
             if (index < 10) {
@@ -26,7 +37,7 @@ const UpcomingMovies = ({ data }: Props) => {
             }
           })}
         </Slider>
-      </section>
+      </motion.section>
     </>
   );
 };

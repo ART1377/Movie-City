@@ -1,12 +1,12 @@
 "use client";
 import React from "react";
 import SectionDevider from "../../Global/SectionDevider";
-import { series } from "@/app/data";
 import Slider from "../../Global/Slider";
-import SeriesCard from "../../Global/SeriesCard";
 import { SwiperSlide } from "swiper/react";
 import { Movie } from "../../../../../next-type-d";
 import MovieCard from "../../Global/MovieCard";
+import { motion } from "framer-motion";
+import { scaleOpacity } from "../../../animations/animation";
 
 type Props = {
   data: Movie[];
@@ -15,8 +15,17 @@ type Props = {
 const TrendingMovies = ({ data }: Props) => {
   return (
     <>
-      <section className="mb-12">
-        <SectionDevider title="Trending Movies" path="/movie/trendingmovies/?page=1" />
+      <motion.section
+        variants={scaleOpacity}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        className="mb-12"
+      >
+        <SectionDevider
+          title="Trending Movies"
+          path="/movie/trendingmovies/?page=1"
+        />
         <Slider>
           {data.map((item: Movie) => {
             return (
@@ -26,7 +35,7 @@ const TrendingMovies = ({ data }: Props) => {
             );
           })}
         </Slider>
-      </section>
+      </motion.section>
     </>
   );
 };

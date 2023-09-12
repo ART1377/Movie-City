@@ -35,6 +35,8 @@ import { useAppSelector, useAppDispatch } from "../../../redux/hooks/hook";
 import ModalComponent from "../../Global/ModalComponent";
 import Share from "../../Global/Share";
 import MovieCard from "../../Global/MovieCard";
+import { motion } from "framer-motion";
+import { scaleOpacity } from "@/app/animations/animation";
 
 type Props = {
   movie: MovieDetail;
@@ -275,7 +277,11 @@ const MovieDetailPage = ({ movie, images }: Props) => {
 
           {/* Crew ************* */}
           {movie.credits?.crew?.length! > 0 && (
-            <section className="mt-6">
+            <motion.section variants={scaleOpacity}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="mt-6">
               <Title>Crew</Title>
               <Slider slideCount={1.2}>
                 {movie?.credits?.crew.map((item: Crew) => {
@@ -286,12 +292,16 @@ const MovieDetailPage = ({ movie, images }: Props) => {
                   );
                 })}
               </Slider>
-            </section>
+            </motion.section>
           )}
 
           {/* Similar ************* */}
           {movie.similar?.results?.length! > 0 && (
-            <section className="mt-14">
+            <motion.section variants={scaleOpacity}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="mt-14">
               <Title>More Like This</Title>
               <Slider>
                 {movie?.similar?.results.map((item: Movie) => {
@@ -302,12 +312,16 @@ const MovieDetailPage = ({ movie, images }: Props) => {
                   );
                 })}
               </Slider>
-            </section>
+            </motion.section>
           )}
 
           {/* Recommendations ************* */}
           {movie.recommendations?.results?.length! > 0 && (
-            <section className="mt-10">
+            <motion.section variants={scaleOpacity}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="mt-10">
               <Title>Recommendations</Title>
               <Slider>
                 {movie?.recommendations?.results?.map((item: Movie) => {
@@ -318,14 +332,18 @@ const MovieDetailPage = ({ movie, images }: Props) => {
                   );
                 })}
               </Slider>
-            </section>
+            </motion.section>
           )}
 
           {/* Comments ************* */}
-          <section className="mt-10 mb-40">
+          <motion.section variants={scaleOpacity}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="mt-10 mb-40">
             <Title>Comments</Title>
             <Comments authors={movie?.reviews?.results!} />
-          </section>
+          </motion.section>
         </div>
       </div>
     </>

@@ -4,6 +4,8 @@ import style from "./Episode.module.css";
 import { Episode, SeasonDetail } from "../../../../../../next-type-d";
 import { BsChevronDown, BsFillStarFill } from "react-icons/bs";
 import Button from "@/app/components/Global/Button";
+import { motion } from "framer-motion";
+import { episodeScale } from "@/app/animations/animation";
 
 type Props = {
   data: SeasonDetail;
@@ -32,7 +34,10 @@ const Episode = ({ data }: Props) => {
         {data?.episodes?.map((episode: Episode, index: number) => {
           if (index < count) {
             return (
-              <div
+              <motion.div
+                variants={episodeScale}
+                initial="hidden"
+                animate="show"
                 key={episode?.id}
                 className={`w-full !h-fit relative max-w-[500px] flex flex-col p-3 rounded-2xl text-text-dark ${
                   style.episode
@@ -67,7 +72,7 @@ const Episode = ({ data }: Props) => {
                     </small>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             );
           }
         })}

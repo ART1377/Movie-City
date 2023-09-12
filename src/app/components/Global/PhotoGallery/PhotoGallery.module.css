@@ -59,7 +59,7 @@
 @media only screen and (min-width: 480px) {
   .parent {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(2, 1fr);
     gap: 8px;
     width: 100%;
@@ -105,7 +105,7 @@
 @media only screen and (min-width: 1024px) {
   .parent {
     display: grid;
-    grid-template-columns: repeat(9, 1fr);
+    grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(2, 1fr);
     gap: 8px;
     width: 100%;

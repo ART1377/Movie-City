@@ -108,7 +108,10 @@
   opacity: .8!important;
 }
 
-
+::selection{
+  background-color: var(--main-green);
+  color: var(--bg-white);
+}
 
 
 html,

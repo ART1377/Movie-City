@@ -3,7 +3,7 @@
   color: var(--text-text-dark);
 }
 .show {
-  background-color: var(--main-green);
+  background-color: var(--dark-green);
   color: white;
   animation:show 1s ease-in-out ;
   -webkit-animation:show 1s ease-in-out ;

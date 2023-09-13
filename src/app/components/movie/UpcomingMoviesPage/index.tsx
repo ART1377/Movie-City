@@ -13,7 +13,7 @@ type Props = {};
 
 const UpcomingMoviesPage = (props: Props) => {
   const [sort, setSort] = useState<string>("");
-  const [total, setTotal] = useState<number>(102);
+  const [total, setTotal] = useState<number>(20);
 
   const [allMovies, setAllMovies] = useState<any[]>([]);
 
@@ -22,7 +22,7 @@ const UpcomingMoviesPage = (props: Props) => {
   const page = searchParams.get("page");
 
   const [currentPage, setCurrentPage] = useState(+page!);
-  const totalPages = total;
+  const totalPages = Math.ceil(total/2);
 
   // Get All Data in order to implement sort
   useEffect(() => {
@@ -115,13 +115,13 @@ const UpcomingMoviesPage = (props: Props) => {
         </div>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-4 mt-4 mx-auto">
+      <div className="flex flex-wrap justify-center gap-y-6 gap-x-2 xs:gap-x-3 mx-auto">
         {data?.map((result: Movie, index: number) => {
           if (index >= (+page! - 1) * 20 && index < +page! * 20) {
             return (
               <div
                 key={result.id}
-                className="w-[260px] flex justify-center xxs:max-w-[144px] xs:max-w-[180px]"
+                className="flex justify-center w-[260px] min-w-[152px] xxs:w-[48%] xxs:max-w-[180px] xs:w-[180px] s:w-[30%] lg:w-[23%]"
               >
                 <MovieCard imageSize="w185" movie={result} />
               </div>

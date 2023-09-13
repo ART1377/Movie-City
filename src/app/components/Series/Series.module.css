@@ -2,9 +2,8 @@
   width: 100%;
   max-width: 300px;
 }
-
 .card {
-    width: 260px;
+  width: 260px;
     min-width: 152px;
   }
   @media only screen and (min-width: 320px) {
@@ -31,6 +30,7 @@
       width: 29%;
     }
   }
+    /* w-[260px] min-w-[152px] xxs:w-[48%] xxs:max-w-[180px] xs:w-[180px] s:w-[30%] lg:w-[23%]  */
   @media only screen and (min-width: 1024px) {
     .input {
       width: 100%;

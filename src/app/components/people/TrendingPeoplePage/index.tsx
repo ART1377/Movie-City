@@ -55,7 +55,7 @@ const TrendingPeoplePage = (props: Props) => {
 
   const filteredAllPeople = makeUnique(allPeople);
 
-  const lastFive: People[] = filteredAllPeople.slice(0, 5);
+  // const lastFive: People[] = filteredAllPeople.slice(0, 5);
 
   const data = sortArray(sort, filteredAllPeople);
 
@@ -107,13 +107,13 @@ const TrendingPeoplePage = (props: Props) => {
         </div>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-4 mt-4 mx-auto">
+      <div className="flex flex-wrap justify-center gap-y-6 gap-x-2 xs:gap-x-3 mt-16 lg:mt-0 mx-auto">
         {data?.map((result: People, index: number) => {
           if (index >= (+page! - 1) * 20 && index < +page! * 20) {
             return (
               <div
                 key={result.id}
-                className="w-[260px] flex justify-center xxs:max-w-[144px] xs:max-w-[180px]"
+                className="flex justify-center w-[260px] min-w-[152px] xxs:w-[48%] xxs:max-w-[180px] xs:w-[180px] s:w-[30%] lg:w-[23%]"
               >
                 <PersonCard imageSize="w185" person={result} />
               </div>

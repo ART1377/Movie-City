@@ -31,7 +31,7 @@ const PopularSeries = ({ data }: Props) => {
             if (index < 10) {
               return (
                 <SwiperSlide key={item.id}>
-                  <SeriesCard series={item} imageSize="w185" />
+                  <SeriesCard series={item} imageSize="w154" />
                 </SwiperSlide>
               );
             }

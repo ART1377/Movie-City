@@ -22,7 +22,7 @@ const UpcomingMoviesPage = (props: Props) => {
   const page = searchParams.get("page");
 
   const [currentPage, setCurrentPage] = useState(+page!);
-  const totalPages = Math.ceil(total/2);
+  const totalPages = Math.ceil(total / 2);
 
   // Get All Data in order to implement sort
   useEffect(() => {
@@ -48,8 +48,6 @@ const UpcomingMoviesPage = (props: Props) => {
   }, [totalPages, page, router, currentPage]);
 
   const filteredAllMovies = makeUnique(allMovies);
-
-
 
   const lastFive: Movie[] = filteredAllMovies.slice(0, 5);
 
@@ -123,7 +121,7 @@ const UpcomingMoviesPage = (props: Props) => {
                 key={result.id}
                 className="flex justify-center w-[260px] min-w-[152px] xxs:w-[48%] xxs:max-w-[180px] xs:w-[180px] s:w-[30%] lg:w-[23%]"
               >
-                <MovieCard imageSize="w185" movie={result} />
+                <MovieCard imageSize="w154" movie={result} />
               </div>
             );
           }

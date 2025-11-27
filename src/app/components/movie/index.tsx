@@ -440,7 +440,7 @@ const MoviePage = (props: Props) => {
                     "!min-w-[160px] lg:!min-w-[180px]"
                   }`}
                 >
-                  <MovieCard imageSize="w185" movie={result} />
+                  <MovieCard imageSize="w154" movie={result} />
                 </div>
               );
             })

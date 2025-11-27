@@ -30,7 +30,7 @@ const TrendingPeople = ({ data }: Props) => {
           {data.map((item: People) => {
             return (
               <SwiperSlide key={item.id}>
-                <PersonCard person={item} imageSize="w185" />
+                <PersonCard person={item} imageSize="w154" />
               </SwiperSlide>
             );
           })}

@@ -6,10 +6,7 @@ import { Series } from "../../../../../next-type-d";
 import getPopularSeries from "@/app/lib/DataFetching/getPopularSeries";
 import SeriesCard from "../../Global/SeriesCard";
 import Title from "../../Global/Title";
-import {
-  makeUnique,
-  sortArray,
-} from "@/app/lib/Functions/Functions";
+import { makeUnique, sortArray } from "@/app/lib/Functions/Functions";
 import CustomSlider from "../../Global/CustomSlider";
 
 type Props = {};
@@ -51,8 +48,6 @@ const PopularSeriesPage = (props: Props) => {
   }, [totalPages, page, router, currentPage]);
 
   const filteredAllSeries = makeUnique(allSeries);
-
- 
 
   const lastFive: Series[] = filteredAllSeries.slice(0, 5);
 
@@ -126,7 +121,7 @@ const PopularSeriesPage = (props: Props) => {
                 key={result.id}
                 className="flex justify-center w-[260px] min-w-[152px] xxs:w-[48%] xxs:max-w-[180px] xs:w-[180px] s:w-[30%] lg:w-[23%]"
               >
-                <SeriesCard imageSize="w185" series={result} />
+                <SeriesCard imageSize="w154" series={result} />
               </div>
             );
           }

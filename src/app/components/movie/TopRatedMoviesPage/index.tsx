@@ -49,7 +49,6 @@ const TopRatedMoviesPage = (props: Props) => {
 
   const filteredAllMovies = makeUnique(allMovies);
 
-
   const lastFive: Movie[] = filteredAllMovies.slice(0, 5);
 
   const data = sortArray(sort, filteredAllMovies);
@@ -122,7 +121,7 @@ const TopRatedMoviesPage = (props: Props) => {
                 key={result.id}
                 className="flex justify-center w-[260px] min-w-[152px] xxs:w-[48%] xxs:max-w-[180px] xs:w-[180px] s:w-[30%] lg:w-[23%]"
               >
-                <MovieCard imageSize="w185" movie={result} />
+                <MovieCard imageSize="w154" movie={result} />
               </div>
             );
           }

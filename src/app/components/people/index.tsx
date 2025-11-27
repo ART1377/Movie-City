@@ -15,8 +15,7 @@ import PersonCard from "../Global/PersonCard";
 import { BsPerson, BsSearch, BsTrash3 } from "react-icons/bs";
 
 type Props = {};
-export const dynamic = 'force-dynamic'
-
+export const dynamic = "force-dynamic";
 
 const People = (props: Props) => {
   const [sort, setSort] = useState<string>("");
@@ -192,7 +191,7 @@ const People = (props: Props) => {
                       data?.length! < 4 && "!min-w-[160px] lg:!min-w-[180px]"
                     }`}
                   >
-                    <PersonCard imageSize="w185" person={result} />
+                    <PersonCard imageSize="w154" person={result} />
                   </div>
                 );
               }

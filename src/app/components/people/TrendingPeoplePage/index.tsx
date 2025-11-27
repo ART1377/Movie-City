@@ -115,7 +115,7 @@ const TrendingPeoplePage = (props: Props) => {
                 key={result.id}
                 className="flex justify-center w-[260px] min-w-[152px] xxs:w-[48%] xxs:max-w-[180px] xs:w-[180px] s:w-[30%] lg:w-[23%]"
               >
-                <PersonCard imageSize="w185" person={result} />
+                <PersonCard imageSize="w154" person={result} />
               </div>
             );
           }

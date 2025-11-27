@@ -16,7 +16,7 @@ const CastCard = ({ cast, crew }: Props) => {
           <Img
             url={cast?.profile_path ? cast?.profile_path : crew?.profile_path!}
             alternative={`${cast?.name ? cast.name : crew?.name} image`}
-            size="w45"
+            size="w185"
             style="!w-14 !h-14"
           />
         </div>

@@ -31,7 +31,7 @@ const UpcomingMovies = ({ data }: Props) => {
             if (index < 10) {
               return (
                 <SwiperSlide key={item.id}>
-                  <MovieCard movie={item} imageSize="w185" />
+                  <MovieCard movie={item} imageSize="w154" />
                 </SwiperSlide>
               );
             }

@@ -61,7 +61,7 @@ const MovieDetailPage = ({ movie, images }: Props) => {
               url={movie?.backdrop_path}
               alternative={`${movie?.title} image`}
             />
-                 <div
+            <div
               className={`absolute bottom-0 right-0 z-30 !hidden md:!block !pl-4 xm:!pl-5 lg:!pl-6 xl:!pl-8 pt-2 ${style.statusContainer}`}
             >
               <p
@@ -90,7 +90,11 @@ const MovieDetailPage = ({ movie, images }: Props) => {
               url={movie?.poster_path}
               alternative={`${movie?.title} image`}
             />
-               <p className={`text-white absolute top-full right-0 z-30 !px-4 md:!hidden ${style.status}`}>{movie?.status}</p>
+            <p
+              className={`text-white absolute top-full right-0 z-30 !px-4 md:!hidden ${style.status}`}
+            >
+              {movie?.status}
+            </p>
             <h6
               className={`text-header-color absolute z-30 bottom-10 left-2 xs:left-4 xs:bottom-14 xs:text-2xl line-clamp-2 ${style.title}`}
             >
@@ -106,9 +110,9 @@ const MovieDetailPage = ({ movie, images }: Props) => {
                 <small>{movie?.runtime} m</small>
                 <hr className={style.smallLine} />
                 <small className="flex items-center font-semibold">
-                <BsStarFill className="text-main-green text-sm me-0.5" />
+                  <BsStarFill className="text-main-green text-sm me-0.5" />
                   <small className="!text-base text-main-green">
-                  {movie?.vote_average.toFixed(1)}
+                    {movie?.vote_average.toFixed(1)}
                   </small>
                   <p className="opacity-80 font-normal"> /10</p>
                 </small>
@@ -277,11 +281,13 @@ const MovieDetailPage = ({ movie, images }: Props) => {
 
           {/* Crew ************* */}
           {movie.credits?.crew?.length! > 0 && (
-            <motion.section variants={scaleOpacity}
+            <motion.section
+              variants={scaleOpacity}
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className="mt-6">
+              className="mt-6"
+            >
               <Title>Crew</Title>
               <Slider slideCount={1.2}>
                 {movie?.credits?.crew.map((item: Crew) => {
@@ -297,17 +303,19 @@ const MovieDetailPage = ({ movie, images }: Props) => {
 
           {/* Similar ************* */}
           {movie.similar?.results?.length! > 0 && (
-            <motion.section variants={scaleOpacity}
+            <motion.section
+              variants={scaleOpacity}
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className="mt-14">
+              className="mt-14"
+            >
               <Title>More Like This</Title>
               <Slider>
                 {movie?.similar?.results.map((item: Movie) => {
                   return (
                     <SwiperSlide key={item.id}>
-                      <MovieCard movie={item} imageSize="w185" />
+                      <MovieCard movie={item} imageSize="w154" />
                     </SwiperSlide>
                   );
                 })}
@@ -317,17 +325,19 @@ const MovieDetailPage = ({ movie, images }: Props) => {
 
           {/* Recommendations ************* */}
           {movie.recommendations?.results?.length! > 0 && (
-            <motion.section variants={scaleOpacity}
+            <motion.section
+              variants={scaleOpacity}
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className="mt-10">
+              className="mt-10"
+            >
               <Title>Recommendations</Title>
               <Slider>
                 {movie?.recommendations?.results?.map((item: Movie) => {
                   return (
                     <SwiperSlide key={item.id}>
-                      <MovieCard movie={item} imageSize="w185" />
+                      <MovieCard movie={item} imageSize="w154" />
                     </SwiperSlide>
                   );
                 })}
@@ -336,11 +346,13 @@ const MovieDetailPage = ({ movie, images }: Props) => {
           )}
 
           {/* Comments ************* */}
-          <motion.section variants={scaleOpacity}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="mt-10 mb-40">
+          <motion.section
+            variants={scaleOpacity}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="mt-10 mb-40"
+          >
             <Title>Comments</Title>
             <Comments authors={movie?.reviews?.results!} />
           </motion.section>

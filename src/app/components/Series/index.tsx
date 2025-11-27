@@ -383,7 +383,7 @@ const SeriesPage = (props: Props) => {
                     "!min-w-[160px] lg:!min-w-[180px]"
                   } `}
                 >
-                  <SeriesCard imageSize="w185" series={result} />
+                  <SeriesCard imageSize="w154" series={result} />
                 </div>
               );
             })

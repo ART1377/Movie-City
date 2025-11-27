@@ -45,9 +45,9 @@ const SliderHero = (props: Props) => {
         variants={heroContainer}
         initial="hidden"
         animate="show"
-        className="h-[520px] xxs:h-[570px] xs:h-[700px] sm:h-[800px] md:h-[550px] 2xl:h-[750px] mb-10 xs:mb-[90px] sm:mb-10 md:mb-16"
+        className="h-[520px] xxs:h-[570px] xs:h-[700px] sm:h-[800px] md:h-[600px] 2xl:h-[750px] mb-10 xs:mb-[90px] sm:mb-10 md:mb-16"
       >
-        <div className={`relative h-full sm:h-[65%] md:h-full ${style.slider}`}>
+        <div  className={`relative h-full sm:h-[65%] md:h-full ${style.slider}`}>
           <div className={`relative w-full h-[65%] sm:h-full ${style.image}`}>
             <Link
               href={`/series/${series[current].id}`}
@@ -60,7 +60,7 @@ const SliderHero = (props: Props) => {
               <Img
                 url={series[current]?.backdrop_path}
                 alternative={`${series[current]?.name} image`}
-                size="original"
+                size="w1280"    
               />
             </Link>
             {/* information //////////////// */}

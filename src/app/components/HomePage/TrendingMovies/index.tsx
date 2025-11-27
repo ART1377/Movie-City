@@ -30,7 +30,7 @@ const TrendingMovies = ({ data }: Props) => {
           {data.map((item: Movie) => {
             return (
               <SwiperSlide key={item.id}>
-                <MovieCard movie={item} imageSize="w185" />
+                <MovieCard movie={item} imageSize="w154" />
               </SwiperSlide>
             );
           })}

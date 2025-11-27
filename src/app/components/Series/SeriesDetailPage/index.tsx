@@ -363,7 +363,7 @@ const SeriesDetailPage = ({ series, images }: Props) => {
                 {series?.similar?.results?.map((item: Series) => {
                   return (
                     <SwiperSlide key={item?.id}>
-                      <SeriesCard series={item} imageSize="w185" />
+                      <SeriesCard series={item} imageSize="w154" />
                     </SwiperSlide>
                   );
                 })}
@@ -385,7 +385,7 @@ const SeriesDetailPage = ({ series, images }: Props) => {
                 {series?.recommendations?.results?.map((item: Series) => {
                   return (
                     <SwiperSlide key={item?.id}>
-                      <SeriesCard series={item} imageSize="w185" />
+                      <SeriesCard series={item} imageSize="w154" />
                     </SwiperSlide>
                   );
                 })}

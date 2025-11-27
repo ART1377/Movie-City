@@ -195,7 +195,7 @@ const PeopleDetailPage = ({ people, credits }: Props) => {
                   if (item.media_type == "movie") {
                     return (
                       <SwiperSlide key={item.id}>
-                        <MovieCard movie={item as Movie} imageSize="w185" />
+                        <MovieCard movie={item as Movie} imageSize="w154" />
                       </SwiperSlide>
                     );
                   }
@@ -218,7 +218,7 @@ const PeopleDetailPage = ({ people, credits }: Props) => {
                   if (item.media_type == "tv") {
                     return (
                       <SwiperSlide key={`${item.id}${item.character}`}>
-                        <SeriesCard series={item as Series} imageSize="w185" />
+                        <SeriesCard series={item as Series} imageSize="w154" />
                       </SwiperSlide>
                     );
                   }
@@ -241,7 +241,7 @@ const PeopleDetailPage = ({ people, credits }: Props) => {
                   if (item.media_type == "movie") {
                     return (
                       <SwiperSlide key={item.id}>
-                        <MovieCard movie={item as Movie} imageSize="w185" />
+                        <MovieCard movie={item as Movie} imageSize="w154" />
                       </SwiperSlide>
                     );
                   }
@@ -264,7 +264,7 @@ const PeopleDetailPage = ({ people, credits }: Props) => {
                   if (item.media_type == "tv") {
                     return (
                       <SwiperSlide key={item.id}>
-                        <SeriesCard series={item as Series} imageSize="w185" />
+                        <SeriesCard series={item as Series} imageSize="w154" />
                       </SwiperSlide>
                     );
                   }

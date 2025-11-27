@@ -30,7 +30,7 @@ const TrendingSeries = ({ data }: Props) => {
           {data?.map((item: Series) => {
             return (
               <SwiperSlide key={item.id}>
-                <SeriesCard series={item} imageSize="w185" />
+                <SeriesCard series={item} imageSize="w154" />
               </SwiperSlide>
             );
           })}
